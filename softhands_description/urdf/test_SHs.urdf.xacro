@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<robot name="test_SHs" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="$(find softhands_description)/urdf/softhands.xacro"/>
+	
+	<link name="world"/>
+
+<!--     <joint name="object_joint" type="fixed">
+		<origin xyz="0.04 0.03 0.11" rpy="0 0 0"/>
+		<parent link="world" />
+		<child link="object" />
+	</joint>
+
+	<link name="object">
+	<inertial>
+ 		<origin xyz="0 0 0"/>
+			<mass value="1"/>
+			<inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+		</inertial> 	
+		<visual>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.04 0.04 0.04"/>
+			</geometry>
+		</visual>
+		<collision>
+		<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+				<box size="0.04 0.04 0.04"/>
+			</geometry>
+		</collision> 
+	</link>  
+ -->
+
+ 	<xacro:softhands type="left" 
+		version = "v1.0"
+ 		parent = "world"
+		position ="0.0 0.3 0"
+		orientation ="0 0.0 0"
+		operation_mode = "0"
+		translation="0.0036">
+	</xacro:softhands>
+
+ 	<xacro:softhands type="left" 
+		version = "v1.0_simple"
+ 		parent = "world"
+		position ="0.2 0.3 0"
+		orientation ="0 0.0 0"
+		operation_mode = "0"
+		translation="0.0036">
+	</xacro:softhands>
+
+	<xacro:softhands type="right" 
+		version = "v1.0"
+ 		parent = "world"
+		position ="0 0 0"
+		orientation ="0 0.0 0"
+		operation_mode = "0"
+		translation="0.0036">
+	</xacro:softhands>
+
+	<xacro:softhands type="right" 
+		version = "v1.0_simple"
+ 		parent = "world"
+		position ="0.2 0 0"
+		orientation ="0 0.0 0"
+		operation_mode = "0"
+		translation="0.0036">
+	</xacro:softhands>
+	
+	<xacro:softhands type="right" 
+		version = "v2.0"
+ 		parent = "world"
+		position ="0.4 0 0"
+		orientation ="0 0 0"
+		operation_mode = "0"
+		translation="0.0036">
+	</xacro:softhands>
+
+	<xacro:softhands type="right" 
+		version = "v2.0_simple"
+ 		parent = "world"
+		position ="0.6 0 0"
+		orientation ="0 0 0"
+		operation_mode = "0"
+	    translation="0.0036">
+	</xacro:softhands>
+
+</robot>

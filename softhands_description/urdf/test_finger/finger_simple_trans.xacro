@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:macro name="finger_simple_trans" params="type ns sign position orientation translation">
+
+    <!-- KNUCKLE -->
+    <joint name="${ns}_${type}_abd_joint" type="revolute">
+      <origin xyz="${position}" rpy="${orientation}"/>
+      <parent link="${ns}_palm_link"/>
+      <child link="${ns}_${type}_knuckle_link"/>
+      <limit effort="30" velocity="1.0" lower="-1.57" upper="1.57"/>
+      <axis xyz="0 0 1" />
+    </joint> 
+    
+    <link name="${ns}_${type}_knuckle_link">
+      <inertial>
+	<origin xyz="0.001285644 0 0.000425011"/>
+	<mass value="0.009"/>
+	<inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <xacro:if value="${type == 'index'}">
+	<visual>
+	  <geometry>
+	    <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_r_ng.stl" scale="0.001 0.001 0.001"/> 
+	  </geometry>
+	  <material name="qbmove/default"/>
+	</visual>
+	<collision>
+	  <geometry>
+	    <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_r_ng_collision.stl" scale="0.001 0.001 0.001"/> 
+	  </geometry>
+	</collision>
+      </xacro:if>
+      <xacro:if value="${type == 'middle'}">
+	<visual>
+	  <geometry>
+	    <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_m_ng.stl" scale="0.001 0.001 0.001"/> 
+	  </geometry>
+	  <material name="qbmove/default"/>
+	</visual>
+	<collision>
+	  <geometry>
+	    <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_m_ng_collision.stl" scale="0.001 0.001 0.001"/> 
+	  </geometry>
+	</collision>
+      </xacro:if>
+      <xacro:if value="${type == 'ring'}">
+	<visual>
+	  <geometry>
+	    <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
+	  </geometry>
+	  <material name="qbmove/default"/>
+	</visual>
+	<collision>
+	  <geometry>
+	    <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_l_ng_collision.stl" scale="0.001 0.001 0.001"/> 
+	  </geometry>
+	</collision>
+      </xacro:if>
+      <xacro:if value="${type == 'little'}">
+	<visual>
+	  <geometry>
+	    <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
+	  </geometry>
+	  <material name="qbmove/default"/>
+	</visual>
+	<collision>
+	  <geometry>
+	    <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_l_ng_collision.stl" scale="0.001 0.001 0.001"/> 
+	  </geometry>
+	</collision>
+      </xacro:if>
+    </link>
+    <gazebo reference="${ns}_${type}_knuckle_link">
+      <material>Gazebo/Grey</material>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+  
+    <joint name="${ns}_${type}_inner_joint" type="revolute">
+      <xacro:if value="${type == 'index'}">
+	<origin xyz="0.0211 0.0023 ${translation}" rpy="1.5707963 0 0"/>
+      </xacro:if>
+      <xacro:if value="${type == 'middle'}">
+	<origin xyz="0.0211 0.0 ${translation}" rpy="1.5707963 0 0"/>
+      </xacro:if>
+      <xacro:if value="${type == 'ring'}">
+	<origin xyz="0.0211 -0.0023 ${translation}" rpy="1.5707963 0 0"/>
+      </xacro:if>
+      <xacro:if value="${type == 'little'}">
+	<origin xyz="0.0211 -0.0023 ${translation}" rpy="1.5707963 0 0"/>
+      </xacro:if>
+      <parent link="${ns}_${type}_knuckle_link"/>
+      <child link="${ns}_${type}_proximal_link"/>
+      <limit effort="30" velocity="1.0" lower="-1.57" upper="1.57" />
+      <axis xyz="0 0 1" />
+    </joint>
+
+      
+     <link name="${ns}_${type}_proximal_link">
+      <inertial>
+        <origin xyz="0.011574337 -${translation} 0"/>
+        <mass value="0.005"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual>
+	<geometry>
+	  <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl" scale="0.001 0.001 0.001"/> 
+	</geometry>
+	<material name="qbmove/default"/>
+	<origin xyz="0.0065 -${translation} 0" rpy="0 0 0"/>
+      </visual>		
+      <collision>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng_collision.stl" scale="0.001 0.001 0.001"/> 
+        </geometry>
+        <origin xyz="0.0065 -${translation} 0" rpy="0 0 0"/>
+      </collision>      
+    </link>
+    <gazebo reference="${ns}_${type}_proximal_link">
+      <material>Gazebo/Grey</material>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+  
+    
+    <joint name="${ns}_${type}_middle_joint" type="revolute">
+      <origin xyz="0.022 0 0" rpy="0 0 0"/>
+      <parent link="${ns}_${type}_proximal_link"/>
+      <child link="${ns}_${type}_middle_link"/>
+      <limit effort="30" velocity="1.0" lower="-1.57" upper="1.57" />
+      <axis xyz="0 0 1" />
+    </joint>
+    
+    <link name="${ns}_${type}_middle_link">
+      <inertial>
+        <origin xyz="0.011574337 -${translation} 0"/>
+        <mass value="0.005"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual>
+	<geometry>
+	  <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl" scale="0.001 0.001 0.001"/> 
+	</geometry>
+	<material name="qbmove/default"/>
+	<origin xyz="0.0065 -${translation} 0" rpy="0 0 0"/>
+      </visual>		
+      <collision>
+        <geometry>
+         <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng_collision.stl" scale="0.001 0.001 0.001"/> 
+        </geometry>
+        <origin xyz="0.0065 -${translation} 0" rpy="0 0 0"/>
+      </collision>        
+    </link>
+    <gazebo reference="${ns}_${type}_middle_link">
+      <material>Gazebo/Grey</material>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+  
+    
+    <joint name="${ns}_${type}_outer_joint" type="revolute">
+      <origin xyz="0.022 0 0" rpy="0 0 0"/>
+      <parent link="${ns}_${type}_middle_link"/>
+      <child link="${ns}_${type}_distal_link"/>
+      <limit effort="30" velocity="1.0" lower="-1.57" upper="1.57" />
+      <axis xyz="0 0 1" />
+    </joint>
+    
+    <link name="${ns}_${type}_distal_link">
+      <inertial>
+        <origin xyz="0.011574337 -${translation} 0"/>
+        <mass value="0.005"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual>
+	<geometry>
+	  <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qb_distal_ng.stl" scale="0.001 0.001 0.001"/> 
+	</geometry>
+	<material name="qbmove/default"/>
+	<origin xyz="0.0065 -${translation} 0" rpy="0 0 0"/>
+      </visual>		
+      <collision>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qb_distal_ng_collision.stl" scale="0.001 0.001 0.001"/> 
+        </geometry>
+        <origin xyz="0.0065 -${translation} 0" rpy="0 0 0"/>
+      </collision>        
+    </link>
+    <gazebo reference="${ns}_${type}_distal_link">
+      <material>Gazebo/Grey</material>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    
+    <gazebo>
+      <plugin name="${type}_sh_abd_plugin" filename="libsofthands_plugin.so">
+	  <joint>${ns}_${type}_abd_joint</joint>  
+	  <namespace>${ns}</namespace>
+	  <stiffness>20</stiffness>
+      </plugin>
+    </gazebo>
+    <gazebo>
+      <plugin name="${type}_sh_inn_plugin" filename="libsofthands_plugin.so">
+	  <joint>${ns}_${type}_inner_joint</joint>
+	  <namespace>${ns}</namespace>  
+	  <stiffness>10</stiffness>
+      </plugin>
+    </gazebo>
+    <gazebo>
+      <plugin name="${type}_sh_mid_plugin" filename="libsofthands_plugin.so">
+	  <joint>${ns}_${type}_middle_joint</joint>  
+	  <namespace>${ns}</namespace>
+	  <stiffness>10</stiffness>
+      </plugin>
+    </gazebo>
+    <gazebo>
+      <plugin name="${type}_sh_out_plugin" filename="libsofthands_plugin.so">
+	  <joint>${ns}_${type}_outer_joint</joint>
+	  <namespace>${ns}</namespace> 
+	  <stiffness>10</stiffness> 
+      </plugin>
+    </gazebo>
+
+  </xacro:macro>
+
+</robot>
+    

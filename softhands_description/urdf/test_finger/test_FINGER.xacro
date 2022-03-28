@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<robot name="test_SHs" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="$(find softhands_description)/urdf/test_finger/finger_mimic.xacro"/>
+	<xacro:include filename="$(find softhands_description)/urdf/test_finger/finger_simple_trans.xacro"/>
+
+	<link name="world"/>
+
+    <joint name="to_finger" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="world"/>
+      <child link="test_finger_palm_link"/>
+      <limit effort="30" velocity="1.0" lower="-0.785398" upper="0.785398"/>
+      <axis xyz="0 0 1" />
+    </joint> 
+
+    <link name="test_finger_palm_link">
+      <inertial>
+		<origin xyz="0 0 0"/>
+		<mass value="0.01"/>
+		<inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual>
+      	<origin xyz="0 0 0.05" rpy="0 0 0"/>
+		<geometry>
+		  <box size="0.02 0.02 0.03"/> 
+		</geometry>
+      </visual>		
+      <collision>
+      	<origin xyz="0 0 0.05" rpy="0 0 0"/>
+		<geometry>
+		  <box size="0.02 0.02 0.03"/> 
+		</geometry>
+      </collision>             
+    </link>
+
+	# Index finger with mimic
+	<xacro:finger_mimic type="index" 
+	   ns = "test_finger"
+	   sign = "1"
+	   position="0 0 0"
+	   orientation="0 0 0">
+	</xacro:finger_mimic>
+
+	# Index finger with translation
+<!-- 	<xacro:finger_simple_trans type="index" 
+	   ns = "test_finger"
+	   sign = "1"
+	   position="0 0 0"
+	   orientation="0 0 0"
+	   translation= "0.0036">
+	</xacro:finger_simple_trans> -->
+
+    # Gazebo custom synergy-plugin
+    <gazebo>
+		<plugin name="synergy_plugin" filename="libsofthands_synergy_plugin.so">
+				<namespace>test_finger</namespace>
+				<close_rate>0.001</close_rate> 			# from 0 to 1: 0 - slow closure, 1 - fast closure
+				<close_type>power</close_type> 			# hand closure type, "power" or "pinch"
+		</plugin>
+    </gazebo>
+
+</robot>

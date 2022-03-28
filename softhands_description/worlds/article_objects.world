@@ -1,0 +1,186 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    
+    <!-- Sky with clouds -->
+    <scene>
+      <sky>
+        <clouds>
+            <speed>0</speed>
+        </clouds>
+      </sky>
+    </scene>
+
+    <!-- A global light source -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <!-- A ground plane -->
+<!--     <include>
+      <uri>model://ground_plane</uri>
+    </include> -->
+    
+      <!-- Focus camera on a desired location -->
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <!-- pose is (m) X Y Z (rad) R P Y -->
+        <pose>0.330851 -0.208130 0.226667 0.000000 0.323999 2.544188</pose> 
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+
+    <!-- OBJECTS HOLDER -->
+    <model name="base_object">
+    <static>true</static>
+    <link name="base">
+      <pose>0.05 0 0 0 0 0 0</pose>
+      <collision name="base_collision">
+        <geometry>
+          <box>
+            <size>0.05 0.05 0.05</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="base">
+        <geometry>
+          <box>
+            <size>0.05 0.05 0.05</size>
+          </box>
+        </geometry>
+      </visual>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.133</mu>
+            <mu2>0.133</mu2>
+          </ode>
+          <torsional>
+            <ode/>
+          </torsional>
+        </friction>
+        <bounce/>
+      </surface>
+    </link>
+    </model>
+
+    <!-- Objects in the world -->
+    <!-- beta -->
+<!--     <model name="beta_object">
+    <static>true</static>
+    <link name="beta">
+      <pose>0.018 0.013835 0.104 0.707 0 0</pose>
+      <collision name="static_box_collision">
+        <geometry>
+          <box>
+            <size>0.03 0.12 0.05</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="beta">
+        <geometry>
+          <box>
+            <size>0.03 0.12 0.05</size>
+          </box>
+        </geometry>
+      </visual>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.133</mu>
+            <mu2>0.133</mu2>
+          </ode>
+          <torsional>
+            <ode/>
+          </torsional>
+        </friction>
+        <bounce/>
+      </surface>
+    </link>
+    </model>
+ -->
+    <!-- ball -->
+<!--    <model name="ball_object">
+    <static>true</static>
+    <link name="ball">
+      <pose>0.03 0 0.115 0.0 0 0</pose>
+      <collision name="static_ball_collision">
+        <geometry>
+          <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </collision>
+      <visual name="ball">
+        <geometry>
+           <sphere>
+            <radius>0.03</radius>
+          </sphere>
+        </geometry>
+      </visual>      
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.133</mu>
+            <mu2>0.133</mu2>
+          </ode>
+          <torsional>
+            <ode/>
+          </torsional>
+        </friction>
+        <bounce/>
+      </surface>
+    </link>
+    </model> -->
+
+    <!-- cylinder flange -->
+<!--    <model name="cylinder_object">
+    <static>true</static>
+    <link name="cylinder">
+      <pose>-0.015047 0.090267 0.120726 2.210697 0 0</pose>
+      <collision name="static_cylinder_collision">
+        <geometry>
+          <mesh><uri>model://ee_cylinder_m.STL</uri></mesh>
+        </geometry>
+      </collision>
+      <visual name="cylinder">
+         <geometry>
+          <mesh><uri>model://ee_cylinder_m.STL</uri></mesh>
+        </geometry>
+      </visual>
+    </link>
+    </model>
+ -->
+    <!-- plastic glass -->
+   <model name="cylinder_object">
+    <static>false</static>
+    <link name="cylinder">
+      <pose>0.038778 0.000278 0.033463 0 0 0</pose>
+      <collision name="static_cylinder_collision">
+        <geometry>
+          <mesh><uri>model://bicchiere_mano_collision.stl</uri><scale>0.001 0.001 0.001</scale></mesh>
+        </geometry>
+      </collision>
+      <visual name="cylinder">
+         <geometry>
+          <mesh><uri>model://bicchiere_mano.stl</uri><scale>0.001 0.001 0.001</scale></mesh>
+        </geometry>
+      </visual>
+      <surface>
+        <friction>
+          <ode>
+            <mu>0.133</mu>
+            <mu2>0.133</mu2>
+          </ode>
+          <torsional>
+            <ode/>
+          </torsional>
+        </friction>
+        <bounce/>
+      </surface>
+    </link>
+    </model>
+
+    </world>
+
+</sdf>

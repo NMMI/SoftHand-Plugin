@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<robot name="softhand_v2.0" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:include filename="$(find softhands_description)/urdf/v2.0/finger.xacro"/>
+  <xacro:include filename="$(find softhands_description)/urdf/v2.0/thumb.xacro"/>
+
+  <xacro:macro name="sh_v2" params="type parent position orientation">
+
+
+    # RIGHT HAND 
+    <xacro:if value="${type == 'right'}">
+
+      # Palm 
+      <joint name="${type}_hand_palm_joint" type="fixed">
+	      <origin xyz="0 0 0.00" rpy="0 -1.57 3.14159"/>
+	      <parent link="${type}_hand_palm_base" />
+	      <child link="${type}_hand_palm_link" />
+      </joint>
+      <link name="${type}_hand_palm_link">
+	<inertial>
+	  <origin xyz="-0.004568758 -0.006808116 0.027653328"/>
+	  <mass value="0.266"/>
+	  <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+	</inertial>
+	<visual>
+	  <geometry>
+	    <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_palm_ng.stl" scale="0.001 0.001 0.001"/> 
+	  </geometry>
+	  <material name="qbmove/default"/>
+	</visual>
+	<collision>
+	  <geometry>
+	    <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_palm_ng.stl" scale="0.001 0.001 0.001"/> 
+	  </geometry>
+	</collision>       
+      </link>
+      <gazebo reference="${type}_hand_palm_link">
+      <material>Gazebo/Grey</material>
+      <selfCollide>true</selfCollide>
+    </gazebo>
+  
+
+      # Thumb finger
+      <xacro:thumb_v2 type="thumb" 
+	      ns = "${type}_hand"
+	      sign = "1"
+	      position="0.06643 -0.0437097 0.0210"
+	      orientation="-1.5707963 0 -1.0471972">
+      </xacro:thumb_v2>
+
+      # Index finger
+      <xacro:finger_v2 type="index" 
+	      ns = "${type}_hand"
+	      sign = "1"
+	      position="0.099 -0.0255 0.00766056"
+	      orientation="0 0 -0.1745327">
+      </xacro:finger_v2>
+
+      # Middle finger
+      <xacro:finger_v2 type="middle" 
+	      ns = "${type}_hand"
+	      sign = "1"
+	      position="0.104 -0.0075 0.00766056"
+	      orientation="0.0 0.0 0.0">
+      </xacro:finger_v2>
+
+      # Ring finger
+      <xacro:finger_v2 type="ring" 
+	      ns = "${type}_hand"
+	      sign = "1"
+	      position="0.099 0.0105 0.00766056"
+	      orientation="0 0 0.0872664">
+      </xacro:finger_v2>
+	      
+      # Little finger
+      <xacro:finger_v2 type="little" 
+	      ns = "${type}_hand"
+	      sign = "1"
+	      position="0.094 0.0257 0.00766056"
+	      orientation="0 0 0.2617993">
+      </xacro:finger_v2>
+
+    </xacro:if>
+
+  </xacro:macro>
+
+</robot>

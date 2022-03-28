@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot name="softhands" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find softhands_description)/urdf/v1.0/sh_v1.xacro"/>
+  <xacro:include filename="$(find softhands_description)/urdf/v1.0_simple/sh_v1_simple.xacro"/>
+  <xacro:include filename="$(find softhands_description)/urdf/v2.0/sh_v2.xacro"/>
+  <xacro:include filename="$(find softhands_description)/urdf/v2.0_simple/sh_v2_simple.xacro"/>
+
+  <xacro:macro name="softhands" params="type version parent position orientation operation_mode translation">
+
+    # Softhand VERSION 1.0
+    <xacro:if value="${version == 'v1.0'}">
+
+    	<xacro:sh_v1 type="${type}" 
+    	    parent = "${parent}"
+    	    position ="${position}"
+    	    orientation ="${orientation}"
+          operation_mode = "${operation_mode}">
+    	</xacro:sh_v1>	
+
+    </xacro:if>
+
+    # Softhand VERSION 1.0 SIMPLIFIED (less joints)
+    <xacro:if value="${version == 'v1.0_simple'}">
+
+      <xacro:sh_v1_simple type="${type}" 
+        parent = "${parent}"
+        position ="${position}"
+        orientation ="${orientation}"
+        operation_mode = "${operation_mode}">
+      </xacro:sh_v1_simple> 
+
+    </xacro:if>
+
+    # Softhand VERSION 2.0
+    <xacro:if value="${version == 'v2.0'}">
+
+      <xacro:sh_v2 type="${type}" 
+	      parent = "${parent}"
+	      position ="${position}"
+	      orientation ="${orientation}"
+        operation_mode = "${operation_mode}">
+      </xacro:sh_v2>	
+
+    </xacro:if>
+
+    # Softhand VERSION 2.0 SIMPLIFIED (less joints)
+    <xacro:if value="${version == 'v2.0_simple'}">
+
+      <xacro:sh_v2_simple type="${type}" 
+	      parent = "${parent}"
+	      position ="${position}"
+	      orientation ="${orientation}"
+        operation_mode = "${operation_mode}"
+        translation="${translation}">
+      </xacro:sh_v2_simple>	
+
+    </xacro:if>
+
+    # TODO: OTHER VERSIONs
+
+    <gazebo>
+      <self_collide>1</self_collide>
+    </gazebo>
+
+  </xacro:macro>
+
+</robot>

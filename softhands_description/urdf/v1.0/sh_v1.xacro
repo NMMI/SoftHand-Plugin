@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<robot name="softhand_v1.0" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:include filename="$(find softhands_description)/urdf/v1.0/finger.xacro"/>
+	<xacro:include filename="$(find softhands_description)/urdf/v1.0/thumb.xacro"/>
+
+	<xacro:macro name="sh_v1" params="type parent position orientation operation_mode">
+
+	# Softhand Base	
+	<joint name="${type}_hand_v1_base_joint" type="fixed">
+	    <origin xyz="${position}" rpy="${orientation}"/>
+	    <parent link="${parent}" />
+	    <child link="${type}_hand_v1_palm_base" />
+	</joint>
+	<link name="${type}_hand_v1_palm_base">
+	</link>
+
+	# RIGHT HAND 
+        <xacro:if value="${type == 'right'}">
+
+        	# Palm 
+			<joint name="${type}_hand_v1_palm_joint" type="fixed">
+				<origin xyz="0.002 0.00695 0.0535" rpy="0 0 0"/>
+				<parent link="${type}_hand_v1_palm_base" />
+				<child link="${type}_hand_v1_palm_link" />
+			</joint>
+			<link name="${type}_hand_v1_palm_link">
+				<inertial>
+					<origin xyz="-0.004568758 -0.006808116 0.027653328"/>
+					<mass value="2.28"/>
+					<inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+				</inertial>
+				<visual>
+					<geometry>
+						<mesh filename="package://softhands_description/meshes/softhands/v1.0/right/palm_right_m.stl"/>
+					</geometry>
+				</visual>
+				<collision>
+					<geometry>
+						<mesh filename="package://softhands_description/meshes/softhands/v1.0/right/palm_right_m.stl"/>
+					</geometry>
+				</collision>      
+				<visual>
+					<origin xyz="-0.002 -0.00695 -0.0535" rpy="0 0 0"/>
+					<geometry>
+						<mesh filename="package://softhands_description/meshes/softhands/v1.0/right/softhand_base_right_m.stl"/>
+					</geometry>
+				</visual>
+				<collision>
+					<origin xyz="-0.002 -0.00695 -0.0535" rpy="0 0 0"/>
+					<geometry>
+						<mesh filename="package://softhands_description/meshes/softhands/v1.0/right/softhand_base_right_m.stl"/>
+					</geometry>
+				</collision>    
+			</link>
+
+			# Thumb finger
+			<xacro:thumb_v1 type="thumb" 
+		 		ns = "${type}_hand_v1"
+		 		sign = "1"
+				position="0.00566972 0.0296160 0.0553140"
+				orientation="0.0 -0.38397275793662144 1.5707963267948966">
+			</xacro:thumb_v1>
+
+			# Index finger
+			<xacro:finger_v1 type="index" 
+				ns = "${type}_hand_v1"
+				sign = "1"
+				position="-0.0033 0.0195 0.0936994"
+				orientation="1.5707963267948966 -1.4835299330931884 1.5707963267948966">
+			</xacro:finger_v1>
+
+			# Middle finger
+			<xacro:finger_v1 type="middle" 
+				ns = "${type}_hand_v1"
+				sign = "1"
+				position="-0.003300000 0.0 0.100699"
+				orientation="3.141592 -1.5707963267948966 0.0">
+			</xacro:finger_v1>
+
+		 	# Ring finger
+		 	<xacro:finger_v1 type="ring" 
+		 		ns = "${type}_hand_v1"
+		 		sign = "1"
+				position="-0.0033 -0.0195 0.0936994"
+				orientation="-1.5707963267948966 -1.5184364298870514 -1.5707963267948966">
+			</xacro:finger_v1>
+				
+		 	# Little finger
+		 	<xacro:finger_v1 type="little" 
+		 		ns = "${type}_hand_v1"
+		 		sign = "1"
+				position="-0.0033 -0.039 0.0836994"
+				orientation="-1.5707963267948966 -1.4835299330931884 -1.5707963267948966">
+			</xacro:finger_v1>
+
+		</xacro:if>
+
+	# LEFT HAND 
+        <xacro:if value="${type == 'left'}">
+
+        	# Palm
+			<joint name="${type}_hand_v1_palm_joint" type="fixed">
+				<origin xyz="0.002 0.00695 0.0535" rpy="0 0 0"/>
+				<parent link="${type}_hand_v1_palm_base" />
+				<child link="${type}_hand_v1_palm_link" />
+			</joint>
+			<link name="${type}_hand_v1_palm_link">
+				<inertial>
+					<origin xyz="-0.004568758 -0.006808116 0.027653328"/>
+					<mass value="2.28"/>
+					<inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+				</inertial>
+				<visual>
+					<geometry>
+						<mesh filename="package://softhands_description/meshes/softhands/v1.0/left/palm_left_m.stl"/>
+					</geometry>
+				</visual>
+				<collision>
+					<geometry>
+						<mesh filename="package://softhands_description/meshes/softhands/v1.0/left/palm_left_m.stl"/>
+					</geometry>
+				</collision>      
+				<visual>
+				<origin xyz="-0.002 0.00695 -0.0535" rpy="0 0 0"/>
+					<geometry>
+						<mesh filename="package://softhands_description/meshes/softhands/v1.0/left/softhand_base_left_m.stl"/>
+					</geometry>
+				</visual>
+				<collision>
+					<origin xyz="-0.002 0.00695 -0.0535" rpy="0 0 0"/>
+					<geometry>
+						<mesh filename="package://softhands_description/meshes/softhands/v1.0/right/softhand_base_right_m.stl"/>
+					</geometry>
+				</collision>    
+			</link>
+
+			# Thumb finger
+			<xacro:thumb_v1 type="thumb" 
+		 		ns = "${type}_hand_v1"
+		 		sign = "-1"
+				position="0.005669722 -0.029616 0.055314"
+				orientation="0.0 -0.38397275793662144 -1.5707963267948966">
+			</xacro:thumb_v1>
+
+			# Index finger
+			<xacro:finger_v1 type="index" 
+				ns = "${type}_hand_v1"
+				sign = "-1"
+				position="-0.0033 -0.0195 0.0936994"
+				orientation="-1.5707963267948966 -1.4835299330931884 -1.5707963267948966">
+			</xacro:finger_v1>
+
+			# Middle finger
+			<xacro:finger_v1 type="middle" 
+				ns = "${type}_hand_v1"
+				sign = "-1"
+				position="-0.0033 0.0 0.100699"
+				orientation="3.1415 -1.5707963267948966 0.0">
+			</xacro:finger_v1>
+
+		 	# Ring finger
+		 	<xacro:finger_v1 type="ring" 
+		 		ns = "${type}_hand_v1"
+		 		sign = "-1"
+				position="-0.0033 0.0195 0.0936994"
+				orientation="1.5707963267948966 -1.5184364298870514 1.5707963267948966">
+			</xacro:finger_v1>
+				
+		 	# Little finger
+		 	<xacro:finger_v1 type="little" 
+		 		ns = "${type}_hand_v1"
+		 		sign = "-1"
+				position="-0.0033 0.039 0.0836994"
+				orientation="1.5707963267948966 -1.4835299330931884 1.5707963267948966">
+			</xacro:finger_v1>
+
+		</xacro:if>
+
+	  # Gazebo NEW custom synergy-plugin
+	  <gazebo>
+	          <plugin name="synergy_plugin" filename="libsofthand_plugin.so">
+	                      <namespace>${type}_hand_v1</namespace> 
+	                      <operation_mode>${operation_mode}</operation_mode>
+
+	                      <!-- TODO: Insert here the OPTIONAL tags available! -->
+	                      <spring_k>5</spring_k>
+	          </plugin>
+	  </gazebo>
+
+	</xacro:macro>
+
+</robot>

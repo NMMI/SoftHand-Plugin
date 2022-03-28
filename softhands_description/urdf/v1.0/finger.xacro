@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="finger_v1" params="type ns sign position orientation">
+
+    <!-- KNUCKLE -->
+    <joint name="${ns}_${type}_knuckle_joint" type="revolute">
+      <origin xyz="${position}" rpy="${orientation}"/>
+      <parent link="${ns}_palm_link"/>
+      <child link="${ns}_${type}_knuckle_link"/>
+      <limit effort="30" velocity="1.0" lower="-1.57" upper="1.57" />
+      <axis xyz="0 0 ${sign*1}" />
+      <dynamics damping="0.08" friction="0.0" />
+    </joint>  
+    <link name="${ns}_${type}_knuckle_link">
+      <inertial>
+        <origin xyz="0.001285644 0 0.000425011"/>
+        <mass value="0.09"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/knuckle_m.stl"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/knuckle_m.stl"/>
+        </geometry>
+      </collision>
+    </link>
+    <!-- PROXIMAL PHALANGE -->
+    <joint name="${ns}_${type}_proximal_joint" type="revolute">
+      <origin xyz="0.020 0 0" rpy="0 0 0" />
+      <parent link="${ns}_${type}_knuckle_link"/>
+      <child link="${ns}_${type}_proximal_link"/>
+      <limit effort="30" velocity="1.0" lower="-1.57" upper="1.57" />
+      <axis xyz="0 -1 0" />
+      <dynamics damping="0.08" friction="0.0" />
+    </joint>
+    <link name="${ns}_${type}_proximal_link">
+      <inertial>
+        <origin xyz="0.005074337 0 -0.000262953"/>
+        <mass value="0.05"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/phalanx_m.stl"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/phalanx_m.stl"/>
+        </geometry>
+      </collision>      
+    </link>
+    <!-- MIDDLE PHALANGE -->
+    <joint name="${ns}_${type}_middle_joint" type="revolute">
+      <origin xyz="0.020 0 0" rpy="0 0 0" />
+      <parent link="${ns}_${type}_proximal_link"/>
+      <child link="${ns}_${type}_middle_link"/>
+      <limit effort="30" velocity="1.0" lower="-1.57" upper="1.57" />
+      <axis xyz="0 -1 0" />
+    </joint>
+    <link name="${ns}_${type}_middle_link">
+      <inertial>
+        <origin xyz="0.005074337 0 -0.000262953"/>
+        <mass value="0.05"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/phalanx_m.stl"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/phalanx_m.stl"/>
+        </geometry>
+      </collision>        
+    </link>
+    <!-- DISTAL PHALANGE -->
+    <joint name="${ns}_${type}_distal_joint" type="revolute">
+      <origin xyz="0.020 0 0" rpy="0 0 0" />
+      <parent link="${ns}_${type}_middle_link"/>
+      <child link="${ns}_${type}_distal_link"/>
+      <limit effort="30" velocity="1.0" lower="-1.57" upper="1.57" />
+      <axis xyz="0 -1 0" />
+      <dynamics damping="0.08" friction="0.0" />
+    </joint>
+    <link name="${ns}_${type}_distal_link">
+      <inertial>
+            <origin xyz="0.009849094 0 0.000820286"/>
+        <mass value="0.1"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/fingertip_m.stl"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/fingertip_m.stl"/>
+        </geometry>
+      </collision>       
+    </link>    
+
+  </xacro:macro>
+
+</robot>
