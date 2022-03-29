@@ -112,7 +112,7 @@ void softhandsPlugin::getRef_callback(const std_msgs::Float64& val)
 void softhandsPlugin::OnUpdate(const common::UpdateInfo & /*_info*/)
 {
   // Retrieve joint actual position
-  this->q = this->joint->GetAngle(0).Radian();
+  this->q = this->joint->Position(0);
   this->dq = this->joint->GetVelocity(0);
 
   // Compute the elastic torque

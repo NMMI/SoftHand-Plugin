@@ -101,8 +101,8 @@ void softhandsPluginMimic::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
 void softhandsPluginMimic::OnUpdate(const common::UpdateInfo & /*_info*/)
 {
   // Retrieve joint actual position of the original and mimic joints
-  this->q = this->joint->GetAngle(0).Radian();
-  this->q_mimic = this->joint_mimic->GetAngle(0).Radian();
+  this->q = this->joint->Position(0);
+  this->q_mimic = this->joint_mimic->Position(0);
   this->dq_mimic = this->joint_mimic->GetVelocity(0);
 
   // Compute the elastic torque
