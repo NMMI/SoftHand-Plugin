@@ -3,18 +3,19 @@
 	<arg name="gui" default="true"/>
 
 	<!-- publish the joint and robot states -->
-	<param name="robot_description" command="$(find xacro)/xacro.py '$(find softhands_description)/urdf/test_SHs.urdf.xacro'" />
-	<group if="$(arg gui)">
-		<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true" />
-			<param name="use_gui" value="$(arg gui)"/>
-			<param name="rate" value="200"/>
-	</group>
+	<!-- <param name="robot_description" command="$(find xacro)/xacro.py '$(find softhands_description)/urdf/test_SHs.urdf.xacro'" /> -->
+	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find softhands_description)/urdf/softhand_v1.urdf.xacro'"/>
 
-	<node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" respawn="true">
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true">
+		<param name="use_gui" value="$(arg gui)"/>
+		<param name="rate" value="200"/>
+	</node>
+
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true">
 		<param name="publish_frequency" value="200" />
 		<param name="rate" value="200" />
 	</node>
 	
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find softhands_description)/rviz/softhand.rviz"/>
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find softhands_description)/config/softhand.rviz"/>
 
 </launch>
