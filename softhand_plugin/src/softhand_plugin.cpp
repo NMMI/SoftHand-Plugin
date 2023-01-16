@@ -437,7 +437,7 @@ void SoftHandPlugin::Publish(double tauFing[][4])
       int joint_idx = 0;
       for (auto j = i->begin(); j < i->end(); j++)                      // joints
       {
-        fingers_state[finger_idx].name[joint_idx] = finger_names[finger_idx] + "_" + finger_part_names[joint_idx];
+        fingers_state[finger_idx].name[joint_idx] = ns_name + "_" + finger_names[finger_idx] + "_" + finger_part_names[joint_idx] + "_joint";
         fingers_state[finger_idx].position[joint_idx] = q_fingers[finger_idx][joint_idx];
         fingers_state[finger_idx].velocity[joint_idx] = dq_fingers[finger_idx][joint_idx];
         fingers_state[finger_idx].effort[joint_idx] = tauFing[finger_idx][joint_idx];

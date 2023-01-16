@@ -2,7 +2,7 @@
 <launch>
 
 	<arg name="use_rviz" default="true"/>
-	<arg name="model" default="$(find softhands_description)/urdf/softhand_v1.urdf.xacro"/>
+	<arg name="model" default="$(find softhands_description)/urdf/softhand_right_v1.urdf.xacro"/>
 	<arg name="x" default="0"/>
 	<arg name="y" default="0"/>
 	<arg name="z" default="0"/>

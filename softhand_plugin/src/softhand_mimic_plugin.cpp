@@ -628,7 +628,7 @@ void SoftHandMimicPlugin::Publish(double tauFing[][4], double tauFingMimic[][3])
       for (auto j = i->begin(); j < i->end(); j++)                      // joints
       {
         /* --------------------------------------- BASIC JOINTS ------------------------------------------------------- */
-        fingers_state[finger_idx].name[joint_idx] = finger_names[finger_idx] + "_" + finger_part_names[joint_idx];
+        fingers_state[finger_idx].name[joint_idx] = ns_name + "_" + finger_names[finger_idx] + "_" + finger_part_names[joint_idx] + "_joint";
         fingers_state[finger_idx].position[joint_idx] = q_fingers[finger_idx][joint_idx];
         fingers_state[finger_idx].velocity[joint_idx] = dq_fingers[finger_idx][joint_idx];
         fingers_state[finger_idx].effort[joint_idx] = tauFing[finger_idx][joint_idx];
@@ -636,7 +636,7 @@ void SoftHandMimicPlugin::Publish(double tauFing[][4], double tauFingMimic[][3])
         if (joint_idx > 0)
         {
             int fing_elements = pid_fingers[finger_idx].size();
-            fingers_state[finger_idx].name[fing_elements+joint_idx-1] = finger_names[finger_idx] + "_" + finger_part_names[joint_idx] + "_mimic";
+            fingers_state[finger_idx].name[fing_elements+joint_idx-1] = ns_name + "_" + finger_names[finger_idx] + "_" + finger_part_names[joint_idx] + "_mimic";
             fingers_state[finger_idx].position[fing_elements+joint_idx-1] = qMimic_fingers[finger_idx][joint_idx-1];
             fingers_state[finger_idx].velocity[fing_elements+joint_idx-1] = dqMimic_fingers[finger_idx][joint_idx-1];
             fingers_state[finger_idx].effort[fing_elements+joint_idx-1] = tauFingMimic[finger_idx][joint_idx-1];

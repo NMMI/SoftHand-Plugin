@@ -1,9 +1,10 @@
 <?xml version="1.0" ?>
 <launch>
 	<arg name="gui" default="true"/>
+	<arg name="model" default="$(find softhands_description)/urdf/softhand_right_v1.urdf.xacro"/>
 
 	<!-- load robot description -->
-	<param name="robot_description" command="$(find xacro)/xacro '$(find softhands_description)/urdf/softhand_v1.urdf.xacro'"/>
+	<param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
 
 	<!-- publish the joint and robot states -->
 	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true">
