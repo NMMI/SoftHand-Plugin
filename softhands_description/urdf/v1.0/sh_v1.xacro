@@ -94,9 +94,9 @@
 
 			# Thumb finger
 			<xacro:thumb_v1 type="thumb" 
-		 		ns = "${type}_hand_v1"
-		 		sign = "1"
-				position="0.00566972 0.0296160 0.0553140"
+				ns = "${type}_hand_v1" 
+				sign = "1" 
+				position="0.00566972 0.0296160 0.0553140" 
 				orientation="0.0 -0.38397275793662144 1.5707963267948966">
 			</xacro:thumb_v1>
 
@@ -174,11 +174,7 @@
 			</link>
 
 			# Thumb finger
-			<xacro:thumb_v1 type="thumb" 
-		 		ns = "${type}_hand_v1"
-		 		sign = "-1"
-				position="0.005669722 -0.029616 0.055314"
-				orientation="0.0 -0.38397275793662144 -1.5707963267948966">
+			<xacro:thumb_v1 type="thumb" ns = "${type}_hand_v1" sign = "-1" position="0.005669722 -0.029616 0.055314" orientation="0.0 -0.38397275793662144 -1.5707963267948966">
 			</xacro:thumb_v1>
 
 			# Index finger
