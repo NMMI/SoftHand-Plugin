@@ -39,7 +39,7 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="thumb_v1" params="type ns sign position orientation">
+  <xacro:macro name="thumb_v1_simple" params="type ns sign position orientation">
 
     <!-- KNUCKLE -->
     <joint name="${ns}_${type}_knuckle_joint" type="continuous">

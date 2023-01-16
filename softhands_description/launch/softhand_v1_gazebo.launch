@@ -2,7 +2,7 @@
 <launch>
 
 	<arg name="use_rviz" default="true"/>
-	<arg name="model" default="$(find softhands_description)/urdf/test_SHs.urdf.xacro"/>
+	<arg name="model" default="$(find softhands_description)/urdf/softhand_v1.urdf.xacro"/>
 	<arg name="x" default="0"/>
 	<arg name="y" default="0"/>
 	<arg name="z" default="0"/>
@@ -21,7 +21,7 @@
     	<arg name="debug" value="false"/>
 	</include>	
 
-	<!-- spwan the hands in gazebo -->
+	<!-- spwan the hand in gazebo -->
 	<node name="my_robot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" 
 		args="-urdf -param robot_description -model $(arg model) -x $(arg x) -y $(arg y) -z $(arg z) -unpause"/> 
 	

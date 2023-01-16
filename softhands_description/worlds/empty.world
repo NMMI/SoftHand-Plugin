@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+
+<sdf version="1.4">
+    <!-- Custom world for the softhand. -->
+    <!-- One can change this world to his needs or use another one. -->
+  
+    <world name="empty_world">
+        <include>
+            <uri>model://ground_plane</uri>
+        </include>
+        <include>
+            <uri>model://sun</uri>
+        </include>
+        <gui>
+            <camera name="user_camera">
+                <pose>-0.231 -0.351 0.419 0.000 0.744 1.020</pose>
+            </camera>
+        </gui>
+    </world>
+  
+</sdf>
