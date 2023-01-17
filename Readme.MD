@@ -1,4 +1,4 @@
-# Repository for Gazebo Simulation of the PISA/IIT SoftHand
+# Gazebo Simulation of the PISA/IIT SoftHand
 
 ## 1) Description 
 
