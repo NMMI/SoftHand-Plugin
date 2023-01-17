@@ -2,7 +2,7 @@
 
 ## 1) Description 
 
-![SoftHand Image](https://github.com/NMMI/SoftHand-Plugin/tree/repair/images/soft-hand-gazebo.png)
+![SoftHand](https://github.com/NMMI/SoftHand-Plugin/blob/repair/images/soft-hand-gazebo.png)
 
 This repository contains the ROS/Gazebo packages for the simulation of the Pisa/IIT hand:
 * [NMMI web page](https://www.naturalmachinemotioninitiative.com/softhand)
