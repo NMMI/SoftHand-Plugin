@@ -1,0 +1,18 @@
+<launch>
+  <arg name="device_name" default="" doc="The unique device name used in the urdf configurations (if not specified directly in the urdf)."/>
+  <arg name="frequency" default="100" doc="The frequency of the two state publishers."/>
+  <arg name="robot_name" doc="The unique robot name."/>
+  <arg name="robot_package" doc="The base package name prefix for the robot configurations [urdf, rviz, ...]."/>
+  <arg name="source_list" default="[joint_states]" doc="The joint_states source list for the joint_state_publisher."/>
+  <arg name="use_rviz" default="true" doc="Choose whether or not to use rviz."/>
+
+  <!-- load the 'robot_description' from the URDF -->
+  <include file="$(find qb_device_bringup)/launch/robot_description_bringup.launch">
+    <arg name="device_name" value="right_hand"/>
+    <arg name="robot_name" value="qbhand"/>
+    <arg name="robot_package" value="qb_hand"/>
+    <arg name="frequency" value="100"/>
+    <arg name="source_list" value="[joint_states]"/>
+    <arg name="use_rviz" value="true"/>
+  </include>
+</launch>

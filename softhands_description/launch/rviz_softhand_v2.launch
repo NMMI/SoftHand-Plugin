@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<launch>
+	<arg name="gui" default="true"/>
+	<arg name="model" default="$(find softhands_description)/urdf/test_SHs_v2.urdf.xacro"/>
+
+	<!-- load robot description -->
+	<param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
+
+	<!-- publish the joint and robot states -->
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true">
+		<param name="use_gui" value="$(arg gui)"/>
+		<param name="rate" value="200"/>
+	</node>
+
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true">
+		<param name="publish_frequency" value="200" />
+		<param name="rate" value="200" />
+	</node>
+	
+	<!-- launch rviz -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find softhands_description)/rviz/softhand.rviz"/>
+
+</launch>
