@@ -203,6 +203,8 @@ void SoftHandMimicPlugin::SetFingersTorque(double tauFingers[][4], double tauMim
       }
       fing_mimic_idx++;
     }
+
+    // model->GetJoint("right_hand_synergy_joint")->SetForce(0,0);
 }
 
 // Compute current synergies value from the finger positions
@@ -948,6 +950,13 @@ void SoftHandMimicPlugin::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
   ros::init(argc, argv, "SoftHand_Plugin");
 
   model = _parent;
+
+  std::vector<gazebo::physics::JointPtr> joints_vec = model->GetJoints();
+  int finger_id_joint = 0;
+  for (auto i = joints_vec.begin(); i < joints_vec.end(); i++) {
+    ROS_INFO_STREAM("The" << finger_id_joint << "th joint of the model is " << joints_vec[finger_id_joint]->GetName());
+    finger_id_joint++;
+  }
 
   // Make sure the ROS node for Gazebo has already been initialized
   if (!ros::isInitialized())

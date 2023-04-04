@@ -29,7 +29,7 @@
 
 	<!-- get joint states and publish  TFs -->
 	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true">
-		<rosparam param="source_list">[/right_hand_v1/index_state, /right_hand_v1/little_state, /right_hand_v1/middle_state, /right_hand_v1/ring_state, /right_hand_v1/thumb_state]</rosparam>
+		<rosparam param="source_list">[/right_hand/index_state, /right_hand/little_state, /right_hand/middle_state, /right_hand/ring_state, /right_hand/thumb_state]</rosparam>
 		<param name="use_gui" value="true"/>
 		<param name="rate" value="200"/>
 	</node>
