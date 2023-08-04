@@ -2,10 +2,11 @@
 <launch>
 
 	<arg name="use_rviz" default="true"/>
-	<arg name="model" default="$(find softhands_description)/urdf/test_SHs.urdf.xacro"/>
+	<arg name="model" default="$(find softhands_description)/urdf/softhand.urdf.xacro"/>
 	<arg name="x" default="0"/>
 	<arg name="y" default="0"/>
 	<arg name="z" default="0"/>
+	<arg name="version" default="1"/>
 
 	<!-- load the robot description to the param server -->
 	<param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
@@ -21,26 +22,25 @@
     	<arg name="debug" value="false"/>
 	</include>	
 
-	<!-- spwan the hands in gazebo -->
+	<!-- spwan the hand in gazebo -->
 	<node name="my_robot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" 
 		args="-urdf -param robot_description -model $(arg model) -x $(arg x) -y $(arg y) -z $(arg z) -unpause"/> 
 	
 	<!-- get joint states and publish  TFs -->
-	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true">
+	<!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true">
 		<rosparam param="source_list">[/right_hand_v1/index_state, /right_hand_v1/little_state, /right_hand_v1/middle_state, /right_hand_v1/ring_state, /right_hand_v1/thumb_state]</rosparam>
 		<param name="use_gui" value="true"/>
 		<param name="rate" value="200"/>
 	</node>
 	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"	respawn="true" >
-		<!-- <remap from="/joint_states" to="/softhands/joint_states" />  -->
 		<param name="publish_frequency" value="200" />
 		<param name="rate" value="200"/>
-	</node>
-
+	</node> -->
+<!-- 
 	<group if="$(arg use_rviz)">
 		<node name="rviz" pkg="rviz" type="rviz" args="-d $(find softhands_description)/rviz/softhand.rviz"/>
 	</group>
-	
+	 -->
 </launch>
 
 

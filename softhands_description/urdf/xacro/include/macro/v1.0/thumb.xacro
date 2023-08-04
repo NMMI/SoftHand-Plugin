@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!-- 
+ *  Software License Agreement: BSD 3-Clause License
+ *
+ * Copyright (c) 2021, NMMI
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer.
+ *
+ * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * Neither the name of the copyright holder nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * \file      thumb.xacro
+ *
+ * \author       _Centro di Ricerca "E.Piaggio"_
+ * \author       _Istituto Italiano di Tecnologia, Soft Robotics for Human Cooperation and Rehabilitation Lab_
+ *
+-->
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="thumb_v1" params="type ns sign position orientation">
+
+    <!-- KNUCKLE -->
+    <joint name="${ns}_${type}_knuckle_joint" type="continuous">
+      <origin xyz="${position}" rpy="${orientation}" />
+      <parent link="${ns}_palm_link" />
+      <child link="${ns}_${type}_knuckle_link" />
+      <axis xyz="0 0 ${sign*-1}" />
+      <dynamics damping="0.08" friction="0.0" />
+    </joint>
+    <link name="${ns}_${type}_knuckle_link">
+      <inertial>
+        <origin xyz="0.001285644 0 0.000425011" />
+        <mass value="0.09" />
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+      </inertial>
+      <xacro:if value="${ns == 'right_hand_v1'}">
+        <visual>
+          <geometry>
+            <mesh filename="package://softhands_description/meshes/softhands/v1.0/right/thumb_knuckle_right_m.stl" />
+          </geometry>
+        </visual>
+        <collision>
+          <geometry>
+            <mesh filename="package://softhands_description/meshes/softhands/v1.0/right/thumb_knuckle_right_m.stl" />
+          </geometry>
+        </collision>
+      </xacro:if>
+      <xacro:if value="${ns == 'left_hand_v1'}">
+        <visual>
+          <geometry>
+            <mesh filename="package://softhands_description/meshes/softhands/v1.0/left/thumb_knuckle_left_m.stl" />
+          </geometry>
+        </visual>
+        <collision>
+          <geometry>
+            <mesh filename="package://softhands_description/meshes/softhands/v1.0/left/thumb_knuckle_left_m.stl" />
+          </geometry>
+        </collision>
+      </xacro:if>
+    </link>
+    <!-- PROXIMAL PHALANGE -->
+    <joint name="${ns}_${type}_proximal_joint" type="continuous">
+      <origin xyz="0.033500000 ${sign*-0.003300000} 0.0" rpy="${sign*0.426627741408745} 0 0.0" />
+      <parent link="${ns}_${type}_knuckle_link" />
+      <child link="${ns}_${type}_proximal_link" />
+      <axis xyz="0 -1 0" />
+      <dynamics damping="0.08" friction="0.0" />
+    </joint>
+    <link name="${ns}_${type}_proximal_link">
+      <inertial>
+        <origin xyz="0.005074337 0 -0.000262953" />
+        <mass value="0.05" />
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/phalanx_m.stl" />
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/phalanx_m.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <!-- DISTAL PHALANGE -->
+    <joint name="${ns}_${type}_distal_joint" type="continuous">
+      <origin xyz="0.020 0 0.0" rpy="0 0 0" />
+      <parent link="${ns}_${type}_proximal_link" />
+      <child link="${ns}_${type}_distal_link" />
+      <axis xyz="0 -1 0" />
+      <dynamics damping="0.08" friction="0.0" />
+    </joint>
+    <link name="${ns}_${type}_distal_link">
+      <inertial>
+        <origin xyz="0.009849094 0 0.000820286" />
+        <mass value="0.1" />
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001" />
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/fingertip_m.stl" />
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/fingertip_m.stl" />
+        </geometry>
+      </collision>
+    </link>
+
+  </xacro:macro>
+
+</robot>

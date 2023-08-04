@@ -95,8 +95,6 @@
 
     </xacro:if>
 
-    # TODO: OTHER VERSIONs
-
     <gazebo>
       <self_collide>1</self_collide>
     </gazebo>
