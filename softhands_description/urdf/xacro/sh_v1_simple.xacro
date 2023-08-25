@@ -60,16 +60,16 @@
 		type="thumb" 
 		sign="$(arg sign)"
 		ns="$(arg type)_hand_v1s" 
-		position="0.00566972 0.0296160 0.0553140" 
-		orientation="0.0 -0.38397275793662144 1.5707963267948966">
+		position="0.00566972 ${$(arg sign)*0.0296160} 0.0553140" 
+		orientation="0.0 -0.38397275793662144 ${$(arg sign)*1.5707963267948966}">
 	</xacro:thumb_v1_simple>
 
 	<!-- # Index finger -->
 	<xacro:finger_v1_simple 
 		type="index" 
 		ns="$(arg type)_hand_v1s" 
-		position="-0.0033 0.0195 0.0936994" 
-		orientation="1.5707963267948966 -1.4835299330931884 1.5707963267948966">
+		position="-0.0033 ${$(arg sign)*0.0195} 0.0936994" 
+		orientation="${$(arg sign)*1.5707963267948966} -1.4835299330931884 ${$(arg sign)*1.5707963267948966}">
 	</xacro:finger_v1_simple>
 
 	<!-- # Middle finger -->
@@ -84,16 +84,16 @@
 	<xacro:finger_v1_simple 
 		type="ring" 
 		ns="$(arg type)_hand_v1s" 
-		position="-0.0033 -0.0195 0.0936994" 
-		orientation="-1.5707963267948966 -1.5184364298870514 -1.5707963267948966">
+		position="-0.0033 ${$(arg sign)*-0.0195} 0.0936994" 
+		orientation="${$(arg sign)*-1.5707963267948966} -1.5184364298870514 ${$(arg sign)*-1.5707963267948966}">
 	</xacro:finger_v1_simple>
 
 	<!-- # Little finger -->
 	<xacro:finger_v1_simple 
 		type="little" 
 		ns="$(arg type)_hand_v1s" 
-		position="-0.0033 -0.039 0.0836994" 
-		orientation="-1.5707963267948966 -1.4835299330931884 -1.5707963267948966">
+		position="-0.0033 ${$(arg sign)*-0.039} 0.0836994" 
+		orientation="${$(arg sign)*-1.5707963267948966} -1.4835299330931884 ${$(arg sign)*-1.5707963267948966}">
 	</xacro:finger_v1_simple>
 
 

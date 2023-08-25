@@ -40,9 +40,12 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="header">
 
   <!-- Include xacro macro -->
- 	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1.0_simple/sh_v1_simple.xacro"/>
-	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1.0_simple/finger.xacro" />
-	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1.0_simple/thumb.xacro" />
+	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1.0_simple/finger_v1_simple.xacro" />
+	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1.0_simple/thumb_v1_simple.xacro" />
 	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1.0_simple/palm.xacro" />
+	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/common/phalanges/knuckle.xacro" />
+	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/common/phalanges/thumb_knuckle.xacro" />
+	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/common/phalanges/fingertip.xacro" />
+	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/common/phalanges/phalanx.xacro" />
 
 </robot>

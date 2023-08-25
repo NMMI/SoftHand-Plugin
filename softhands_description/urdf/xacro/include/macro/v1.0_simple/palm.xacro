@@ -88,6 +88,12 @@
 				</geometry>
 			</collision>
 		</link>
+
+		
+    <gazebo reference="${type}_hand_v1s_palm_link">
+      <material>Gazebo/Grey</material>
+      <selfCollide>true</selfCollide>
+	  </gazebo>
 	</xacro:macro>
 
 </robot>
