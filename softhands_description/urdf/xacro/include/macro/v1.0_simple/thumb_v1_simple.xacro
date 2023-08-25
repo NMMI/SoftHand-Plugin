@@ -48,57 +48,27 @@
       type="${type}"
       orientation="${orientation}">
     </xacro:thumb_knuckle>
-    
+
     <!-- PROXIMAL PHALANGE -->
-    <joint name="${ns}_${type}_proximal_joint" type="continuous">
-      <origin xyz="0.033500000 ${sign*-0.003300000} 0.0" rpy="${sign*0.426627741408745} 0 0.0" />
-      <parent link="${ns}_${type}_knuckle_link"/>
-      <child link="${ns}_${type}_proximal_link"/>
-      <axis xyz="0 -1 0" />
-      <dynamics damping="0.08" friction="0.0" />
-    </joint>
-    <link name="${ns}_${type}_proximal_link">
-      <inertial>
-        <origin xyz="0.005074337 0 -0.000262953"/>
-        <mass value="0.05"/>
-        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
-      </inertial>
-      <visual>
-        <geometry>
-          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/phalanx_m.stl"/>
-        </geometry>
-      </visual>
-      <collision>
-        <geometry>
-          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/phalanx_m.stl"/>
-        </geometry>
-      </collision>
-    </link>
+    <xacro:phalanx 
+      parent="knuckle"
+      name="proximal"
+      ns="${ns}" 
+      position="0.033500000 ${sign*-0.003300000} 0.0" 
+      type="${type}"
+      orientation="${sign*0.426627741408745} 0 0.0">
+    </xacro:phalanx>
+
     <!-- DISTAL PHALANGE -->
-    <joint name="${ns}_${type}_distal_joint" type="continuous">
-      <origin xyz="0.020 0 0.0" rpy="0 0 0" />
-      <parent link="${ns}_${type}_proximal_link"/>
-      <child link="${ns}_${type}_distal_link"/>
-      <axis xyz="0 -1 0" />
-      <dynamics damping="0.08" friction="0.0" />
-    </joint>
-    <link name="${ns}_${type}_distal_link">
-      <inertial>
-            <origin xyz="0.009849094 0 0.000820286"/>
-        <mass value="0.1"/>
-        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
-      </inertial>
-      <visual>
-        <geometry>
-          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/fingertip_m.stl" />
-        </geometry>
-      </visual>
-      <collision>
-        <geometry>
-          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/fingertip_m.stl" />
-        </geometry>
-      </collision>
-    </link>     
+    <xacro:fingertip 
+      parent="proximal"
+      name="distal"
+      ns="${ns}" 
+      position="0.020 0 0" 
+      type="${type}"
+      orientation="0 0 0">
+    </xacro:fingertip>
+   
 
   </xacro:macro>
 

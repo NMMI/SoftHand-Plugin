@@ -43,10 +43,11 @@
 
 
     <!-- KNUCKLE -->
-    <joint name="${ns}_${type}_knuckle_joint" type="continuous">
+    <joint name="${ns}_${type}_knuckle_joint" type="revolute">
       <origin xyz="${position}" rpy="${orientation}"/>
       <parent link="${ns}_palm_link"/>
       <child link="${ns}_${type}_knuckle_link"/>
+      <limit effort="30" velocity="1.0" lower="-1.57" upper="1.57" />
       <axis xyz="0 0 ${sign*-1}" />
       <dynamics damping="0.08" friction="0.0" />
     </joint>
