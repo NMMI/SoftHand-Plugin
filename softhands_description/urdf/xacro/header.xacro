@@ -40,12 +40,13 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="header">
 
   <!-- Include xacro macro -->
-	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1.0_simple/finger_v1_simple.xacro" />
-	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1.0_simple/thumb_v1_simple.xacro" />
-	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1.0_simple/palm.xacro" />
-	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1.0_simple/phalanges/knuckle.xacro" />
-	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1.0_simple/phalanges/thumb_knuckle.xacro" />
-	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1.0_simple/phalanges/fingertip.xacro" />
-	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1.0_simple/phalanges/phalanx.xacro" />
+	<xacro:include filename="$(arg root_dir)/finger.xacro" />
+	<xacro:include filename="$(arg root_dir)/thumb.xacro" />
+	<xacro:include filename="$(arg root_dir)/base.xacro" />
+	<xacro:include filename="$(arg root_dir)/palm.xacro" />
+	<xacro:include filename="$(arg root_dir)/phalanges/knuckle.xacro" />
+	<xacro:include filename="$(arg root_dir)/phalanges/thumb_knuckle.xacro" />
+	<xacro:include filename="$(arg root_dir)/phalanges/fingertip.xacro" />
+	<xacro:include filename="$(arg root_dir)/phalanges/phalanx.xacro" />
 
 </robot>

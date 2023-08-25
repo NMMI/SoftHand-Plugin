@@ -38,6 +38,7 @@
 -->
 
 <robot name="sh_v1_simple" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
 	<xacro:property name="side" value="$(arg type)"/>
     <xacro:if value="${side == 'right'}">
 		<xacro:arg name="sign" default="1"/>
@@ -45,6 +46,15 @@
     <xacro:if value="${side == 'left'}">
 		<xacro:arg name="sign" default="-1"/>
     </xacro:if>
+
+	<xacro:base 
+		type="$(arg type)" 
+		sign="$(arg sign)"
+		parent = "$(arg parent)"
+		position ="$(arg position)"
+		orientation ="$(arg orientation)"
+		operation_mode = "$(arg operation_mode)">
+	</xacro:base>
 
 	<xacro:palm 
 		type="$(arg type)" 
@@ -54,57 +64,4 @@
 		orientation ="$(arg orientation)"
 		operation_mode = "$(arg operation_mode)">
 	</xacro:palm>
-
-	<!-- # Thumb finger -->
-	<xacro:thumb_v1_simple 
-		type="thumb" 
-		sign="$(arg sign)"
-		ns="$(arg type)_hand_v1s" 
-		position="0.00566972 ${$(arg sign)*0.0296160} 0.0553140" 
-		orientation="0.0 -0.38397275793662144 ${$(arg sign)*1.5707963267948966}">
-	</xacro:thumb_v1_simple>
-
-	<!-- # Index finger -->
-	<xacro:finger_v1_simple 
-		type="index" 
-		ns="$(arg type)_hand_v1s" 
-		position="-0.0033 ${$(arg sign)*0.0195} 0.0936994" 
-		orientation="${$(arg sign)*1.5707963267948966} -1.4835299330931884 ${$(arg sign)*1.5707963267948966}">
-	</xacro:finger_v1_simple>
-
-	<!-- # Middle finger -->
-	<xacro:finger_v1_simple 
-		type="middle" 
-		ns="$(arg type)_hand_v1s" 
-		position="-0.003300000 0.0 0.100699" 
-		orientation="3.141592 -1.5707963267948966 0.0">
-	</xacro:finger_v1_simple>
-
-	<!-- # Ring finger -->
-	<xacro:finger_v1_simple 
-		type="ring" 
-		ns="$(arg type)_hand_v1s" 
-		position="-0.0033 ${$(arg sign)*-0.0195} 0.0936994" 
-		orientation="${$(arg sign)*-1.5707963267948966} -1.5184364298870514 ${$(arg sign)*-1.5707963267948966}">
-	</xacro:finger_v1_simple>
-
-	<!-- # Little finger -->
-	<xacro:finger_v1_simple 
-		type="little" 
-		ns="$(arg type)_hand_v1s" 
-		position="-0.0033 ${$(arg sign)*-0.039} 0.0836994" 
-		orientation="${$(arg sign)*-1.5707963267948966} -1.4835299330931884 ${$(arg sign)*-1.5707963267948966}">
-	</xacro:finger_v1_simple>
-
-
-		<!-- # Gazebo NEW custom synergy-plugin -->
-	<gazebo>
-		<plugin name="synergy_plugin" filename="libsofthand_plugin.so">
-			<namespace>$(arg type)_hand_v1s</namespace>
-			<operation_mode>$(arg operation_mode)</operation_mode>
-
-			<!-- TODO: Insert here the OPTIONAL tags available! -->
-		</plugin>
-	</gazebo>
-
 </robot>

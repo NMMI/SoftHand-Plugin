@@ -39,47 +39,40 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="finger_v1_simple" params="type ns position orientation">
+  <xacro:macro name="knuckle" params="type ns position orientation">
 
     <!-- KNUCKLE -->
-    <xacro:knuckle 
-      ns="${ns}" 
-      position="${position}" 
-      type="${type}"
-      orientation="${orientation}">
-    </xacro:knuckle>
+    <joint name="${ns}_${type}_knuckle_joint" type="revolute">
+      <origin xyz="${position}" rpy="${orientation}"/>
+      <parent link="${ns}_palm_link"/>
+      <child link="${ns}_${type}_knuckle_link"/>
+      <limit effort="30" velocity="1.0" lower="-1.57" upper="1.57" />
+      <axis xyz="0 0 $(arg sign)" />
+      <dynamics damping="0.08" friction="0.0" />
+    </joint>  
+    
+    <link name="${ns}_${type}_knuckle_link">
+      <inertial>
+        <origin xyz="0.001285644 0 0.000425011"/>
+        <mass value="0.09"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
+      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/knuckle_m.stl"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/knuckle_m.stl"/>
+        </geometry>
+      </collision>
+    </link>
    
-    <!-- PROXIMAL PHALANGE -->
-    <xacro:phalanx 
-      parent="knuckle"
-      name="proximal"
-      ns="${ns}" 
-      position="0.020 0 0" 
-      type="${type}"
-      orientation="${orientation}">
-    </xacro:phalanx>
-
-
-    <!-- MIDDLE PHALANGE -->
-    <xacro:phalanx 
-      parent="proximal"
-      name="middle"
-      ns="${ns}" 
-      position="0.020 0 0" 
-      type="${type}"
-      orientation="${orientation}">
-    </xacro:phalanx>
-
-    <!-- DISTAL PHALANGE -->
-    <xacro:fingertip 
-      parent="middle"
-      name="distal"
-      ns="${ns}" 
-      position="0.020 0 0" 
-      type="${type}"
-      orientation="${orientation}">
-    </xacro:fingertip>
-
+    <gazebo reference="${ns}_${type}_knuckle_link">
+      <material>Gazebo/Grey</material>
+      <selfCollide>true</selfCollide>
+	  </gazebo>
   </xacro:macro>
 
 </robot>
