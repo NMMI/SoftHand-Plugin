@@ -30,7 +30,7 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * \file      thumb.xacro
+ * \file      finger.xacro
  *
  * \author       _Centro di Ricerca "E.Piaggio"_
  * \author       _Istituto Italiano di Tecnologia, Soft Robotics for Human Cooperation and Rehabilitation Lab_
@@ -39,36 +39,45 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="thumb_v1_simple" params="type ns sign position orientation">
+  <xacro:macro name="thumb_knuckle" params="type ns position orientation">
+
 
     <!-- KNUCKLE -->
-    <xacro:thumb_knuckle 
-      ns="${ns}" 
-      position="${position}" 
-      type="${type}"
-      orientation="${orientation}">
-    </xacro:thumb_knuckle>
+    <joint name="${ns}_${type}_knuckle_joint" type="revolute">
+      <origin xyz="${position}" rpy="${orientation}"/>
+      <parent link="${ns}_palm_link"/>
+      <child link="${ns}_${type}_knuckle_link"/>
+      <axis xyz="0 0 -1"/>
+      <dynamics damping="0.0" friction="0.0"/>
+      <limit effort="100" lower="0.0" upper="1.571" velocity="100"/>
+      <mimic joint="${ns}_synergy_joint" multiplier="2.542"/>
+    </joint>
 
-    <!-- PROXIMAL PHALANGE -->
-    <xacro:phalanx 
-      parent="knuckle"
-      name="proximal"
-      ns="${ns}" 
-      position="0.033500000 ${sign*-0.003300000} 0.0" 
-      type="${type}"
-      orientation="${sign*0.426627741408745} 0 0.0">
-    </xacro:phalanx>
+    <link name="${ns}_${type}_knuckle_link">
+      <inertial>
+        <mass value="0.01"/>
+        <origin rpy="0 0 0" xyz="1.3071561e-02 -2.7357764e-03 6.4347823e-04"/>
+        <inertia ixx="3.5865978e-07" ixy="2.0944224e-07" ixz="-6.8657569e-08" iyy="1.3885564e-06" iyz="3.2170608e-08" izz="1.3571203e-06"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v3.0/ph_thumb_r.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="qbhand/knuckle"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v3.0/ph_thumb_r_collision.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
 
-    <!-- DISTAL PHALANGE -->
-    <xacro:fingertip 
-      parent="proximal"
-      name="distal"
-      ns="${ns}" 
-      position="0.020 0 0" 
-      type="${type}"
-      orientation="0 0 0">
-    </xacro:fingertip>
-   
+    <gazebo reference="${ns}_${type}_knuckle_link">
+      <material>Gazebo/Grey</material>
+      <selfCollide>false</selfCollide>
+	  </gazebo>
 
   </xacro:macro>
 

@@ -39,41 +39,47 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="phalanx" params="type ns parent name position orientation">
+  <xacro:macro name="finger_v3_simple" params="type ns position orientation">
 
-
+    <!-- KNUCKLE -->
+    <xacro:knuckle 
+      ns="${ns}" 
+      position="${position}" 
+      type="${type}"
+      orientation="${orientation}">
+    </xacro:knuckle>
+   
     <!-- PROXIMAL PHALANGE -->
-    <joint name="${ns}_${type}_${name}_joint" type="revolute">
-      <origin xyz="${position}" rpy="${orientation}" />
-      <parent link="${ns}_${type}_${parent}_link"/>
-      <child link="${ns}_${type}_${name}_link"/>
-      <limit effort="30" velocity="1.0" lower="-1.57" upper="1.57" />
-      <axis xyz="0 -1 0" />
-      <dynamics damping="0.08" friction="0.0" />
-    </joint>
-    <link name="${ns}_${type}_${name}_link">
-      <inertial>
-        <origin xyz="0.005074337 0 -0.000262953"/>
-        <mass value="0.05"/>
-        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>
-      </inertial>
-      <visual>
-        <geometry>
-          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/phalanx_m.stl"/>
-        </geometry>
-      </visual>
-      <collision>
-        <geometry>
-          <mesh filename="package://softhands_description/meshes/softhands/v1.0/common/phalanx_m.stl"/>
-        </geometry>
-      </collision>      
-    </link>
- 
+    <xacro:phalanx 
+      parent="knuckle"
+      name="proximal"
+      ns="${ns}" 
+      position="0.020 0 0" 
+      type="${type}"
+      orientation="0 0 0">
+    </xacro:phalanx>
 
-    <gazebo reference="${ns}_${type}_${name}_link">
-      <material>Gazebo/Grey</material>
-      <selfCollide>true</selfCollide>
-	  </gazebo>
+
+    <!-- MIDDLE PHALANGE -->
+    <xacro:phalanx 
+      parent="proximal"
+      name="middle"
+      ns="${ns}" 
+      position="0.020 0 0" 
+      type="${type}"
+      orientation="0 0 0">
+    </xacro:phalanx>
+
+    <!-- DISTAL PHALANGE -->
+    <xacro:fingertip 
+      parent="middle"
+      name="distal"
+      ns="${ns}" 
+      position="0.020 0 0" 
+      type="${type}"
+      orientation="0 0 0">
+    </xacro:fingertip>
+
   </xacro:macro>
 
 </robot>

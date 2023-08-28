@@ -30,7 +30,7 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * \file      finger.xacro
+ * \file      thumb.xacro
  *
  * \author       _Centro di Ricerca "E.Piaggio"_
  * \author       _Istituto Italiano di Tecnologia, Soft Robotics for Human Cooperation and Rehabilitation Lab_
@@ -39,46 +39,36 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="finger_v1_simple" params="type ns position orientation">
+  <xacro:macro name="thumb" params="type ns sign position orientation">
 
     <!-- KNUCKLE -->
-    <xacro:knuckle 
+    <xacro:thumb_knuckle 
       ns="${ns}" 
       position="${position}" 
       type="${type}"
       orientation="${orientation}">
-    </xacro:knuckle>
-   
+    </xacro:thumb_knuckle>
+
     <!-- PROXIMAL PHALANGE -->
     <xacro:phalanx 
+      type="${type}"
       parent="knuckle"
       name="proximal"
       ns="${ns}" 
-      position="0.020 0 0" 
-      type="${type}"
-      orientation="0 0 0">
-    </xacro:phalanx>
-
-
-    <!-- MIDDLE PHALANGE -->
-    <xacro:phalanx 
-      parent="proximal"
-      name="middle"
-      ns="${ns}" 
-      position="0.020 0 0" 
-      type="${type}"
-      orientation="0 0 0">
+      position="0.0255 -0.0038 -0.00012" 
+      orientation="-1.1415 0.0 0.0">
     </xacro:phalanx>
 
     <!-- DISTAL PHALANGE -->
-    <xacro:fingertip 
-      parent="middle"
+    <!-- <xacro:fingertip 
+      type="${type}"
+      parent="proximal"
       name="distal"
       ns="${ns}" 
-      position="0.020 0 0" 
-      type="${type}"
+      position="0.009 0 0" 
       orientation="0 0 0">
     </xacro:fingertip>
+    -->
 
   </xacro:macro>
 

@@ -37,31 +37,59 @@
  *
 -->
 
-<robot name="sh_v1_simple" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="palm_v3" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-	<xacro:property name="side" value="$(arg type)"/>
-    <xacro:if value="${side == 'right'}">
-		<xacro:arg name="sign" default="1"/>
-	</xacro:if>
-    <xacro:if value="${side == 'left'}">
-		<xacro:arg name="sign" default="-1"/>
-    </xacro:if>
+	<xacro:macro name="palm" params="sign ns parent position orientation operation_mode">
+		
+	  	<joint name="${ns}_palm_joint" type="fixed">
+			<origin rpy="${orientation}" xyz="${position}"/>
+			<parent link="${ns}_palm_base_link" />
+			<child link="${ns}_palm_link" />
+		</joint>
+		<link name="${ns}_palm_link">
+			<inertial>
+			<mass value="0.45"/>
+			<origin rpy="0 0 0" xyz="0.0030 -0.0449 0.0135"/>
+			<inertia ixx="0.00045" ixy="0.0" ixz="0.0" iyy="0.0006" iyz="0.0" izz="0.00025"/>
+			</inertial>
+			<visual>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="package://softhands_description/meshes/softhands/v3.0/palm_pinch_r.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+			<material name="qbhand/palm"/>
+			</visual>
+			<collision>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="package://softhands_description/meshes/softhands/v3.0/palm_pinch_r.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+			</collision>
+		</link>
 
-	<xacro:base 
-		type="$(arg type)" 
-		sign="$(arg sign)"
-		parent = "$(arg parent)"
-		position ="$(arg position)"
-		orientation ="$(arg orientation)"
-		operation_mode = "$(arg operation_mode)">
-	</xacro:base>
 
-	<xacro:palm 
-		type="$(arg type)" 
-		sign="$(arg sign)"
-		parent = "$(arg parent)"
-		position ="$(arg position)"
-		orientation ="$(arg orientation)"
-		operation_mode = "$(arg operation_mode)">
-	</xacro:palm>
+
+		<joint name="${ns}_synergy_joint" type="revolute">
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<parent link="${ns}_palm_link"/>
+			<child link="${ns}_synergy_tendon_virtual_link"/>
+			<axis xyz="0 0 1"/>
+			<dynamics damping="0.0" friction="0.0"/>
+			<limit effort="100" lower="0.0" upper="1.0" velocity="100"/>
+		</joint>
+
+		<link name="${ns}_synergy_tendon_virtual_link">
+			<inertial>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<mass value="1e-4"/>
+			<inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
+			</inertial>
+		</link>
+
+	<gazebo reference="${ns}_palm_link">
+		<material>Gazebo/Grey</material>
+		<selfCollide>true</selfCollide>
+	</gazebo>
+	</xacro:macro>
+
 </robot>

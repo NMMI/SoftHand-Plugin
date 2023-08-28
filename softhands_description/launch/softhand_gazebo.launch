@@ -24,7 +24,7 @@
 
 	<!-- spwan the hand in gazebo -->
 	<node name="my_robot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" 
-		args="-urdf -param robot_description -model $(arg model) -x $(arg x) -y $(arg y) -z $(arg z) -unpause"/> 
+		args="-urdf -param robot_description -model $(arg model) -x $(arg x) -y $(arg y) -z $(arg z)"/> 
 	
 	<!-- get joint states and publish  TFs -->
 	<!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true">

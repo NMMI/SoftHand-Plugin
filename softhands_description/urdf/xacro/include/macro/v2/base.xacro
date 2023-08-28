@@ -37,35 +37,40 @@
  *
 -->
 
-<robot name="Palm_v1_simple" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="base_v3" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-	<xacro:macro name="palm" params="type sign parent position orientation operation_mode">
+	<xacro:macro name="base" params="sign ns parent position orientation operation_mode">
 		
-	  <joint name="qbhand_palm_fixed_joint" type="fixed">
-    <origin rpy="1.57 0 0" xyz="-0.0045 0.0145 0.144"/>
-    <parent link="qbhand_base_link"/>
-    <child link="qbhand_palm_link"/>
-  </joint>
-  <link name="qbhand_palm_link">
-    <inertial>
-      <mass value="0.45"/>
-      <origin rpy="0 0 0" xyz="0.0030 -0.0449 0.0135"/>
-      <inertia ixx="0.00045" ixy="0.0" ixz="0.0" iyy="0.0006" iyz="0.0" izz="0.00025"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://softhands_description/meshes/softhands/v3.0/palm_pinch_r.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="qbhand/palm"/>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://softhands_description/meshes/softhands/v3.0/palm_pinch_r.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-    </collision>
-  </link>
+		<link name="${parent}"/>
+		<joint name="${ns}_base_joint" type="fixed">
+			<origin rpy="${orientation}" xyz="${position}"/>
+			<parent link="${parent}" />
+			<child link="${ns}_palm_base_link" />
+		</joint>
+		<link name="${ns}_palm_base_link">
+			<inertial>
+				<mass value="0.45"/>
+				<origin rpy="0 0 0" xyz="0.0030 -0.0449 0.0135"/>
+				<inertia ixx="0.00045" ixy="0.0" ixz="0.0" iyy="0.0006" iyz="0.0" izz="0.00025"/>
+			</inertial>
+			<visual>
+				<origin rpy="0 0 0" xyz="0 0 0"/>
+				<geometry>
+					<mesh filename="package://softhands_description/meshes/softhands/v3.0/flange_iso_04.stl" scale="0.001 0.001 0.001"/>
+				</geometry>
+				<material name="qbhand/base"/>
+			</visual>
+			<collision>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="package://softhands_description/meshes/softhands/v3.0/flange_iso_04.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+			</collision>
+		</link>
+		<gazebo reference="${ns}_palm_base_link">
+    	  	<material>Gazebo/Grey</material>
+			<selfCollide>true</selfCollide>
+	  	</gazebo>
 	</xacro:macro>
 
 </robot>
