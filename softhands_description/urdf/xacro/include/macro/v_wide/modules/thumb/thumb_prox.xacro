@@ -2,25 +2,25 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
    
-    <xacro:macro name="palm_central" params="name parent side *origin">
+    <xacro:macro name="thumb_prox" params="name parent side *origin">
 
-		<!-- World -->
-		<link name="${parent}">
-		</link>
-		
-		<!-- World to palm base -->
-		<joint name="${side}_${name}_joint" type="fixed">
-			<parent link="${parent}"/>
+		<!-- Thumb Proximal  -->
+		<joint name="${side}_${name}_joint" type="revolute">
+			<parent link="${side}_${parent}_link"/>
 			<child link="${side}_${name}_link"/>
 			<xacro:insert_block name="origin"/>
+			<axis xyz="0 0 1" />
+      		<limit effort="30" velocity="1.0" lower="0" upper="1.57" />
+			<dynamics damping="0.08" friction="0.0" />
 		</joint>
 
+	
 		<link name="${side}_${name}_link">
 				<visual>
 				<material name="grey" />
 					<geometry>
 					<mesh
-						filename="package://softhands_description/meshes/softhands/wide/${side}/palm_central.stl"
+						filename="package://softhands_description/meshes/softhands/wide/${side}/phalanx_pros_thumb.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -35,7 +35,7 @@
 				<collision>
 					<geometry>
 					<mesh
-						filename="package://softhands_description/meshes/softhands/wide/${side}/palm_central.stl"
+						filename="package://softhands_description/meshes/softhands/wide/${side}/phalanx_pros_thumb.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -43,16 +43,17 @@
 		</link>
 
 
-		<!-- palm base to mobile thumb -->
-		<joint name="${side}_${name}_to_mobile_thumb_joint" type="revolute">
+
+		<!-- thumb proximal to mobile thumb proximal   -->
+		<joint name="${side}_${name}_to_mobile_joint" type="revolute">
 			<axis xyz="0 0 1"/>
 			<limit effort="0.0" lower="0" upper="0"  velocity="0.0"/>
-			<origin xyz="39.6398e-3 32.5059e-3 0" rpy="1.5707963 0 1.9198617"/>
+			<origin xyz=" 31.2357e-3 23.0197e-3 0.167417e-3" rpy=" 0.1745395 0.0000165 0.7597087"/>
 			<parent link="${side}_${name}_link"/>
-			<child link="${side}_${name}_to_mobile_thumb_link"/>
+			<child link="${side}_${name}_to_mobile_link"/>
 		</joint>
 
-	    <link name="${side}_${name}_to_mobile_thumb_link">
+	    <link name="${side}_${name}_to_mobile_link">
 		   <inertial>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<mass value="1e-6"/>
@@ -62,6 +63,13 @@
 		   </inertial>
 	
 	    </link>
+
+
+		<!-- 
+		<gazebo reference="base_link">
+			<material>Gazebo/SkyBlue</material>
+			<selfCollide>true</selfCollide>
+		</gazebo> -->
 
     </xacro:macro>
 </robot>

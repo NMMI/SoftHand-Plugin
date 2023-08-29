@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+   
+    <xacro:macro name="thumb" params="name parent side *origin">
+
+      <!-- Proximal -->
+      <xacro:thumb_prox name="thumb_prox" parent="${parent}" side="$(arg side)">
+        <xacro:insert_block name="origin"/>
+      </xacro:thumb_prox>
+
+      <!-- Middle -->
+      <xacro:thumb_mid name="thumb_mid" parent="thumb_prox_to_mobile" side="$(arg side)">
+        <origin rpy="0 0 0" xyz="9e-3 0 0"/>
+      </xacro:thumb_mid>
+
+      <!-- Distal -->
+      <xacro:thumb_dist name="thumb_dist" parent="thumb_mid_to_mobile" side="$(arg side)">
+        <origin rpy="0 0.0101229 0" xyz="8.99947e-3 0 -0.0973875e-3"/>
+      </xacro:thumb_dist>
+
+    </xacro:macro>
+</robot>

@@ -39,9 +39,22 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="header">
 
-  <!-- Include xacro macro -->
-	<xacro:include filename="$(arg root_dir)/modules/palm_central.xacro" />
-	<xacro:include filename="$(arg root_dir)/modules/palm_thumb.xacro" />
+  <!-- Include xacro macro  Palm-->
+	<xacro:include filename="$(arg root_dir)/modules/palm/palm_central.xacro" />
+	<xacro:include filename="$(arg root_dir)/modules/palm/palm_thumb.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/palm/palm_little.xacro" />
+  <!-- Include xacro macro Thumb -->
+  <xacro:include filename="$(arg root_dir)/modules/thumb.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/thumb/thumb_prox.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/thumb/thumb_mid.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/thumb/thumb_dist.xacro" />
+
+  <!-- Include xacro macro Finger -->
+  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_prox_sup.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_dist.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/finger.xacro" />
+
   <!-- Color definitions -->
   <xacro:include filename="$(arg root_dir)/color.xacro" />
 
