@@ -18,7 +18,7 @@
       <!-- Middle -->
       <xacro:phalanx name="${name}_phalanx_mid" parent="${name}_phalanx_prox_virtual" side="$(arg side)">
         <origin rpy="0 0 0" xyz="9e-3 0 0"/>
-      </xacro:phalanx >
+      </xacro:phalanx>
 
       <!-- Distal -->
       <xacro:phalanx_dist name="${name}_phalanx_dist" parent="${name}_phalanx_mid_virtual" side="$(arg side)">

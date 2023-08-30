@@ -10,12 +10,12 @@
       </xacro:thumb_prox>
 
       <!-- Middle -->
-      <xacro:thumb_mid name="thumb_mid" parent="thumb_prox_to_mobile" side="$(arg side)">
+      <xacro:thumb_mid name="thumb_mid" parent="thumb_prox_virtual" side="$(arg side)">
         <origin rpy="0 0 0" xyz="9e-3 0 0"/>
       </xacro:thumb_mid>
 
       <!-- Distal -->
-      <xacro:thumb_dist name="thumb_dist" parent="thumb_mid_to_mobile" side="$(arg side)">
+      <xacro:thumb_dist name="thumb_dist" parent="thumb_mid_virtual" side="$(arg side)">
         <origin rpy="0 0.0101229 0" xyz="8.99947e-3 0 -0.0973875e-3"/>
       </xacro:thumb_dist>
 

@@ -30,66 +30,28 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * \file      sh_v1_simple.xacro
+ * 
  *
  * \author       _Centro di Ricerca "E.Piaggio"_
  * \author       _Istituto Italiano di Tecnologia, Soft Robotics for Human Cooperation and Rehabilitation Lab_
  *
 -->
 
-<robot name="palm_v3" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="header">
 
-	<xacro:macro name="palm" params="sign ns parent position orientation operation_mode">
-		
-	  	<joint name="${ns}_palm_joint" type="fixed">
-			<origin rpy="${orientation}" xyz="${position}"/>
-			<parent link="${ns}_palm_base_link" />
-			<child link="${ns}_palm_link" />
-		</joint>
-		<link name="${ns}_palm_link">
-			<inertial>
-			<mass value="0.45"/>
-			<origin rpy="0 0 0" xyz="0.0030 -0.0449 0.0135"/>
-			<inertia ixx="0.00045" ixy="0.0" ixz="0.0" iyy="0.0006" iyz="0.0" izz="0.00025"/>
-			</inertial>
-			<visual>
-			<origin rpy="0 0 0" xyz="0 0 0"/>
-			<geometry>
-				<mesh filename="package://softhands_description/meshes/softhands/v3.0/palm_pinch_r.stl" scale="0.001 0.001 0.001"/>
-			</geometry>
-			<material name="qbhand/palm"/>
-			</visual>
-			<collision>
-			<origin rpy="0 0 0" xyz="0 0 0"/>
-			<geometry>
-				<mesh filename="package://softhands_description/meshes/softhands/v3.0/palm_pinch_r.stl" scale="0.001 0.001 0.001"/>
-			</geometry>
-			</collision>
-		</link>
+  <!-- Include xacro macro  Palm-->
+	<xacro:include filename="$(arg root_dir)/modules/palm/palm.xacro" />
+	<xacro:include filename="$(arg root_dir)/modules/iso.xacro" />
+  <!-- Include xacro macro Thumb -->
+  <xacro:include filename="$(arg root_dir)/modules/thumb.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/thumb/thumb_prox.xacro" />
 
+  <!-- Include xacro macro Finger -->
+  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_prox.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_dist.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/finger.xacro" />
 
-
-		<joint name="${ns}_synergy_joint" type="revolute">
-			<origin rpy="0 0 0" xyz="0 0 0"/>
-			<parent link="${ns}_palm_link"/>
-			<child link="${ns}_synergy_tendon_virtual_link"/>
-			<axis xyz="0 0 1"/>
-			<dynamics damping="0.0" friction="0.0"/>
-			<limit effort="100" lower="0.0" upper="1.0" velocity="100"/>
-		</joint>
-
-		<link name="${ns}_synergy_tendon_virtual_link">
-			<inertial>
-			<origin rpy="0 0 0" xyz="0 0 0"/>
-			<mass value="1e-4"/>
-			<inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
-			</inertial>
-		</link>
-
-	<gazebo reference="${ns}_palm_link">
-		<material>Gazebo/Grey</material>
-		<selfCollide>true</selfCollide>
-	</gazebo>
-	</xacro:macro>
-
+  <!-- Color definitions -->
+  <xacro:include filename="$(arg root_dir)/color.xacro" />
 </robot>

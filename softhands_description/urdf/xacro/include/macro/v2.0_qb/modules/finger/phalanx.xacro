@@ -38,8 +38,8 @@
 -->
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  
-  <xacro:macro name="fingertip" params="type ns parent name position orientation">
+
+  <xacro:macro name="phalanx" params="type ns parent name position orientation">
 
 
     <joint name="${ns}_${type}_${parent}_${name}_joint" type="revolute">
@@ -51,47 +51,51 @@
       <limit effort="30" velocity="1.0" lower="-1.57" upper="1.57" />
       <mimic joint="${ns}_synergy_joint" multiplier="0.785"/>
     </joint>
-  <!-- <link name="${ns}_${parent}_${name}_virtual_link">
-    <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="1e-4"/>
-      <inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
-    </inertial>
-  </link> -->
-<!--   
-  <joint name="${ns}_${parent}_${name}_virtual_joint" type="revolute">
-    <origin rpy="0 0 0" xyz="0.013 0 0"/>
-    <parent link="${ns}_${parent}_${name}_virtual_link"/>
-    <child link="${ns}_${parent}_${name}_link"/>
-    <axis xyz="0 0 -1"/>
-    <dynamics damping="0.0" friction="0.0"/>
-    <limit effort="100" lower="0.0" upper="0.785" velocity="100"/>
-    <mimic joint="${ns}_${parent}_${name}_joint" multiplier="1.0"/>
-  </joint>
-  <link name="${ns}_${parent}_${name}_link">
-    <inertial>
-      <mass value="0.009"/>
-      <origin rpy="0 0 0" xyz="8.8025467e-03 -1.7219289e-03 0.0"/>
-      <inertia ixx="2.6586142e-07" ixy="1.2416847e-08" ixz="0.0" iyy="5.9935767e-07" iyz="0.0" izz="6.6781963e-07"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://softhands_description/meshes/softhands/v3.0/ph_distal.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-      <material name="qbhand/distal"/>
-    </visual>
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://softhands_description/meshes/softhands/v3.0/ph_distal_collision.stl" scale="0.001 0.001 0.001"/>
-      </geometry>
-    </collision>
-  </link>
-  <gazebo reference="${ns}_${parent}_${name}_link">
-    <material>Gazebo/Grey</material>
-    <self_collide>false</self_collide>
-  </gazebo> -->
+
+    <link name="${ns}_${type}_${parent}_${name}_virtual_link">
+      <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="1e-4"/>
+        <inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
+      </inertial>
+    </link>
+
+    <!-- Virtual -->
+    <joint name="${ns}_${type}_${parent}_${name}_virtual_joint" type="revolute">
+      <origin rpy="0 0 0" xyz="0.013 0 0"/>
+      <parent link="${ns}_${type}_${parent}_${name}_virtual_link"/>
+      <child link="${ns}_${type}_${name}_link"/>
+      <axis xyz="0 0 -1"/>
+      <dynamics damping="0.0" friction="0.0"/>
+      <limit effort="30" velocity="1.0" lower="-1.57" upper="1.57" />
+      <mimic joint="${ns}_${type}_${parent}_${name}_joint" multiplier="1.0"/>
+    </joint>
+
+
+    <link name="${ns}_${type}_${name}_link">
+      <inertial>
+        <mass value="0.0063"/>
+        <origin rpy="0 0 0" xyz="4.7601567e-03 -1.3786947e-03 0.0"/>
+        <inertia ixx="1.8024201e-07" ixy="5.756798e-09" ixz="0.0" iyy="2.3516266e-07" iyz="0.0" izz="2.691504e-07"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v2.0_qb/ph_short.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v2.0_qb/ph_short_collision.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+    <gazebo reference="${ns}_${type}_${name}_link">
+      <material>Gazebo/Grey</material>
+      <self_collide>false</self_collide>
+    </gazebo>
+
   </xacro:macro>
 
 </robot>

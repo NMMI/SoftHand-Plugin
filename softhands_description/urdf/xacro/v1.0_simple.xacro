@@ -37,7 +37,7 @@
  *
 -->
 
-<robot name="v1_simple" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="v1.0_simple" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 
 	<xacro:property name="side" value="$(arg type)"/>

@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!-- 
+ *  Software License Agreement: BSD 3-Clause License
+ *
+ * Copyright (c) 2021, NMMI
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer.
+ *
+ * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * Neither the name of the copyright holder nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * \file      sh_v1_simple.xacro
+ *
+ * \author       _Centro di Ricerca "E.Piaggio"_
+ * \author       _Istituto Italiano di Tecnologia, Soft Robotics for Human Cooperation and Rehabilitation Lab_
+ *
+-->
+
+<robot name="v1.0_wide" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+	<!-- <xacro:property name="side_" value="$(arg side)"/>
+    <xacro:if value="${side_ == 'right'}">
+		<xacro:arg name="sign" default="1"/>
+	</xacro:if>
+    <xacro:if value="${side_ == 'left'}">
+		<xacro:arg name="sign" default="-1"/>
+    </xacro:if> -->
+
+	<!-- # palm central -->
+	<xacro:palm_central name="palm_central" parent="$(arg root_link)" side="$(arg side)">
+		<origin rpy="$(arg orientation)" xyz="$(arg position)"/>
+	</xacro:palm_central>
+	
+	<!-- # palm thumb -->
+	<xacro:palm_thumb name="palm_thumb" parent="palm_central_thumb_virtual" side="$(arg side)">
+		<origin rpy="0 0 0 " xyz="12e-3 -0.0000414746e-3 0"/>
+	</xacro:palm_thumb>
+
+	<!-- # palm little -->
+	<xacro:palm_little name="palm_little" parent="palm_central_little_virtual" side="$(arg side)">
+		<origin rpy="0 0 0 " xyz="12e-3 -0.0000466576e-3 0"/>
+	</xacro:palm_little>
+
+
+	<!-- # thumb -->
+	<xacro:thumb name="thumb" parent="palm_thumb_support" side="$(arg side)">
+		<origin rpy="1.5707963 0.7598972 0" xyz="21.9577e-3 0 -2.8e-3"/>
+	</xacro:thumb>
+
+	<!-- # Index -->
+	<xacro:finger name="index" parent="palm_central" side="$(arg side)">
+		<origin xyz="5e-3 44.8953e-3 112.230e-3" rpy="1.5707963 -1.3962636 1.5707963"/>
+	</xacro:finger>
+
+	<!-- # Middle -->
+	<xacro:finger name="middle" parent="palm_central" side="$(arg side)">
+		<origin xyz="5e-3 12.5e-3 115e-3" rpy="0 -1.5707963 -3.1415927"/>
+	</xacro:finger>
+
+	<!-- # Ring --> 
+	<xacro:finger name="ring" parent="palm_little" side="$(arg side)">
+	    <origin xyz=" 8.6355e-3 5e-3 44.4863e-3" rpy="-1.5707963 -1.3089971 0"/>  
+	</xacro:finger>
+
+    <!-- # Little -->
+	<xacro:finger name="little" parent="palm_little" side="$(arg side)">
+		<origin xyz="39.2985e-3 5e-3 34.8419e-3" rpy="-1.5707963 -1.221731 0"/>
+	</xacro:finger>
+
+	
+
+
+</robot>

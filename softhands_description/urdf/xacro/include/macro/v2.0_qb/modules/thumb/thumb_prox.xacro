@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!-- 
+ *  Software License Agreement: BSD 3-Clause License
+ *
+ * Copyright (c) 2021, NMMI
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer.
+ *
+ * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * Neither the name of the copyright holder nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * \file      finger.xacro
+ *
+ * \author       _Centro di Ricerca "E.Piaggio"_
+ * \author       _Istituto Italiano di Tecnologia, Soft Robotics for Human Cooperation and Rehabilitation Lab_
+ *
+-->
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="thumb_prox" params="ns name parent *origin side">
+
+
+    <!-- Proximal -->
+    <joint name="${ns}_${name}_joint" type="revolute">
+      <xacro:insert_block name="origin"/>
+      <parent link="${ns}_palm_link"/>
+      <child link="${ns}_${name}_link"/>
+      <axis xyz="0 0 -1"/>
+      <dynamics damping="0.0" friction="0.0"/>
+      <limit effort="100" lower="0.0" upper="1.571" velocity="100"/>
+    </joint>
+
+    <link name="${ns}_${name}_link">
+      <inertial>
+        <mass value="0.01"/>
+        <origin rpy="0 0 0" xyz="1.3071561e-02 -2.7357764e-03 6.4347823e-04"/>
+        <inertia ixx="3.5865978e-07" ixy="2.0944224e-07" ixz="-6.8657569e-08" iyy="1.3885564e-06" iyz="3.2170608e-08" izz="1.3571203e-06"/>
+      </inertial>
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v2.0_qb/ph_thumb_r.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="qbhand/knuckle"/>
+      </visual>
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/softhands/v2.0_qb/ph_thumb_r_collision.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
+
+
+		<!-- thumb proximal virtual thumb proximal   -->
+		<joint name="${ns}_${name}_virtual_joint" type="revolute">
+      <axis xyz="0 0 -1"/>
+      <dynamics damping="0.0" friction="0.0"/>
+      <limit effort="100" lower="0.0" upper="0.785" velocity="100"/>
+			<origin rpy="-1.1415 0.0 0.0" xyz="0.0255 -0.0038 -0.00012"/>
+			<parent link="${ns}_${name}_link"/>
+			<child link="${ns}_${name}_virtual_link"/>
+		</joint>
+
+    <link name="${ns}_${name}_virtual_link">
+      <inertial>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<mass value="1e-6"/>
+			<inertia ixx="1e-6"  ixy="0"  	  	ixz="0" 
+								 iyy="1e-6" 	iyz="0" 
+												izz="1e-6" />
+      </inertial>
+	
+    </link>
+
+
+
+    <gazebo reference="${ns}__knuckle_link">
+      <material>Gazebo/Grey</material>
+      <selfCollide>false</selfCollide>
+	  </gazebo>
+
+  </xacro:macro>
+
+</robot>

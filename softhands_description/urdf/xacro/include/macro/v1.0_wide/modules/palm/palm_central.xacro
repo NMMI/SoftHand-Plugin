@@ -43,16 +43,16 @@
 		</link>
 
 
-		<!-- palm base to mobile thumb -->
-		<joint name="${side}_${name}_to_mobile_thumb_joint" type="revolute">
+		<!-- palm base virtual -->
+		<joint name="${side}_${name}_thumb_virtual_joint" type="revolute">
 			<axis xyz="0 0 1"/>
 			<limit effort="0.0" lower="0" upper="0"  velocity="0.0"/>
 			<origin xyz=" -0.0000000021 32.5059e-3 39.6398e-3" rpy="0 0.3490656 1.5707963"/>
 			<parent link="${side}_${name}_link"/>
-			<child link="${side}_${name}_to_mobile_thumb_link"/>
+			<child link="${side}_${name}_thumb_virtual_link"/>
 		</joint>
 
-	    <link name="${side}_${name}_to_mobile_thumb_link">
+	    <link name="${side}_${name}_thumb_virtual_link">
 		   <inertial>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<mass value="1e-6"/>
@@ -63,17 +63,17 @@
 	
 	    </link>
 
-		<!-- palm base to mobile little -->
+		<!-- palm base virtual -->
 
-		<joint name="${side}_${name}_to_mobile_little_joint" type="revolute">
+		<joint name="${side}_${name}_little_virtual_joint" type="revolute">
 			<axis xyz="0 0 1"/>
 			<limit effort="0.0" lower="0" upper="0"  velocity="0.0"/>
 			<origin xyz=" -0.0000000091 -10.6603e-3 66.1817e-3" rpy="0 -0.1745327 -1.5707963"/>
 			<parent link="${side}_${name}_link"/>
-			<child link="${side}_${name}_to_mobile_little_link"/>
+			<child link="${side}_${name}_little_virtual_link"/>
 		</joint>
 
-		<link name="${side}_${name}_to_mobile_little_link">
+		<link name="${side}_${name}_little_virtual_link">
 		   <inertial>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<mass value="1e-6"/>

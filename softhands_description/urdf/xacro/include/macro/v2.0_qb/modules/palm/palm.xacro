@@ -37,52 +37,42 @@
  *
 -->
 
-<robot name="v3" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="palm_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-	<xacro:property name="side_" value="$(arg side)"/>
-    <xacro:if value="${side_ == 'right'}">
-		<xacro:arg name="sign" default="1"/>
-	</xacro:if>
-    <xacro:if value="${side_ == 'left'}">
-		<xacro:arg name="sign" default="-1"/>
-    </xacro:if>
+	<xacro:macro name="palm" params="ns name parent *origin side">
+		
+	  	<joint name="${ns}_palm_joint" type="fixed">
+			<xacro:insert_block name="origin"/>
+			<parent link="${ns}_${parent}_link" />
+			<child link="${ns}_palm_link" />
+		</joint>
 
-	<!-- type: right/left -->
-	<!-- parent: root_link/world -->
-	<xacro:base 
-		sign="$(arg sign)"
-		ns="$(arg ns)"
-		parent = "$(arg parent)"
-		position ="$(arg position)"
-		orientation ="$(arg orientation)"
-		operation_mode = "$(arg operation_mode)">
-	</xacro:base>
-
-	<xacro:palm 
-		sign="$(arg sign)"
-		ns="$(arg ns)"
-		parent = "$(arg parent)"
-		position ="-0.0045 0.0145 0.144"
-		orientation ="1.57 0 0"
-		operation_mode = "$(arg operation_mode)">
-	</xacro:palm>
-
-	<!-- # Thumb finger -->
-	<xacro:thumb 
-		type="thumb" 
-		sign="$(arg sign)"
-		ns="$(arg ns)"
-		position="-0.044 -0.0465 -0.002" 
-		orientation="-1.57 3.14 0.0">
-	</xacro:thumb>
+		<link name="${ns}_palm_link">
+			<inertial>
+			<mass value="0.45"/>
+			<origin rpy="0 0 0" xyz="0.0030 -0.0449 0.0135"/>
+			<inertia ixx="0.00045" ixy="0.0" ixz="0.0" iyy="0.0006" iyz="0.0" izz="0.00025"/>
+			</inertial>
+			<visual>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="$(arg meshes_dir)/palm_pinch_r.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+			<material name="qbhand/palm"/>
+			</visual>
+			<collision>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="$(arg meshes_dir)/palm_pinch_r.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+			</collision>
+		</link>
 
 
-	<!-- <gazebo>
-		<plugin name="synergy_plugin" filename="libsofthand_plugin.so">
-			<namespace>$(arg type)_hand_v3s</namespace>
-			<operation_mode>$(arg operation_mode)</operation_mode>
-
-		</plugin>
-	</gazebo> -->
+	<gazebo reference="${ns}_palm_link">
+		<material>Gazebo/Grey</material>
+		<selfCollide>true</selfCollide>
+	</gazebo>
+	</xacro:macro>
 
 </robot>

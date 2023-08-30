@@ -39,7 +39,7 @@
 				</collision>
 		</link>
 
-		<!-- Finger support to mobile  -->
+		<!-- Finger support Virtual  -->
 
 		<joint name="${side}_${name}_virtual_joint" type="revolute">
 			<axis xyz="0 0 1"/>

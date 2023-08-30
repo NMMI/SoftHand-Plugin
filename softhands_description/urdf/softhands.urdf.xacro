@@ -39,8 +39,9 @@
 
 <robot name="softhand" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  	<xacro:arg name="sh_version" default="v_wide"/>
+  	<xacro:arg name="sh_version" default="v2.0_qb"/>
   	<xacro:arg name="root_dir" default="$(find softhands_description)/urdf/xacro/include/macro/$(arg sh_version)"/>
+  	<xacro:arg name="meshes_dir" default="package://softhands_description/meshes/softhands/$(arg sh_version)"/>
   	<xacro:arg name="root_link" default="world"/>
   	<xacro:arg name="side" default="right"/>
   	<xacro:arg name="ns" default="$(arg side)_hand_$(arg sh_version)"/>

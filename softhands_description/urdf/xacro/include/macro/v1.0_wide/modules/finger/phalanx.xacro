@@ -2,24 +2,22 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
    
-    <xacro:macro name="thumb_mid" params="name parent side *origin">
-		<!-- Thumb middle  -->
-		<joint name="${side}_${name}_joint" type="revolute">
-			<parent link="${side}_${parent}_link"/>
-			<child link="${side}_${name}_link"/>
+    <xacro:macro name="phalanx" params="name parent side *origin">
+
+		<!-- Proximal phalanx -->
+
+		<joint name="${side}_${parent}_${name}_joint" type="fixed">
 			<xacro:insert_block name="origin"/>
-			<axis xyz="0 0 1" />
-      		<limit effort="30" velocity="1.0" lower="0" upper="1.57" />
-			<dynamics damping="0.08" friction="0.0" />
+            <parent link="${side}_${parent}_link"/>
+			<child link="${side}_${name}_link"/>
 		</joint>
 
-	
 		<link name="${side}_${name}_link">
 				<visual>
 				<material name="grey" />
 					<geometry>
 					<mesh
-						filename="package://softhands_description/meshes/softhands/wide/${side}/phalanx_medium_thumb.stl"
+						filename="package://softhands_description/meshes/softhands/wide/${side}/phalanx.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -34,7 +32,7 @@
 				<collision>
 					<geometry>
 					<mesh
-						filename="package://softhands_description/meshes/softhands/wide/${side}/phalanx_medium_thumb.stl"
+						filename="package://softhands_description/meshes/softhands/wide/${side}/phalanx.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -43,27 +41,26 @@
 
 
 
-		<!-- thumb middle to mobile thumb middle   -->
-		<joint name="${side}_${name}_to_mobile_joint" type="revolute">
+		<!-- Finger prox/mid virtual  -->
+
+		<joint name="${side}_${parent}_${name}_virtual_joint" type="revolute">
 			<axis xyz="0 0 1"/>
 			<limit effort="0.0" lower="0" upper="0"  velocity="0.0"/>
 			<origin xyz="41e-3 0 0" rpy="0 0 0"/>
 			<parent link="${side}_${name}_link"/>
-			<child link="${side}_${name}_to_mobile_link"/>
+			<child link="${side}_${name}_virtual_link"/>
 		</joint>
 
-	    <link name="${side}_${name}_to_mobile_link">
+		<link name="${side}_${name}_virtual_link">
 		   <inertial>
-			<origin xyz="0 0 0" rpy="0 0 0"/>
-			<mass value="1e-6"/>
-			<inertia ixx="1e-6"  ixy="0"  	  	ixz="0" 
-								 iyy="1e-6" 	iyz="0" 
-												izz="1e-6" />
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<mass value="1e-6"/>
+				<inertia ixx="1e-6"  ixy="0"  	  	ixz="0" 
+									iyy="1e-6" 	iyz="0" 
+													izz="1e-6" />
 		   </inertial>
 	
 	    </link>
-
-
 
     </xacro:macro>
 </robot>
