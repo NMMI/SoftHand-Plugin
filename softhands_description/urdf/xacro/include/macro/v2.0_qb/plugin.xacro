@@ -39,18 +39,17 @@
 
 <robot name="plugin" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-	<gazebo>
+	<!-- <gazebo>
 		<plugin name="synergy_plugin" filename="libsofthand_mimic_plugin.so">
 			<namespace>$(arg ns)</namespace> 
 			<operation_mode>$(arg operation_mode)</operation_mode>
-			<!-- TODO: Insert here the OPTIONAL tags available! -->
-			<!-- <spring_k_tendon>25</spring_k_tendon> -->
-			<r_finger>0.0033</r_finger>
-			<R_pulley>0.0053</R_pulley>
-			<n_param>0.058</n_param> <!-- The formula is (4*r_finger)/(2*R_pulley) -->
+
 			<spring_k>0.5</spring_k>
 
-			<!-- Parameters for synergy matrix (S) -->
+			
+			<r_finger>0.0033</r_finger>
+			<R_pulley>0.0053</R_pulley>
+			<n_param>0.058</n_param> 
 			<synS_thumb_j1>1.2</synS_thumb_j1>
 			<synS_thumb_j2>1.2</synS_thumb_j2>
 			<synS_thumb_j3>1.2</synS_thumb_j3>
@@ -96,7 +95,17 @@
 
 
 		</plugin>
-	</gazebo>
+	</gazebo> -->
 
+	  # Gazebo NEW custom synergy-plugin
+	  <gazebo>
+	          <plugin name="synergy_plugin" filename="libsofthand_plugin.so">
+	                      <namespace>$(arg ns)</namespace> 
+	                      <operation_mode>0</operation_mode>
+
+	                      <!-- TODO: Insert here the OPTIONAL tags available! -->
+	                      <spring_k>5</spring_k>
+	          </plugin>
+	  </gazebo>
 
 </robot>

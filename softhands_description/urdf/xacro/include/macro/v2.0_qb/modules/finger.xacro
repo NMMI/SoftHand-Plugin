@@ -39,46 +39,28 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="finger_v3_simple" params="type ns position orientation">
+  <xacro:macro name="finger" params="ns name parent *origin side">
 
-    <!-- KNUCKLE -->
-    <xacro:knuckle 
-      ns="${ns}" 
-      position="${position}" 
-      type="${type}"
-      orientation="${orientation}">
-    </xacro:knuckle>
+    <!-- Proximal -->
+    <xacro:phalanx_knuckle name="${name}_phalanx_knuckle" parent="${parent}" ns="$(arg ns)" side="$(arg side)">
+      <xacro:insert_block name="origin"/>
+    </xacro:phalanx_knuckle>
    
-    <!-- PROXIMAL PHALANGE -->
-    <xacro:phalanx 
-      parent="knuckle"
-      name="proximal"
-      ns="${ns}" 
-      position="0.020 0 0" 
-      type="${type}"
-      orientation="0 0 0">
-    </xacro:phalanx>
+    <!-- Proximal -->
+    <xacro:phalanx_med name="${name}_phalanx_prox" parent="${name}_phalanx_knuckle_virtual" side="$(arg side)" ns="$(arg ns)">
+      <origin rpy="0 0 0" xyz="0.013 0 0"/>
+    </xacro:phalanx_med>
 
+    <!-- Middle -->
+    <xacro:phalanx_med name="${name}_phalanx_mid" parent="${name}_phalanx_prox_virtual" side="$(arg side)" ns="$(arg ns)">
+      <origin rpy="0 0 0" xyz="0.013 0 0"/>
+    </xacro:phalanx_med>
 
-    <!-- MIDDLE PHALANGE -->
-    <xacro:phalanx 
-      parent="proximal"
-      name="middle"
-      ns="${ns}" 
-      position="0.020 0 0" 
-      type="${type}"
-      orientation="0 0 0">
-    </xacro:phalanx>
+    <!-- Distal -->
+    <xacro:phalanx_dist name="${name}_phalanx_dist" parent="${name}_phalanx_mid_virtual" side="$(arg side)" ns="$(arg ns)">
+      <origin rpy="0 0 0" xyz="0.013 0 0"/>
+    </xacro:phalanx_dist>
 
-    <!-- DISTAL PHALANGE -->
-    <xacro:fingertip 
-      parent="middle"
-      name="distal"
-      ns="${ns}" 
-      position="0.020 0 0" 
-      type="${type}"
-      orientation="0 0 0">
-    </xacro:fingertip>
 
   </xacro:macro>
 

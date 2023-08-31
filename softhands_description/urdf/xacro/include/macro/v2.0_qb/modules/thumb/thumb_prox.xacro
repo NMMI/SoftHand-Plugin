@@ -42,16 +42,16 @@
   <xacro:macro name="thumb_prox" params="ns name parent *origin side">
 
 
-    <!-- Proximal -->
+    <!-- Proximal JOINT -->
     <joint name="${ns}_${name}_joint" type="revolute">
       <xacro:insert_block name="origin"/>
-      <parent link="${ns}_palm_link"/>
+      <parent link="${ns}_${parent}_link"/>
       <child link="${ns}_${name}_link"/>
       <axis xyz="0 0 -1"/>
       <dynamics damping="0.0" friction="0.0"/>
       <limit effort="100" lower="0.0" upper="1.571" velocity="100"/>
     </joint>
-
+    <!-- LINK -->
     <link name="${ns}_${name}_link">
       <inertial>
         <mass value="0.01"/>
@@ -61,20 +61,25 @@
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/softhands/v2.0_qb/ph_thumb_r.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="$(arg meshes_dir)/ph_thumb.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="qbhand/knuckle"/>
       </visual>
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/softhands/v2.0_qb/ph_thumb_r_collision.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="$(arg meshes_dir)/ph_thumb_collision.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>
 
-
-		<!-- thumb proximal virtual thumb proximal   -->
+    <!-- GAZEBO REF -->
+    <gazebo reference="${ns}_${name}_link">
+      <material>Gazebo/Grey</material>
+      <selfCollide>true</selfCollide>
+	  </gazebo>
+    
+    <!-- VIRTUAL JOINT -->
 		<joint name="${ns}_${name}_virtual_joint" type="revolute">
       <axis xyz="0 0 -1"/>
       <dynamics damping="0.0" friction="0.0"/>
@@ -84,23 +89,24 @@
 			<child link="${ns}_${name}_virtual_link"/>
 		</joint>
 
+    <!-- VIRTUAL LINK -->
     <link name="${ns}_${name}_virtual_link">
       <inertial>
-			<origin xyz="0 0 0" rpy="0 0 0"/>
-			<mass value="1e-6"/>
-			<inertia ixx="1e-6"  ixy="0"  	  	ixz="0" 
-								 iyy="1e-6" 	iyz="0" 
-												izz="1e-6" />
-      </inertial>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="1e-4"/>
+      <inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
+    </inertial>
 	
     </link>
 
 
-
-    <gazebo reference="${ns}__knuckle_link">
-      <material>Gazebo/Grey</material>
-      <selfCollide>false</selfCollide>
-	  </gazebo>
+    <gazebo>
+      <plugin name="${ns}_${name}_joint_plugin" filename="libsofthands_plugin.so">
+        <joint>${ns}_${name}_joint</joint>
+        <namespace>${ns}</namespace>
+        <stiffness>10</stiffness>
+      </plugin>
+    </gazebo>
 
   </xacro:macro>
 

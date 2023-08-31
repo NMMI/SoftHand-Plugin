@@ -48,43 +48,43 @@
     </xacro:if> -->
 
 	<!-- # palm central -->
-	<xacro:palm_central name="palm_central" parent="$(arg root_link)" side="$(arg side)">
+	<xacro:palm_central name="palm_central" parent="$(arg root_link)" side="$(arg side)" ns="$(arg ns)">
 		<origin rpy="$(arg orientation)" xyz="$(arg position)"/>
 	</xacro:palm_central>
 	
 	<!-- # palm thumb -->
-	<xacro:palm_thumb name="palm_thumb" parent="palm_central_thumb_virtual" side="$(arg side)">
+	<xacro:palm_thumb name="palm_thumb" parent="palm_central_thumb_virtual" side="$(arg side)" ns="$(arg ns)">
 		<origin rpy="0 0 0 " xyz="12e-3 -0.0000414746e-3 0"/>
 	</xacro:palm_thumb>
 
 	<!-- # palm little -->
-	<xacro:palm_little name="palm_little" parent="palm_central_little_virtual" side="$(arg side)">
+	<xacro:palm_little name="palm_little" parent="palm_central_little_virtual" side="$(arg side)" ns="$(arg ns)">
 		<origin rpy="0 0 0 " xyz="12e-3 -0.0000466576e-3 0"/>
 	</xacro:palm_little>
 
 
 	<!-- # thumb -->
-	<xacro:thumb name="thumb" parent="palm_thumb_support" side="$(arg side)">
+	<xacro:thumb name="thumb" parent="palm_thumb_support" side="$(arg side)" ns="$(arg ns)">
 		<origin rpy="1.5707963 0.7598972 0" xyz="21.9577e-3 0 -2.8e-3"/>
 	</xacro:thumb>
 
 	<!-- # Index -->
-	<xacro:finger name="index" parent="palm_central" side="$(arg side)">
+	<xacro:finger name="index" parent="palm_central" side="$(arg side)" ns="$(arg ns)">
 		<origin xyz="5e-3 44.8953e-3 112.230e-3" rpy="1.5707963 -1.3962636 1.5707963"/>
 	</xacro:finger>
 
 	<!-- # Middle -->
-	<xacro:finger name="middle" parent="palm_central" side="$(arg side)">
+	<xacro:finger name="middle" parent="palm_central" side="$(arg side)" ns="$(arg ns)">
 		<origin xyz="5e-3 12.5e-3 115e-3" rpy="0 -1.5707963 -3.1415927"/>
 	</xacro:finger>
 
 	<!-- # Ring --> 
-	<xacro:finger name="ring" parent="palm_little" side="$(arg side)">
+	<xacro:finger name="ring" parent="palm_little" side="$(arg side)" ns="$(arg ns)">
 	    <origin xyz=" 8.6355e-3 5e-3 44.4863e-3" rpy="-1.5707963 -1.3089971 0"/>  
 	</xacro:finger>
 
     <!-- # Little -->
-	<xacro:finger name="little" parent="palm_little" side="$(arg side)">
+	<xacro:finger name="little" parent="palm_little" side="$(arg side)" ns="$(arg ns)">
 		<origin xyz="39.2985e-3 5e-3 34.8419e-3" rpy="-1.5707963 -1.221731 0"/>
 	</xacro:finger>
 

@@ -2,12 +2,12 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
    
-    <xacro:macro name="thumb_prox" params="name parent side *origin">
+    <xacro:macro name="thumb_prox" params="name parent side ns *origin">
 
 		<!-- Thumb Proximal  -->
-		<joint name="${side}_${name}_joint" type="revolute">
-			<parent link="${side}_${parent}_link"/>
-			<child link="${side}_${name}_link"/>
+		<joint name="${ns}_${name}_joint" type="revolute">
+			<parent link="${ns}_${parent}_link"/>
+			<child link="${ns}_${name}_link"/>
 			<xacro:insert_block name="origin"/>
 			<axis xyz="0 0 1" />
       		<limit effort="30" velocity="1.0" lower="0" upper="1.57" />
@@ -15,12 +15,12 @@
 		</joint>
 
 	
-		<link name="${side}_${name}_link">
+		<link name="${ns}_${name}_link">
 				<visual>
 				<material name="grey" />
 					<geometry>
 					<mesh
-						filename="package://softhands_description/meshes/softhands/wide/${side}/phalanx_pros_thumb.stl"
+						filename="$(arg meshes_dir)/phalanx_pros_thumb.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -35,7 +35,7 @@
 				<collision>
 					<geometry>
 					<mesh
-						filename="package://softhands_description/meshes/softhands/wide/${side}/phalanx_pros_thumb.stl"
+						filename="$(arg meshes_dir)/phalanx_pros_thumb.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -45,15 +45,15 @@
 
 
 		<!-- thumb proximal virtual thumb proximal   -->
-		<joint name="${side}_${name}_virtual_joint" type="revolute">
+		<joint name="${ns}_${name}_virtual_joint" type="revolute">
 			<axis xyz="0 0 1"/>
 			<limit effort="0.0" lower="0" upper="0"  velocity="0.0"/>
 			<origin xyz=" 31.2357e-3 23.0197e-3 0.167417e-3" rpy=" 0.1745395 0.0000165 0.7597087"/>
-			<parent link="${side}_${name}_link"/>
-			<child link="${side}_${name}_virtual_link"/>
+			<parent link="${ns}_${name}_link"/>
+			<child link="${ns}_${name}_virtual_link"/>
 		</joint>
 
-	    <link name="${side}_${name}_virtual_link">
+	    <link name="${ns}_${name}_virtual_link">
 		   <inertial>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<mass value="1e-6"/>

@@ -137,18 +137,6 @@
     <limit effort="100" lower="0.0" upper="1.571" velocity="100"/>
     <mimic joint="qbhand_synergy_joint" multiplier="2.542"/>
   </joint>
-  <transmission name="qbhand_transmission">
-    <type>transmission_interface/qbMoveTransmission</type>
-    <joint name="qbhand_thumb_knuckle_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="qbhand_thumb_knuckle_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
-  <gazebo reference="qbhand_thumb_knuckle_joint">
-    <!-- TODO: add other Gazebo Joint properties (http://sdformat.org/spec?elem=joint) -->
-  </gazebo>
   <link name="qbhand_thumb_knuckle_link">
     <inertial>
       <mass value="0.01"/>
@@ -169,28 +157,8 @@
       </geometry>
     </collision>
   </link>
-  <gazebo reference="qbhand_thumb_knuckle_link">
-    <self_collide>1</self_collide>
-    <!-- TODO: add other Gazebo Link properties (http://sdformat.org/spec?elem=link) -->
-    <!--      <collision>-->
-    <!--        <surface>-->
-    <!--          <contact>-->
-    <!--            <ode>-->
-    <!--              <kp>1.0</kp>-->
-    <!--              <kd>0.01</kd>-->
-    <!--              <max_vel>0.0</max_vel>-->
-    <!--              <min_depth>0.001</min_depth>-->
-    <!--            </ode>-->
-    <!--          </contact>-->
-    <!--          <friction>-->
-    <!--            <ode>-->
-    <!--              <mu>0.9</mu>-->
-    <!--              <mu2>0.9</mu2>-->
-    <!--            </ode>-->
-    <!--          </friction>-->
-    <!--        </surface>-->
-    <!--      </collision>-->
-  </gazebo>
+<!-- 
+
   <joint name="qbhand_thumb_proximal_joint" type="revolute">
     <origin rpy="-1.1415 0.0 0.0" xyz="0.0255 -0.0038 -0.00012"/>
     <parent link="qbhand_thumb_knuckle_link"/>
@@ -200,25 +168,14 @@
     <limit effort="100" lower="0.0" upper="0.785" velocity="100"/>
     <mimic joint="qbhand_synergy_joint" multiplier="0.785"/>
   </joint>
-  <transmission name="qbhand_transmission">
-    <type>transmission_interface/qbMoveTransmission</type>
-    <joint name="qbhand_thumb_proximal_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="qbhand_thumb_proximal_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
-  <gazebo reference="qbhand_thumb_proximal_joint">
-    <!-- TODO: add other Gazebo Joint properties (http://sdformat.org/spec?elem=joint) -->
-  </gazebo>
   <link name="qbhand_thumb_proximal_virtual_link">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="1e-4"/>
       <inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
     </inertial>
-  </link>
+  </link> -->
+<!-- 
   <joint name="qbhand_thumb_proximal_virtual_joint" type="revolute">
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
     <parent link="qbhand_thumb_proximal_virtual_link"/>
@@ -228,18 +185,6 @@
     <limit effort="100" lower="0.0" upper="0.785" velocity="100"/>
     <mimic joint="qbhand_thumb_proximal_joint" multiplier="1.0"/>
   </joint>
-  <transmission name="qbhand_transmission">
-    <type>transmission_interface/qbMoveTransmission</type>
-    <joint name="qbhand_thumb_proximal_virtual_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="qbhand_thumb_proximal_virtual_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
-  <gazebo reference="qbhand_thumb_proximal_virtual_joint">
-    <!-- TODO: add other Gazebo Joint properties (http://sdformat.org/spec?elem=joint) -->
-  </gazebo>
   <link name="qbhand_thumb_proximal_link">
     <inertial>
       <mass value="0.0063"/>
@@ -259,29 +204,9 @@
         <mesh filename="package://qb_hand_description/meshes/ph_short_collision.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
-  </link>
-  <gazebo reference="qbhand_thumb_proximal_link">
-    <self_collide>1</self_collide>
-    <!-- TODO: add other Gazebo Link properties (http://sdformat.org/spec?elem=link) -->
-    <!--      <collision>-->
-    <!--        <surface>-->
-    <!--          <contact>-->
-    <!--            <ode>-->
-    <!--              <kp>1.0</kp>-->
-    <!--              <kd>0.01</kd>-->
-    <!--              <max_vel>0.0</max_vel>-->
-    <!--              <min_depth>0.001</min_depth>-->
-    <!--            </ode>-->
-    <!--          </contact>-->
-    <!--          <friction>-->
-    <!--            <ode>-->
-    <!--              <mu>0.9</mu>-->
-    <!--              <mu2>0.9</mu2>-->
-    <!--            </ode>-->
-    <!--          </friction>-->
-    <!--        </surface>-->
-    <!--      </collision>-->
-  </gazebo>
+  </link> -->
+
+<!-- 
   <joint name="qbhand_thumb_distal_joint" type="revolute">
     <origin rpy="0 0 0" xyz="0.009 0 0"/>
     <parent link="qbhand_thumb_proximal_link"/>
@@ -291,26 +216,14 @@
     <limit effort="100" lower="0.0" upper="0.785" velocity="100"/>
     <mimic joint="qbhand_synergy_joint" multiplier="0.785"/>
   </joint>
-  <transmission name="qbhand_transmission">
-    <type>transmission_interface/qbMoveTransmission</type>
-    <joint name="qbhand_thumb_distal_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="qbhand_thumb_distal_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
-  <gazebo reference="qbhand_thumb_distal_joint">
-    <!-- TODO: add other Gazebo Joint properties (http://sdformat.org/spec?elem=joint) -->
-  </gazebo>
   <link name="qbhand_thumb_distal_virtual_link">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="1e-4"/>
       <inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
     </inertial>
-  </link>
-  <joint name="qbhand_thumb_distal_virtual_joint" type="revolute">
+  </link> -->
+  <!-- <joint name="qbhand_thumb_distal_virtual_joint" type="revolute">
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
     <parent link="qbhand_thumb_distal_virtual_link"/>
     <child link="qbhand_thumb_distal_link"/>
@@ -318,20 +231,9 @@
     <dynamics damping="0.0" friction="0.0"/>
     <limit effort="100" lower="0.0" upper="0.785" velocity="100"/>
     <mimic joint="qbhand_thumb_distal_joint" multiplier="1.0"/>
-  </joint>
-  <transmission name="qbhand_transmission">
-    <type>transmission_interface/qbMoveTransmission</type>
-    <joint name="qbhand_thumb_distal_virtual_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="qbhand_thumb_distal_virtual_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
-  <gazebo reference="qbhand_thumb_distal_virtual_joint">
-    <!-- TODO: add other Gazebo Joint properties (http://sdformat.org/spec?elem=joint) -->
-  </gazebo>
-  <link name="qbhand_thumb_distal_link">
+  </joint> -->
+
+  <!-- <link name="qbhand_thumb_distal_link">
     <inertial>
       <mass value="0.009"/>
       <origin rpy="0 0 0" xyz="8.8025467e-03 -1.7219289e-03 0.0"/>
@@ -350,30 +252,9 @@
         <mesh filename="package://qb_hand_description/meshes/ph_distal_collision.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
-  </link>
-  <gazebo reference="qbhand_thumb_distal_link">
-    <self_collide>1</self_collide>
-    <!-- TODO: add other Gazebo Link properties (http://sdformat.org/spec?elem=link) -->
-    <!--      <collision>-->
-    <!--        <surface>-->
-    <!--          <contact>-->
-    <!--            <ode>-->
-    <!--              <kp>1.0</kp>-->
-    <!--              <kd>0.01</kd>-->
-    <!--              <max_vel>0.0</max_vel>-->
-    <!--              <min_depth>0.001</min_depth>-->
-    <!--            </ode>-->
-    <!--          </contact>-->
-    <!--          <friction>-->
-    <!--            <ode>-->
-    <!--              <mu>0.9</mu>-->
-    <!--              <mu2>0.9</mu2>-->
-    <!--            </ode>-->
-    <!--          </friction>-->
-    <!--        </surface>-->
-    <!--      </collision>-->
-  </gazebo>
-  <joint name="qbhand_index_knuckle_joint" type="revolute">
+  </link> -->
+
+  <!-- <joint name="qbhand_index_knuckle_joint" type="revolute">
     <origin rpy="0 0 1.57" xyz="-0.02 -0.007 0.014"/>
     <parent link="qbhand_palm_link"/>
     <child link="qbhand_index_knuckle_link"/>
@@ -381,20 +262,9 @@
     <dynamics damping="0.0" friction="0.0"/>
     <limit effort="100" lower="-0.524" upper="0.524" velocity="100"/>
     <mimic joint="qbhand_synergy_joint" multiplier="-0.2"/>
-  </joint>
-  <transmission name="qbhand_transmission">
-    <type>transmission_interface/qbMoveTransmission</type>
-    <joint name="qbhand_index_knuckle_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="qbhand_index_knuckle_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
-  <gazebo reference="qbhand_index_knuckle_joint">
-    <!-- TODO: add other Gazebo Joint properties (http://sdformat.org/spec?elem=joint) -->
-  </gazebo>
-  <link name="qbhand_index_knuckle_link">
+  </joint> -->
+
+  <!-- <link name="qbhand_index_knuckle_link">
     <inertial>
       <mass value="0.0095"/>
       <origin rpy="0 0 0" xyz="4.2753603e-04  0.0 -1.4321738e-03"/>
@@ -413,30 +283,9 @@
         <mesh filename="package://qb_hand_description/meshes/ph_knuckle_collision.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
-  </link>
-  <gazebo reference="qbhand_index_knuckle_link">
-    <self_collide>1</self_collide>
-    <!-- TODO: add other Gazebo Link properties (http://sdformat.org/spec?elem=link) -->
-    <!--      <collision>-->
-    <!--        <surface>-->
-    <!--          <contact>-->
-    <!--            <ode>-->
-    <!--              <kp>1.0</kp>-->
-    <!--              <kd>0.01</kd>-->
-    <!--              <max_vel>0.0</max_vel>-->
-    <!--              <min_depth>0.001</min_depth>-->
-    <!--            </ode>-->
-    <!--          </contact>-->
-    <!--          <friction>-->
-    <!--            <ode>-->
-    <!--              <mu>0.9</mu>-->
-    <!--              <mu2>0.9</mu2>-->
-    <!--            </ode>-->
-    <!--          </friction>-->
-    <!--        </surface>-->
-    <!--      </collision>-->
-  </gazebo>
-  <joint name="qbhand_index_proximal_joint" type="revolute">
+  </link> -->
+
+  <!-- <joint name="qbhand_index_proximal_joint" type="revolute">
     <origin rpy="1.57 0 0" xyz="0.009 0 0"/>
     <parent link="qbhand_index_knuckle_link"/>
     <child link="qbhand_index_proximal_virtual_link"/>
@@ -444,27 +293,16 @@
     <dynamics damping="0.0" friction="0.0"/>
     <limit effort="100" lower="0.0" upper="0.785" velocity="100"/>
     <mimic joint="qbhand_synergy_joint" multiplier="0.785"/>
-  </joint>
-  <transmission name="qbhand_transmission">
-    <type>transmission_interface/qbMoveTransmission</type>
-    <joint name="qbhand_index_proximal_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="qbhand_index_proximal_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
-  <gazebo reference="qbhand_index_proximal_joint">
-    <!-- TODO: add other Gazebo Joint properties (http://sdformat.org/spec?elem=joint) -->
-  </gazebo>
+  </joint> -->
+<!-- 
   <link name="qbhand_index_proximal_virtual_link">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="1e-4"/>
       <inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
     </inertial>
-  </link>
-  <joint name="qbhand_index_proximal_virtual_joint" type="revolute">
+  </link> -->
+  <!-- <joint name="qbhand_index_proximal_virtual_joint" type="revolute">
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
     <parent link="qbhand_index_proximal_virtual_link"/>
     <child link="qbhand_index_proximal_link"/>
@@ -473,18 +311,7 @@
     <limit effort="100" lower="0.0" upper="0.785" velocity="100"/>
     <mimic joint="qbhand_index_proximal_joint" multiplier="1.0"/>
   </joint>
-  <transmission name="qbhand_transmission">
-    <type>transmission_interface/qbMoveTransmission</type>
-    <joint name="qbhand_index_proximal_virtual_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="qbhand_index_proximal_virtual_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
-  <gazebo reference="qbhand_index_proximal_virtual_joint">
-    <!-- TODO: add other Gazebo Joint properties (http://sdformat.org/spec?elem=joint) -->
-  </gazebo>
+
   <link name="qbhand_index_proximal_link">
     <inertial>
       <mass value="0.0082"/>
@@ -504,30 +331,9 @@
         <mesh filename="package://qb_hand_description/meshes/ph_medium_collision.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
-  </link>
-  <gazebo reference="qbhand_index_proximal_link">
-    <self_collide>1</self_collide>
-    <!-- TODO: add other Gazebo Link properties (http://sdformat.org/spec?elem=link) -->
-    <!--      <collision>-->
-    <!--        <surface>-->
-    <!--          <contact>-->
-    <!--            <ode>-->
-    <!--              <kp>1.0</kp>-->
-    <!--              <kd>0.01</kd>-->
-    <!--              <max_vel>0.0</max_vel>-->
-    <!--              <min_depth>0.001</min_depth>-->
-    <!--            </ode>-->
-    <!--          </contact>-->
-    <!--          <friction>-->
-    <!--            <ode>-->
-    <!--              <mu>0.9</mu>-->
-    <!--              <mu2>0.9</mu2>-->
-    <!--            </ode>-->
-    <!--          </friction>-->
-    <!--        </surface>-->
-    <!--      </collision>-->
-  </gazebo>
-  <joint name="qbhand_index_middle_joint" type="revolute">
+  </link> -->
+
+  <!-- <joint name="qbhand_index_middle_joint" type="revolute">
     <origin rpy="0 0 0" xyz="0.017 0 0"/>
     <parent link="qbhand_index_proximal_link"/>
     <child link="qbhand_index_middle_virtual_link"/>
@@ -536,26 +342,15 @@
     <limit effort="100" lower="0.0" upper="0.785" velocity="100"/>
     <mimic joint="qbhand_synergy_joint" multiplier="0.785"/>
   </joint>
-  <transmission name="qbhand_transmission">
-    <type>transmission_interface/qbMoveTransmission</type>
-    <joint name="qbhand_index_middle_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="qbhand_index_middle_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
-  <gazebo reference="qbhand_index_middle_joint">
-    <!-- TODO: add other Gazebo Joint properties (http://sdformat.org/spec?elem=joint) -->
-  </gazebo>
+
   <link name="qbhand_index_middle_virtual_link">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="1e-4"/>
       <inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
     </inertial>
-  </link>
-  <joint name="qbhand_index_middle_virtual_joint" type="revolute">
+  </link> -->
+  <!-- <joint name="qbhand_index_middle_virtual_joint" type="revolute">
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
     <parent link="qbhand_index_middle_virtual_link"/>
     <child link="qbhand_index_middle_link"/>
@@ -564,18 +359,7 @@
     <limit effort="100" lower="0.0" upper="0.785" velocity="100"/>
     <mimic joint="qbhand_index_middle_joint" multiplier="1.0"/>
   </joint>
-  <transmission name="qbhand_transmission">
-    <type>transmission_interface/qbMoveTransmission</type>
-    <joint name="qbhand_index_middle_virtual_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="qbhand_index_middle_virtual_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
-  <gazebo reference="qbhand_index_middle_virtual_joint">
-    <!-- TODO: add other Gazebo Joint properties (http://sdformat.org/spec?elem=joint) -->
-  </gazebo>
+
   <link name="qbhand_index_middle_link">
     <inertial>
       <mass value="0.0063"/>
@@ -595,30 +379,9 @@
         <mesh filename="package://qb_hand_description/meshes/ph_short_collision.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
-  </link>
-  <gazebo reference="qbhand_index_middle_link">
-    <self_collide>1</self_collide>
-    <!-- TODO: add other Gazebo Link properties (http://sdformat.org/spec?elem=link) -->
-    <!--      <collision>-->
-    <!--        <surface>-->
-    <!--          <contact>-->
-    <!--            <ode>-->
-    <!--              <kp>1.0</kp>-->
-    <!--              <kd>0.01</kd>-->
-    <!--              <max_vel>0.0</max_vel>-->
-    <!--              <min_depth>0.001</min_depth>-->
-    <!--            </ode>-->
-    <!--          </contact>-->
-    <!--          <friction>-->
-    <!--            <ode>-->
-    <!--              <mu>0.9</mu>-->
-    <!--              <mu2>0.9</mu2>-->
-    <!--            </ode>-->
-    <!--          </friction>-->
-    <!--        </surface>-->
-    <!--      </collision>-->
-  </gazebo>
-  <joint name="qbhand_index_distal_joint" type="revolute">
+  </link> -->
+
+  <!-- <joint name="qbhand_index_distal_joint" type="revolute">
     <origin rpy="0 0 0" xyz="0.009 0 0"/>
     <parent link="qbhand_index_middle_link"/>
     <child link="qbhand_index_distal_virtual_link"/>
@@ -627,25 +390,14 @@
     <limit effort="100" lower="0.0" upper="0.785" velocity="100"/>
     <mimic joint="qbhand_synergy_joint" multiplier="0.785"/>
   </joint>
-  <transmission name="qbhand_transmission">
-    <type>transmission_interface/qbMoveTransmission</type>
-    <joint name="qbhand_index_distal_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="qbhand_index_distal_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </actuator>
-  </transmission>
-  <gazebo reference="qbhand_index_distal_joint">
-    <!-- TODO: add other Gazebo Joint properties (http://sdformat.org/spec?elem=joint) -->
-  </gazebo>
+
   <link name="qbhand_index_distal_virtual_link">
     <inertial>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <mass value="1e-4"/>
       <inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
     </inertial>
-  </link>
+  </link> -->
   <joint name="qbhand_index_distal_virtual_joint" type="revolute">
     <origin rpy="0 0 0" xyz="0.013 0 0"/>
     <parent link="qbhand_index_distal_virtual_link"/>

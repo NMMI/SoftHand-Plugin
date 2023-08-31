@@ -8,9 +8,9 @@
 	</include>
 
 	<!-- SH v2 -->
-	<param name="v2_description" command="$(find xacro)/xacro --inorder '$(find softhands_description)/urdf/test_SHs_v2.urdf.xacro'"/>
+	<param name="v2_description" command="$(find xacro)/xacro --inorder '$(find softhands_description)/urdf/test_sh_old.urdf.xacro'"/>
 
-	<node name="my_robot_spawn_1" pkg="gazebo_ros" type="spawn_model" output="screen" 
+	<node name="my_robot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" 
 		args="-urdf -param v2_description -model sh_v2_description -x 0 -y 0 -z 0"/>
 
 	<!-- calculate, publish and remap joint_states -->

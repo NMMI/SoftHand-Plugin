@@ -2,22 +2,22 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
    
-    <xacro:macro name="phalanx_dist" params="name parent side *origin">
+    <xacro:macro name="phalanx_dist" params="name parent side *origin ns">
 
 		<!-- Proximal phalanx -->
 
-		<joint name="${side}_${parent}_${name}_joint" type="fixed">
+		<joint name="${ns}_${parent}_${name}_joint" type="fixed">
 			<xacro:insert_block name="origin"/>
-            <parent link="${side}_${parent}_link"/>
-			<child link="${side}_${name}_link"/>
+            <parent link="${ns}_${parent}_link"/>
+			<child link="${ns}_${name}_link"/>
 		</joint>
 
-		<link name="${side}_${name}_link">
+		<link name="${ns}_${name}_link">
 				<visual>
 				<material name="grey" />
 					<geometry>
 					<mesh
-						filename="package://softhands_description/meshes/softhands/wide/${side}/phalanx_dist.stl"
+						filename="$(arg meshes_dir)/phalanx_dist.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -32,7 +32,7 @@
 				<collision>
 					<geometry>
 					<mesh
-						filename="package://softhands_description/meshes/softhands/wide/${side}/phalanx_dist.stl"
+						filename="$(arg meshes_dir)/phalanx_dist.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />

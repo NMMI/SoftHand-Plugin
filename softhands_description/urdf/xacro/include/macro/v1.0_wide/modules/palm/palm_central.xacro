@@ -2,25 +2,25 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
    
-    <xacro:macro name="palm_central" params="name parent side *origin">
+    <xacro:macro name="palm_central" params="name parent side *origin ns">
 
 		<!-- World -->
 		<link name="${parent}">
 		</link>
 		
 		<!-- World to palm base -->
-		<joint name="${side}_${name}_joint" type="fixed">
+		<joint name="${ns}_${name}_joint" type="fixed">
 			<parent link="${parent}"/>
-			<child link="${side}_${name}_link"/>
+			<child link="${ns}_${name}_link"/>
 			<xacro:insert_block name="origin"/>
 		</joint>
 
-		<link name="${side}_${name}_link">
+		<link name="${ns}_${name}_link">
 				<visual>
 				<material name="grey" />
 					<geometry>
 					<mesh
-						filename="package://softhands_description/meshes/softhands/wide/${side}/palm_central.stl"
+						filename="$(arg meshes_dir)/palm_central.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -35,7 +35,7 @@
 				<collision>
 					<geometry>
 					<mesh
-						filename="package://softhands_description/meshes/softhands/wide/${side}/palm_central.stl"
+						filename="$(arg meshes_dir)/palm_central.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -44,15 +44,15 @@
 
 
 		<!-- palm base virtual -->
-		<joint name="${side}_${name}_thumb_virtual_joint" type="revolute">
+		<joint name="${ns}_${name}_thumb_virtual_joint" type="revolute">
 			<axis xyz="0 0 1"/>
 			<limit effort="0.0" lower="0" upper="0"  velocity="0.0"/>
 			<origin xyz=" -0.0000000021 32.5059e-3 39.6398e-3" rpy="0 0.3490656 1.5707963"/>
-			<parent link="${side}_${name}_link"/>
-			<child link="${side}_${name}_thumb_virtual_link"/>
+			<parent link="${ns}_${name}_link"/>
+			<child link="${ns}_${name}_thumb_virtual_link"/>
 		</joint>
 
-	    <link name="${side}_${name}_thumb_virtual_link">
+	    <link name="${ns}_${name}_thumb_virtual_link">
 		   <inertial>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<mass value="1e-6"/>
@@ -65,15 +65,15 @@
 
 		<!-- palm base virtual -->
 
-		<joint name="${side}_${name}_little_virtual_joint" type="revolute">
+		<joint name="${ns}_${name}_little_virtual_joint" type="revolute">
 			<axis xyz="0 0 1"/>
 			<limit effort="0.0" lower="0" upper="0"  velocity="0.0"/>
 			<origin xyz=" -0.0000000091 -10.6603e-3 66.1817e-3" rpy="0 -0.1745327 -1.5707963"/>
-			<parent link="${side}_${name}_link"/>
-			<child link="${side}_${name}_little_virtual_link"/>
+			<parent link="${ns}_${name}_link"/>
+			<child link="${ns}_${name}_little_virtual_link"/>
 		</joint>
 
-		<link name="${side}_${name}_little_virtual_link">
+		<link name="${ns}_${name}_little_virtual_link">
 		   <inertial>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<mass value="1e-6"/>

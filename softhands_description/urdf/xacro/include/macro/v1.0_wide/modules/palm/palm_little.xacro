@@ -2,12 +2,12 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
    
-    <xacro:macro name="palm_little" params="name parent side *origin">
+    <xacro:macro name="palm_little" params="name parent side *origin ns">
 
 
-		<joint name="${side}_${name}_joint" type="revolute">
-			<parent link="${side}_${parent}_link"/>
-			<child link="${side}_${name}_link"/>
+		<joint name="${ns}_${name}_joint" type="revolute">
+			<parent link="${ns}_${parent}_link"/>
+			<child link="${ns}_${name}_link"/>
 			<xacro:insert_block name="origin"/>
 			<axis xyz="0 0 1" />
       		<limit effort="30" velocity="1.0" lower="0" upper="1.57" />
@@ -15,12 +15,12 @@
 		</joint>
 
 	
-		<link name="${side}_${name}_link">
+		<link name="${ns}_${name}_link">
 				<visual>
 				<material name="grey" />
 					<geometry>
 					<mesh
-						filename="package://softhands_description/meshes/softhands/wide/${side}/palm_little.stl"
+						filename="$(arg meshes_dir)/palm_little.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -35,7 +35,7 @@
 				<collision>
 					<geometry>
 					<mesh
-						filename="package://softhands_description/meshes/softhands/wide/${side}/palm_little.stl"
+						filename="$(arg meshes_dir)/palm_little.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />

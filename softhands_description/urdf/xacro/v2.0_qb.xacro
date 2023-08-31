@@ -55,4 +55,28 @@
 		<origin rpy="-1.57 3.14 0.0" xyz="-0.044 -0.0465 -0.002"/>
 	</xacro:thumb>
 
+	<!-- # Index -->
+	<xacro:finger name="index" parent="palm" ns="$(arg ns)" side="$(arg side)">
+		<origin rpy="0 0 1.57" xyz="-0.02 -0.007 0.014"/>
+	</xacro:finger>
+
+	<!-- # Middle -->
+	<xacro:finger name="middle" parent="palm" ns="$(arg ns)" side="$(arg side)">
+		<origin rpy="0 0 1.57" xyz="0 0 0.014"/>
+	</xacro:finger>
+
+	<!-- # Ring -->
+	<xacro:finger name="ring" parent="palm" ns="$(arg ns)" side="$(arg side)">
+		<origin rpy="0 0 1.57" xyz="0.02 -0.007 0.014"/>
+	</xacro:finger>
+
+	<!-- # Little -->
+	<xacro:finger name="little" parent="palm" ns="$(arg ns)" side="$(arg side)">
+		<origin rpy="0 0 1.57" xyz="0.04 -0.012 0.014"/>
+	</xacro:finger>
+
+    <gazebo>
+      <self_collide>1</self_collide>
+    </gazebo>
+	
 </robot>

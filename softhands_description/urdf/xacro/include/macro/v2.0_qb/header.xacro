@@ -47,9 +47,10 @@
   <xacro:include filename="$(arg root_dir)/modules/thumb/thumb_prox.xacro" />
 
   <!-- Include xacro macro Finger -->
-  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_prox.xacro" />
-  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_knuckle.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_med.xacro" />
   <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_dist.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_short.xacro" />
   <xacro:include filename="$(arg root_dir)/modules/finger.xacro" />
 
   <!-- Color definitions -->

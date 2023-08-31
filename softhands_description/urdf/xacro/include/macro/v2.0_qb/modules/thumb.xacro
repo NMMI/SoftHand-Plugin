@@ -47,20 +47,14 @@
     </xacro:thumb_prox>
 
     <!-- Middle  -->
-    <!-- <xacro:phalanx name="thumb_mid" parent="${parent}" ns="$(arg ns)" side="$(arg side)">
-      <origin rpy="-1.57 3.14 0.0" xyz="-0.044 -0.0465 -0.002"/>
-    </xacro:phalanx> -->
+    <xacro:phalanx_short name="thumb_mid" parent="thumb_prox_virtual" ns="$(arg ns)" side="$(arg side)">
+      <origin rpy="0 0 0" xyz="0.013 0 0"/>
+    </xacro:phalanx_short>
 
-    <!-- DISTAL PHALANGE -->
-    <!-- <xacro:fingertip 
-      type="${type}"
-      parent="proximal"
-      name="distal"
-      ns="${ns}" 
-      position="0.009 0 0" 
-      orientation="0 0 0">
-    </xacro:fingertip>
-    -->
+    <!-- Distal  -->
+    <xacro:phalanx_dist name="thumb_dist" parent="thumb_mid_virtual" ns="$(arg ns)" side="$(arg side)">
+      <origin rpy="0 0 0" xyz="0.013 0 0"/>
+    </xacro:phalanx_dist>
 
   </xacro:macro>
 

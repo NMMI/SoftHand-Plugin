@@ -30,49 +30,34 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * \file      sh_v1_simple.xacro
+ * \file      softhands.xacro
  *
  * \author       _Centro di Ricerca "E.Piaggio"_
  * \author       _Istituto Italiano di Tecnologia, Soft Robotics for Human Cooperation and Rehabilitation Lab_
  *
 -->
 
-<robot name="palm_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="softhands" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-	<xacro:macro name="palm" params="ns name parent *origin side">
-		
-	  	<joint name="${ns}_palm_joint" type="fixed">
-			<xacro:insert_block name="origin"/>
-			<parent link="${ns}_${parent}_link" />
-			<child link="${ns}_palm_link" />
-		</joint>
+  <xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v2.0_old/sh_v2.xacro"/>
 
-		<link name="${ns}_palm_link">
-			<inertial>
-			<mass value="0.45"/>
-			<origin rpy="0 0 0" xyz="0.0030 -0.0449 0.0135"/>
-			<inertia ixx="0.00045" ixy="0.0" ixz="0.0" iyy="0.0006" iyz="0.0" izz="0.00025"/>
-			</inertial>
-			<visual>
-			<origin rpy="0 0 0" xyz="0 0 0"/>
-			<geometry>
-				<mesh filename="$(arg meshes_dir)/palm_pinch.stl" scale="0.001 0.001 0.001"/>
-			</geometry>
-			<material name="qbhand/palm"/>
-			</visual>
-			<collision>
-			<origin rpy="0 0 0" xyz="0 0 0"/>
-			<geometry>
-				<mesh filename="$(arg meshes_dir)/palm_pinch.stl" scale="0.001 0.001 0.001"/>
-			</geometry>
-			</collision>
-		</link>
+  <xacro:macro name="softhands" params="type version parent position orientation operation_mode translation">
 
 
-	<gazebo reference="${ns}_palm_link">
-		<material>Gazebo/Grey</material>
-		<selfCollide>true</selfCollide>
-	</gazebo>
-	</xacro:macro>
+    <xacro:sh_v2 
+      type="${type}" 
+      parent = "${parent}"
+      position ="${position}"
+      orientation ="${orientation}"
+      operation_mode = "${operation_mode}">
+    </xacro:sh_v2>	
+
+
+
+    <gazebo>
+      <self_collide>1</self_collide>
+    </gazebo>
+
+  </xacro:macro>
 
 </robot>

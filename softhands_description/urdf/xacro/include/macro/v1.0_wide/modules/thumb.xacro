@@ -2,20 +2,20 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
    
-    <xacro:macro name="thumb" params="name parent side *origin">
+    <xacro:macro name="thumb" params="name parent side *origin ns">
 
       <!-- Proximal -->
-      <xacro:thumb_prox name="thumb_prox" parent="${parent}" side="$(arg side)">
+      <xacro:thumb_prox name="thumb_prox" parent="${parent}" side="$(arg side)"  ns="$(arg ns)"> 
         <xacro:insert_block name="origin"/>
       </xacro:thumb_prox>
 
       <!-- Middle -->
-      <xacro:thumb_mid name="thumb_mid" parent="thumb_prox_virtual" side="$(arg side)">
+      <xacro:thumb_mid name="thumb_mid" parent="thumb_prox_virtual" side="$(arg side)" ns="$(arg ns)">
         <origin rpy="0 0 0" xyz="9e-3 0 0"/>
       </xacro:thumb_mid>
 
       <!-- Distal -->
-      <xacro:thumb_dist name="thumb_dist" parent="thumb_mid_virtual" side="$(arg side)">
+      <xacro:thumb_dist name="thumb_dist" parent="thumb_mid_virtual" side="$(arg side)" ns="$(arg ns)">
         <origin rpy="0 0.0101229 0" xyz="8.99947e-3 0 -0.0973875e-3"/>
       </xacro:thumb_dist>
 
