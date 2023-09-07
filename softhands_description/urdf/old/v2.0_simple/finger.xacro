@@ -62,10 +62,10 @@
 	<visual>
 	  <geometry>
 	    <xacro:if value="${ns == 'right_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_r_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_r_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	    <xacro:if value="${ns == 'left_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/left/qbh_prossimal_std_r_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/left/qbh_prossimal_std_r_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	  </geometry>
 	  <material name="qbmove/default"/>
@@ -73,10 +73,10 @@
 	<collision>
 	  <geometry>
 	    <xacro:if value="${ns == 'right_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_r_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_r_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	    <xacro:if value="${ns == 'left_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/left/qbh_prossimal_std_r_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/left/qbh_prossimal_std_r_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	  </geometry>
 	</collision>
@@ -85,10 +85,10 @@
 	<visual>
 	  <geometry>
 	    <xacro:if value="${ns == 'right_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_m_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_m_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	    <xacro:if value="${ns == 'left_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/left/qbh_prossimal_std_m_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/left/qbh_prossimal_std_m_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	  </geometry>
 	  <material name="qbmove/default"/>
@@ -96,10 +96,10 @@
 	<collision>
 	  <geometry>
 	    <xacro:if value="${ns == 'right_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_m_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_m_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	    <xacro:if value="${ns == 'left_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/left/qbh_prossimal_std_m_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/left/qbh_prossimal_std_m_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if> 
 	  </geometry>
 	</collision>
@@ -108,10 +108,10 @@
 	<visual>
 	  <geometry>
 	    <xacro:if value="${ns == 'right_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	    <xacro:if value="${ns == 'left_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/left/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/left/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	  </geometry>
 	  <material name="qbmove/default"/>
@@ -119,10 +119,10 @@
 	<collision>
 	  <geometry>
 	    <xacro:if value="${ns == 'right_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	    <xacro:if value="${ns == 'left_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/left/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/left/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	  </geometry>
 	</collision>
@@ -131,10 +131,10 @@
 	<visual>
 	  <geometry>
 	    <xacro:if value="${ns == 'right_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	    <xacro:if value="${ns == 'left_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/left/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/left/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	  </geometry>
 	  <material name="qbmove/default"/>
@@ -142,10 +142,10 @@
 	<collision>
 	  <geometry>
 	    <xacro:if value="${ns == 'right_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	    <xacro:if value="${ns == 'left_hand_v2s'}">
-	      <mesh filename="package://softhands_description/meshes/softhands/v2.0/left/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
+	      <mesh filename="package://softhands_description/meshes/v1.2_old/left/qbh_prossimal_std_l_ng.stl" scale="0.001 0.001 0.001"/> 
 	    </xacro:if>
 	  </geometry>
 	</collision>
@@ -196,14 +196,14 @@
       </inertial>
       <visual>
 	<geometry>
-	  <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl" scale="0.001 0.001 0.001"/> 
+	  <mesh filename="package://softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl" scale="0.001 0.001 0.001"/> 
 	</geometry>
 	<material name="qbmove/default"/>
 	<origin xyz="0.0065 -${translation} 0" rpy="0 0 0"/>
       </visual>		
       <collision>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng_collision.stl" scale="0.001 0.001 0.001"/> 
+          <mesh filename="package://softhands_description/meshes/v1.2_old/right/phalanx_std_ng_collision.stl" scale="0.001 0.001 0.001"/> 
         </geometry>
         <origin xyz="0.0065 -${translation} 0" rpy="0 0 0"/>
       </collision>      
@@ -241,14 +241,14 @@
       </inertial>
       <visual>
 	<geometry>
-	  <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl" scale="0.001 0.001 0.001"/> 
+	  <mesh filename="package://softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl" scale="0.001 0.001 0.001"/> 
 	</geometry>
 	<material name="qbmove/default"/>
 	<origin xyz="0.0065 -${translation} 0" rpy="0 0 0"/>
       </visual>		
       <collision>
         <geometry>
-         <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng_collision.stl" scale="0.001 0.001 0.001"/> 
+         <mesh filename="package://softhands_description/meshes/v1.2_old/right/phalanx_std_ng_collision.stl" scale="0.001 0.001 0.001"/> 
         </geometry>
         <origin xyz="0.0065 -${translation} 0" rpy="0 0 0"/>
       </collision>        
@@ -286,14 +286,14 @@
       </inertial>
       <visual>
 	<geometry>
-	  <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qb_distal_ng.stl" scale="0.001 0.001 0.001"/> 
+	  <mesh filename="package://softhands_description/meshes/v1.2_old/right/qb_distal_ng.stl" scale="0.001 0.001 0.001"/> 
 	</geometry>
 	<material name="qbmove/default"/>
 	<origin xyz="0.0065 -${translation} 0" rpy="0 0 0"/>
       </visual>		
       <collision>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/softhands/v2.0/right/qb_distal_ng.stl" scale="0.001 0.001 0.001"/> 
+          <mesh filename="package://softhands_description/meshes/v1.2_old/right/qb_distal_ng.stl" scale="0.001 0.001 0.001"/> 
         </geometry>
         <origin xyz="0.0065 0 0" rpy="0 -${translation} 0"/>
       </collision>      

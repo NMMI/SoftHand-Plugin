@@ -30,34 +30,30 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
- * \file      test_SHs_v2.urdf.xacro
+ * 
  *
  * \author       _Centro di Ricerca "E.Piaggio"_
  * \author       _Istituto Italiano di Tecnologia, Soft Robotics for Human Cooperation and Rehabilitation Lab_
  *
 -->
 
-<robot name="softhand" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="header">
 
-  	<xacro:arg name="sh_version" default="v1.2_research"/>
-  	<!-- <xacro:arg name="sh_version" default="v1_wide"/> -->
-  	<xacro:arg name="root_dir" default="$(find softhands_description)/urdf/xacro/include/macro/$(arg sh_version)"/>
-  	<xacro:arg name="root_link" default="world"/>
-  	<xacro:arg name="side" default="right"/>
-  	<xacro:arg name="meshes_dir" default="package://softhands_description/meshes/$(arg sh_version)/$(arg side)"/>
-  	<xacro:arg name="ns" default="$(arg side)_hand_$(arg sh_version)"/>
-  	<xacro:arg name="position" default="0 0 0.005"/>
-  	<xacro:arg name="orientation" default="0 0 0"/>
-  	<xacro:arg name="operation_mode" default="0"/>
-	
-	<xacro:include filename="$(arg root_dir)/header.xacro"/>
+  <!-- Include xacro macro  Palm-->
+	<xacro:include filename="$(arg root_dir)/modules/palm/palm.xacro" />
+	<xacro:include filename="$(arg root_dir)/modules/iso.xacro" />
+  <!-- Include xacro macro Thumb -->
+  <xacro:include filename="$(arg root_dir)/modules/thumb.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/thumb/thumb_knuckle.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/thumb/thumb_short.xacro" />
 
-	<xacro:include filename="$(find softhands_description)/urdf/xacro/$(arg sh_version).xacro"/>
+  <!-- Include xacro macro Finger -->
+  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_short.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_knuckle.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_distal.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/finger.xacro" />
 
-
-
-	<!-- Include plugin -->
-	<!-- <xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/$(arg sh_version)/plugin.xacro"/> -->
-
-
+  <!-- Color definitions -->
+  <xacro:include filename="$(arg root_dir)/color.xacro" />
 </robot>

@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+   
+    <xacro:macro name="phalanx" params="name parent ns *origin side">
+
+
+
+		<!-- Virtual joint from knuckle->proximal or proximal->middle   -->
+
+
+		<joint name="${ns}_${name}_virtual_joint" type="fixed">
+			<axis xyz="0 -1 0"/>
+			<limit effort="30" velocity="1.0" lower="-0.1" upper="0.1"/>
+			<xacro:insert_block name="origin"/>
+			<parent link="${ns}_${parent}_link"/>
+			<child link="${ns}_${name}_virtual_link"/>
+		</joint>
+
+		<link name="${ns}_${name}_virtual_link">
+		   <inertial>
+				<origin xyz="0 0 0" rpy="0 0 0"/>
+				<mass value="1e-3"/>
+				<inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
+		   </inertial>
+	
+	    </link>
+
+
+		<!-- Proximal phalanx -->
+
+		<joint name="${ns}_${name}_joint" type="revolute">
+			<axis xyz="0 -1 0"/>
+			<limit effort="30" velocity="1.0" lower="-0.785398" upper="0.785398" />
+			<origin rpy="0 0 0" xyz="9e-3 0 0"/>
+            <parent link="${ns}_${name}_virtual_link"/>
+			<child link="${ns}_${name}_link"/>
+		</joint>
+
+		<link name="${ns}_${name}_link">
+				<visual>
+				<material name="grey" />
+					<geometry>
+					<mesh
+						filename="$(arg meshes_dir)/phalanx.stl"
+						scale="0.001 0.001 0.001" />
+					</geometry>
+					<origin xyz="0 0 0" rpy="0 0 0" />
+				</visual>
+				<inertial>
+					<mass value="0.0082"/>
+					<origin rpy="0 0 0" xyz="8.7707437e-03 -1.7863138e-03 0.0"/>
+					<inertia ixx="2.2722068e-07" ixy="1.1586053e-08" ixz="0.0" iyy="5.5947233e-07" iyz="0.0" izz="5.9562195e-07"/>
+				</inertial>
+				<collision>
+					<geometry>
+					<mesh
+						filename="$(arg meshes_dir)/phalanx.stl"
+						scale="0.001 0.001 0.001" />
+					</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				</collision>
+		</link>
+
+
+
+		
+		<gazebo reference="${ns}_${name}_link">
+			<material>Gazebo/Grey</material>
+			<selfCollide>true</selfCollide>
+		</gazebo>
+    </xacro:macro>
+</robot>

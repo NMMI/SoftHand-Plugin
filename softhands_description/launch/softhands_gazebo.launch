@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+
+	<arg name="use_rviz" default="false"/>
+	<arg name="model_v1.2" default="$(find softhands_description)/urdf/softhands.urdf.xacro"/>
+	<arg name="model_v1_wide" default="$(find softhands_description)/urdf/softhands.urdf.xacro"/>
+	<!-- <arg name="model" default="$(find softhands_description)/urdf/test_sh_old.urdf.xacro"/> -->
+	<arg name="x" default="0"/>
+	<arg name="y" default="0"/>
+	<arg name="z" default="0"/>
+	<arg name="version" default="1"/>
+
+	<!-- load the robot description to the param server -->
+	<param name="robot_description_v1.2" command="$(find xacro)/xacro $(arg model_v1.2)"/>
+	<param name="robot_description_v1_wide" command="$(find xacro)/xacro sh_version:=v1_wide $(arg model_v1_wide) "/>
+	
+	<!-- start gazebo server with empty world -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(find softhands_description)/worlds/empty.world"/>
+		<arg name="paused" value="true"/>
+    	<arg name="use_sim_time" value="true"/>
+    	<arg name="gui" value="true"/>
+    	<arg name="headless" value="false"/>
+    	<arg name="verbose" value="false"/>
+    	<arg name="debug" value="false"/>
+	</include>	
+
+	<!-- spwan the hand in gazebo -->
+	<node name="softhand_v1_2_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" 
+		args="-urdf -param robot_description_v1.2 -model softhand_v1.2 -x $(arg x) -y $(arg y) -z $(arg z)"/> 
+	
+	<!-- spwan the hand in gazebo -->
+	<!-- <node name="softhand_v1_wide_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" 
+		args="-urdf -param robot_description_v1_wide -model softhand_v1_wide -x 0.4 -y $(arg y) -z $(arg z)"/>  -->
+	<!-- get joint states and publish  TFs -->
+	<!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true">
+		<rosparam param="source_list">[/right_hand_v1_wide/index_state, /right_hand_v1_wide/little_state, /right_hand_v1_wide/middle_state, /right_hand_v1_wide/ring_state, /right_hand_v1_wide/thumb_state]</rosparam>
+		<param name="rate" value="200"/>
+	</node>
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"	respawn="true" >
+		<param name="publish_frequency" value="200" />
+		<param name="rate" value="200"/>
+
+	</node> -->
+
+	<group if="$(arg use_rviz)">
+		<node name="rviz" pkg="rviz" type="rviz" args="-d $(find softhands_description)/rviz/softhand.rviz"/>
+	</group>
+	
+</launch>
+
+
+
+

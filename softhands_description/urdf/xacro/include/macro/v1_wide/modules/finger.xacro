@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+   
+    <xacro:macro name="finger" params="name parent side *origin ns">
+      
+      <!-- Proximal Support -->
+      <xacro:phalanx_knuckle name="${name}_knuckle" parent="${parent}" side="$(arg side)" ns="$(arg ns)">
+        <xacro:insert_block name="origin"/>
+      </xacro:phalanx_knuckle>
+
+
+      <!-- Proximal -->
+      <xacro:phalanx name="${name}_prox" parent="${name}_knuckle" side="$(arg side)" ns="$(arg ns)">
+        <origin rpy="0 0 0" xyz="24e-3 0 -6.5e-3" />
+      </xacro:phalanx >
+
+      <!-- Middle -->
+      <xacro:phalanx name="${name}_mid" parent="${name}_prox" side="$(arg side)" ns="$(arg ns)">
+        <origin rpy="0 0 0" xyz="41e-3 0 0" />
+      </xacro:phalanx>
+
+      <!-- Distal -->
+      <xacro:phalanx_dist name="${name}_dist" parent="${name}_mid" side="$(arg side)" ns="$(arg ns)">
+        <origin rpy="0 0 0" xyz="9e-3 0 0"/>
+      </xacro:phalanx_dist>
+
+
+    </xacro:macro>
+</robot>

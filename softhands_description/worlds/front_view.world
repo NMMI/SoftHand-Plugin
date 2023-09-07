@@ -156,7 +156,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qbh_palm_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qbh_palm_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -178,7 +178,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qbh_palm_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qbh_palm_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -217,7 +217,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_r_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_r_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -239,7 +239,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_r_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_r_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -294,7 +294,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -316,7 +316,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -371,7 +371,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -393,7 +393,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -448,7 +448,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qb_distal_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qb_distal_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -470,7 +470,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qb_distal_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qb_distal_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -525,7 +525,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_l_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_l_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -547,7 +547,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_l_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_l_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -602,7 +602,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -624,7 +624,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -679,7 +679,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -701,7 +701,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -756,7 +756,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qb_distal_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qb_distal_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -778,7 +778,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qb_distal_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qb_distal_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -833,7 +833,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_m_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_m_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -855,7 +855,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_m_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_m_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -910,7 +910,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -932,7 +932,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -987,7 +987,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1009,7 +1009,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1064,7 +1064,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qb_distal_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qb_distal_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1086,7 +1086,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qb_distal_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qb_distal_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1141,7 +1141,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_l_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_l_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1163,7 +1163,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qbh_prossimal_std_l_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qbh_prossimal_std_l_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1218,7 +1218,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1240,7 +1240,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1295,7 +1295,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1317,7 +1317,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1372,7 +1372,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qb_distal_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qb_distal_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1394,7 +1394,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qb_distal_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qb_distal_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1449,7 +1449,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qbh_prox_thumb_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qbh_prox_thumb_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1471,7 +1471,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qbh_prox_thumb_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qbh_prox_thumb_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1524,7 +1524,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1546,7 +1546,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/phalanx_std_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/phalanx_std_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
@@ -1599,7 +1599,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qb_distal_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qb_distal_ng.stl</uri>
             </mesh>
           </geometry>
           <surface>
@@ -1621,7 +1621,7 @@
           <geometry>
             <mesh>
               <scale>0.001 0.001 0.001</scale>
-              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/softhands/v2.0/right/qb_distal_ng.stl</uri>
+              <uri>/home/centropiaggio/riccardo_ws/src/lab_library_ros/softhands/softhands_description/meshes/v1.2_old/right/qb_distal_ng.stl</uri>
             </mesh>
           </geometry>
           <material>
