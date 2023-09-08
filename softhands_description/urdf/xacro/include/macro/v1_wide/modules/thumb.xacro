@@ -11,12 +11,12 @@
 
       <!-- Middle -->
       <xacro:thumb_proximal name="${name}_proximal" parent="${name}_knuckle" side="$(arg side)" ns="$(arg ns)">
-        <origin rpy="0 0 0" xyz="9e-3 0 0"/>
+        <origin rpy="-1.3962638 0 0" xyz="38.5e-3 4.82952e-3 -0.167417e-3"/>
       </xacro:thumb_proximal>
 
       <!-- Distal -->
       <xacro:thumb_distal name="${name}_distal" parent="${name}_proximal" side="$(arg side)" ns="$(arg ns)">
-        <origin rpy="0 0.0101229 0" xyz="8.99947e-3 0 -0.0973875e-3"/>
+        <origin  rpy="0 0 0" xyz="41e-3 0 0"/>
       </xacro:thumb_distal>
 
     </xacro:macro>

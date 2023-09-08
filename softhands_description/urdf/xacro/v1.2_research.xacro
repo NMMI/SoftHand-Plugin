@@ -37,7 +37,7 @@
  *
 -->
 
-<robot name="v2.0_qb" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="right_hand_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
   
 
 	<!-- # iso -->
@@ -74,6 +74,8 @@
 	<xacro:finger name="little" parent="palm" ns="$(arg ns)" side="$(arg side)">
 		<origin rpy="0 0 1.57" xyz="0.04 -0.012 0.014"/>
 	</xacro:finger>
+
+
 
     <gazebo>
       <self_collide>1</self_collide>

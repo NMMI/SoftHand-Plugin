@@ -9,10 +9,10 @@
 		
 		<!-- Virtual joint from middle->distal   -->
 
-		<joint name="${ns}_${name}_virtual_joint" type="fixed">
+		<joint name="${ns}_${name}_virtual_joint" type="revolute">
 			<axis xyz="0 0 1"/>
-			<limit effort="30" velocity="1.0" lower="-0.785398" upper="0.785398" />
-			<origin xyz="41e-3 0 0" rpy="0 0 0"/>
+			<limit effort="30" velocity="1.0" lower="0" upper="0.785398" />
+			<xacro:insert_block name="origin"/>
 			<parent link="${ns}_${parent}_link"/>
 			<child link="${ns}_${name}_virtual_link"/>
 		</joint>
@@ -21,7 +21,7 @@
 		   <inertial>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<mass value="1e-3"/>
-				<inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
+				<inertia ixx="1e-6" ixy="0.0" ixz="0.0" iyy="1e-6" iyz="0.0" izz="1e-6"/>
 		   </inertial>
 	
 	    </link>
@@ -29,9 +29,9 @@
 		<!-- Proximal phalanx -->
 
 		<joint name="${ns}_${parent}_${name}_joint" type="revolute">
-			<axis xyz="0 -1 0"/>
-			<limit effort="30" velocity="1.0" lower="-0.785398" upper="0.785398" />
-			<xacro:insert_block name="origin"/>
+			<axis xyz="0 0 1"/>
+			<limit effort="30" velocity="1.0" lower="0" upper="0.785398" />
+			<origin rpy="0 0 0" xyz="9e-3 0 0"/>
             <parent link="${ns}_${name}_virtual_link"/>
 			<child link="${ns}_${name}_link"/>
 		</joint>
@@ -47,9 +47,9 @@
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				</visual>
 				<inertial>
-					<mass value="0.009"/>
-					<origin rpy="0 0 0" xyz="8.8025467e-03 -1.7219289e-03 0.0"/>
-					<inertia ixx="2.6586142e-07" ixy="1.2416847e-08" ixz="0.0" iyy="5.9935767e-07" iyz="0.0" izz="6.6781963e-07"/>
+					<mass value="1.2475845e-02"/>
+					<origin rpy="0 0 0" xyz="1.2887396e-02 6.2001804e-05 -1.1041989e-03"/>
+					<inertia ixx="7.5548908e-07" ixy="0.0" ixz="0.0" iyy="1.2532982e-06" iyz="0.0" izz="1.3218760e-06"/>
 				</inertial>
 				<collision>
 					<geometry>
@@ -63,7 +63,7 @@
 
 	<gazebo reference="${ns}_${name}_link">
 		<material>Gazebo/Grey</material>
-		<selfCollide>true</selfCollide>
+		<selfCollide>false</selfCollide>
 	</gazebo>
 
     </xacro:macro>

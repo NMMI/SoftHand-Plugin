@@ -6,7 +6,9 @@
 
 		<!-- Support -->
 
-		<joint name="${ns}_${name}_joint" type="fixed">
+		<joint name="${ns}_${name}_joint" type="revolute">
+			<axis xyz="0 1 0"/>
+			<limit effort="30" velocity="1.0" lower="0" upper="0.0" />
 			<xacro:insert_block name="origin"/>
             <parent link="${ns}_${parent}_link"/>
 			<child link="${ns}_${name}_link"/>
@@ -17,21 +19,20 @@
 				<material name="grey" />
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/phalanx_prox_sup.stl"
+						filename="$(arg meshes_dir)/phalanx_pros_sup.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				</visual>
 				<inertial>
-							
-					<mass value="0.0095"/>
-					<origin rpy="0 0 0" xyz="4.2753603e-04  0.0 -1.4321738e-03"/>
-					<inertia ixx="6.4337303e-07" ixy="0.0" ixz="-3.9373913e-08" iyy="1.1253771e-06" iyz="0.0" izz="7.2336948e-07"/>
+					<mass value="7.4913242e-03"/>
+					<origin rpy="0 0 0" xyz="1.8035857e-02 -4.0351343e-03 -4.4165266e-05 "/>
+					<inertia ixx="5.3708642e-07" ixy="0.0" ixz="1.5304482e-07" iyy="6.1466440e-07" iyz="-4.4383298e-09" izz="5.5136271e-07"/>
 					</inertial>
 				<collision>
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/phalanx_prox_sup.stl"
+						filename="$(arg meshes_dir)/phalanx_pros_sup.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -41,7 +42,7 @@
 
 	<gazebo reference="${ns}_${name}_link">
 		<material>Gazebo/White</material>
-		<selfCollide>true</selfCollide>
+		<selfCollide>false</selfCollide>
 	</gazebo>
     </xacro:macro>
 </robot>

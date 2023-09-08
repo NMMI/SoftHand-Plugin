@@ -49,7 +49,7 @@
 
 	<!-- # palm central -->
 	<xacro:palm_central name="palm_central" parent="$(arg root_link)" side="$(arg side)" ns="$(arg ns)">
-		<origin rpy="0 0 1.57" xyz="$(arg position)"/>
+		<origin rpy="0 0 0" xyz="$(arg position)"/>
 	</xacro:palm_central>
 	
 	<!-- # palm thumb -->
@@ -65,32 +65,29 @@
 
 	<!-- # thumb -->
 	<xacro:thumb name="thumb" parent="palm_thumb_support" side="$(arg side)" ns="$(arg ns)">
-		<origin rpy="1.5707963 0.7598972 0" xyz="21.9577e-3 0 -2.8e-3"/>
+		<origin rpy="-1.5707963 0 0" xyz="21.9577e-3 0 -2.8e-3"/>
 	</xacro:thumb>
 
 	<!-- # Index -->
 	<xacro:finger name="index" parent="palm_central" side="$(arg side)" ns="$(arg ns)">
-		<origin xyz="5e-3 44.8953e-3 112.230e-3" rpy="1.5707963 -1.3962636 1.5707963"/>
+		<origin  rpy="-3.1415927  -1.396264 1.5707963" xyz="5e-3 44.8953e-3 112.230e-3"/>
 	</xacro:finger>
 
 	<!-- # Middle -->
 	<xacro:finger name="middle" parent="palm_central" side="$(arg side)" ns="$(arg ns)">
-		<origin xyz="5e-3 12.5e-3 115e-3" rpy="0 -1.5707963 -3.1415927"/>
+		<origin  rpy="0 -1.5707963 -1.5707963" xyz="5e-3 12.5e-3 115e-3"/>
 	</xacro:finger>
 
 	<!-- # Ring --> 
 	<xacro:finger name="ring" parent="palm_little" side="$(arg side)" ns="$(arg ns)">
-	    <origin xyz=" 8.6355e-3 5e-3 44.4863e-3" rpy="-1.5707963 -1.3089971 0"/>  
+	    <origin rpy="0 -1.4150664 0" xyz=" 8.6355e-3 5e-3 44.4863e-3" />  
 	</xacro:finger>
 
     <!-- # Little -->
 	<xacro:finger name="little" parent="palm_little" side="$(arg side)" ns="$(arg ns)">
-		<origin xyz="39.2985e-3 5e-3 34.8419e-3" rpy="-1.5707963 -1.221731 0"/>
+		<origin rpy="0 -1.221731 0" xyz="39.2985e-3 5e-3 34.8419e-3" />
 	</xacro:finger>
 
 	
-    <gazebo>
-      <self_collide>1</self_collide>
-    </gazebo>
 
 </robot>

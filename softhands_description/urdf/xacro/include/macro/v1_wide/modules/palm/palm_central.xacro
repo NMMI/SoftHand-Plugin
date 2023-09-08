@@ -26,11 +26,11 @@
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				</visual>
 				<inertial>
-				<origin xyz="-9.4524165e-3 -3.2786419e-2 -1.9973598e-3" rpy="0 0 0" />
-				<mass value="1.2747079e-1" />
-					<inertia ixx=" 1.1656420e-4" ixy="-3.6262159e-5"  ixz="-2.3018113e-6"
-											iyy=" 5.3305451e-5"  iyz=" -5.5947664e-6"
-																izz=" 1.2416468e-4" />
+					<mass value="5.5962922e-1" />
+					<origin xyz="-7.3637766e-03 1.5857667e-02  6.7065321e-02" rpy="0 0 0" />
+					<inertia ixx="8.2936450e-04" ixy="-1.9292962e-06"  ixz="1.6410516e-05"
+											iyy="8.0447768e-04"  iyz="-1.3735281e-04"
+																izz="3.0664811e-04" />
 					</inertial>
 				<collision>
 					<geometry>
@@ -43,10 +43,13 @@
 		</link>
 
 
+
+
 		<!-- palm base to Thumb -->
-		<joint name="${ns}_${name}_thumb_virtual_joint" type="revolute">
+		<joint name="${ns}_${name}_thumb_virtual_joint" type="fixed">
 			<axis xyz="0 0 -1"/>
-			<limit effort="0.0" lower="0" upper="0"  velocity="0.0"/>
+			<limit effort="30" velocity="10" lower="0" upper="1.57" />
+			<dynamics damping="0.0" friction="0.0" />
 			<origin xyz=" -0.0000000021 32.5059e-3 39.6398e-3" rpy="0 0.3490656 1.5707963"/>
 			<parent link="${ns}_${name}_link"/>
 			<child link="${ns}_${name}_thumb_virtual_link"/>
@@ -56,18 +59,17 @@
 		   <inertial>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<mass value="1e-3"/>
-			<inertia ixx="1e-6"  ixy="0"  	  	ixz="0" 
-								 iyy="1e-6" 	iyz="0" 
-												izz="1e-6" />
+			<inertia ixx="1e-6" ixy="0.0" ixz="0.0" iyy="1e-6" iyz="0.0" izz="1e-6"/>
 		   </inertial>
 	
 	    </link>
 
 		<!-- palm base to Litte virtual -->
 
-		<joint name="${ns}_${name}_little_virtual_joint" type="revolute">
+		<joint name="${ns}_${name}_little_virtual_joint" type="fixed">
 			<axis xyz="0 0 1"/>
-			<limit effort="0.0" lower="0" upper="0"  velocity="0.0"/>
+			<dynamics damping="0.0" friction="0.0"/>
+			<limit effort="100" lower="0.0" upper="0.5" velocity="100"/>
 			<origin xyz=" -0.0000000091 -10.6603e-3 66.1817e-3" rpy="0 -0.1745327 -1.5707963"/>
 			<parent link="${ns}_${name}_link"/>
 			<child link="${ns}_${name}_little_virtual_link"/>
@@ -77,16 +79,15 @@
 		   <inertial>
 				<origin xyz="0 0 0" rpy="0 0 0"/>
 				<mass value="1e-3"/>
-				<inertia ixx="1e-6"  ixy="0"  	  	ixz="0" 
-									iyy="1e-6" 	iyz="0" 
-													izz="1e-6" />
+				<inertia ixx="1e-6" ixy="0.0" ixz="0.0" iyy="1e-6" iyz="0.0" izz="1e-6"/>
 		   </inertial>
 	
 	    </link>
 		
-	<gazebo reference="${ns}_${name}_link">
-		<material>Gazebo/Grey</material>
-		<selfCollide>true</selfCollide>
-	</gazebo>
+		<gazebo reference="${ns}_${name}_link">
+		<selfCollide>false</selfCollide>
+			<material>Gazebo/Grey</material>
+		</gazebo>
+
     </xacro:macro>
 </robot>

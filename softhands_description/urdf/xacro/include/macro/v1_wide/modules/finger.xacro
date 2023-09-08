@@ -11,18 +11,18 @@
 
 
       <!-- Proximal -->
-      <xacro:phalanx name="${name}_prox" parent="${name}_knuckle" side="$(arg side)" ns="$(arg ns)">
-        <origin rpy="0 0 0" xyz="24e-3 0 -6.5e-3" />
+      <xacro:phalanx name="${name}_proximal" parent="${name}_knuckle" side="$(arg side)" ns="$(arg ns)">
+        <origin rpy="0 0 0" xyz="24e-3 -6.5e-3 0" />
       </xacro:phalanx >
 
       <!-- Middle -->
-      <xacro:phalanx name="${name}_mid" parent="${name}_prox" side="$(arg side)" ns="$(arg ns)">
+      <xacro:phalanx name="${name}_middle" parent="${name}_proximal" side="$(arg side)" ns="$(arg ns)">
         <origin rpy="0 0 0" xyz="41e-3 0 0" />
       </xacro:phalanx>
 
       <!-- Distal -->
-      <xacro:phalanx_dist name="${name}_dist" parent="${name}_mid" side="$(arg side)" ns="$(arg ns)">
-        <origin rpy="0 0 0" xyz="9e-3 0 0"/>
+      <xacro:phalanx_dist name="${name}_distal" parent="${name}_middle" side="$(arg side)" ns="$(arg ns)">
+        <origin xyz="41e-3 0 0" rpy="0 0 0"/>
       </xacro:phalanx_dist>
 
 

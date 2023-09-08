@@ -45,8 +45,8 @@
   	<xacro:arg name="root_link" default="world"/>
   	<xacro:arg name="side" default="right"/>
   	<xacro:arg name="meshes_dir" default="package://softhands_description/meshes/$(arg sh_version)/$(arg side)"/>
-  	<xacro:arg name="ns" default="$(arg side)_hand_$(arg sh_version)"/>
-  	<xacro:arg name="position" default="0 0 0.005"/>
+  	<xacro:arg name="ns" default="right_hand_v_wide"/>
+  	<xacro:arg name="position" default="0 0 0.01"/>
   	<xacro:arg name="orientation" default="0 0 0"/>
   	<xacro:arg name="operation_mode" default="0"/>
 	
@@ -57,7 +57,7 @@
 
 
 	<!-- Include plugin -->
-	<!-- <xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/$(arg sh_version)/plugin.xacro"/> -->
+	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/$(arg sh_version)/plugin.xacro"/>
 
 
 </robot>

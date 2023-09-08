@@ -49,7 +49,7 @@
       <child link="${ns}_${name}_link"/>
       <axis xyz="0 0 -1"/>
       <dynamics damping="0.0" friction="0.0"/>
-      <limit effort="100" lower="-0.524" upper="0.524" velocity="100"/>
+      <limit effort="30" velocity="1.0" lower="-0.524" upper="0.524" />
     </joint>
 
     <!-- LINK -->
@@ -74,11 +74,23 @@
       </collision>
     </link>
 
-    <!-- GAZEBO REF -->
+
+
+        <!-- GAZEBO REF -->
     <gazebo reference="${ns}_${name}_link">
       <material>Gazebo/Grey</material>
       <selfCollide>true</selfCollide>
-	  </gazebo>
+      <kp value="1e4" />
+      <kd value="1e2" />
+      <surface>
+       <friction>
+        <ode>
+         <mu>0.133</mu> 
+         <mu2>0.133</mu2>
+        </ode>
+       </friction>
+      </surface>
+    </gazebo>
     
     
   </xacro:macro>

@@ -39,6 +39,8 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="header">
 
+  <xacro:include filename="$(arg root_dir)/modules/virtual_link.xacro" />
+
   <!-- Include xacro macro  Palm-->
 	<xacro:include filename="$(arg root_dir)/modules/palm/palm_central.xacro" />
 	<xacro:include filename="$(arg root_dir)/modules/palm/palm_thumb.xacro" />

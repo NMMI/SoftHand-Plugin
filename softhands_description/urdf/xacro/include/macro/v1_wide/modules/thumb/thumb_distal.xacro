@@ -7,26 +7,27 @@
 		
 
 		<!-- Virtual joint from thumb proximal to thumb distal   -->
-		<joint name="${ns}_${name}_virtual_joint" type="fixed">
-			<axis xyz="0 -1 0"/>
-			<limit effort="0.0" lower="0" upper="0"  velocity="0.0"/>
-			<origin xyz="41e-3 0 0" rpy="0 0 0"/>
+		<joint name="${ns}_${name}_virtual_joint" type="revolute">
+			<axis xyz="0 0 1"/>
+			<xacro:insert_block name="origin"/>
 			<parent link="${ns}_${parent}_link"/>
 			<child link="${ns}_${name}_virtual_link"/>
+			<limit effort="30" velocity="10" lower="0" upper="0.785398" />
 		</joint>
 
 	    <link name="${ns}_${name}_virtual_link">
 		   <inertial>
 			<origin xyz="0 0 0" rpy="0 0 0"/>
 			<mass value="1e-3"/>
-			<inertia ixx="1e-9" ixy="0.0" ixz="0.0" iyy="1e-9" iyz="0.0" izz="1e-9"/>
+			<inertia ixx="1e-6" ixy="0.0" ixz="0.0" iyy="1e-6" iyz="0.0" izz="1e-6"/>
 		   </inertial>
 	
 	    </link>
 
+
+
 		<gazebo reference="${ns}_${name}_virtual_link">
 			<material>Gazebo/Grey</material>
-			<selfCollide>true</selfCollide>
 			<kp value="1e4" />
 			<kd value="1e2" />
 			<surface>
@@ -37,15 +38,16 @@
 				</ode>
 			</friction>
 			</surface>
-		</gazebo>	
+		</gazebo>
+
 		<!-- Thumb middle  -->
 		<joint name="${ns}_${name}_joint" type="revolute">
 			<parent link="${ns}_${name}_virtual_link"/>
 			<child link="${ns}_${name}_link"/>
-			<xacro:insert_block name="origin"/>
-			<axis xyz="0 -1 0" />
-      		<limit effort="30" velocity="1.0" lower="0" upper="1.57" />
-			<dynamics damping="0.08" friction="0.0" />
+			<origin rpy="0 0.0101229 0" xyz="8.99947e-3 0 -0.0973875e-3"/>
+			<axis xyz="0 0 1" />
+      		<limit effort="30" velocity="1.0" lower="0" upper="0.785398" />
+			<dynamics damping="0.0" friction="0.0" />
 		</joint>
 
 	
@@ -60,9 +62,9 @@
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				</visual>
 				<inertial>
-					<mass value="0.009"/>
-					<origin rpy="0 0 0" xyz="8.8025467e-03 -1.7219289e-03 0.0"/>
-					<inertia ixx="2.6586142e-07" ixy="1.2416847e-08" ixz="0.0" iyy="5.9935767e-07" iyz="0.0" izz="6.6781963e-07"/>
+					<mass value="2.3674554e-02"/>
+					<origin rpy="0 0 0" xyz="1.6161362e-02  1.6241404e-03 -3.2684152e-05 "/>
+					<inertia ixx="2.578454e-06" ixy="0.0" ixz="0.0" iyy="2.9887569e-06" iyz="0.0" izz="3.8277106e-06"/>
 				</inertial>
 				<collision>
 					<geometry>
@@ -75,19 +77,19 @@
 		</link>
 
 
+
 		<gazebo reference="${ns}_${name}_link">
-		<material>Gazebo/Grey</material>
-		<selfCollide>true</selfCollide>
-		<kp value="1e4" />
-		<kd value="1e2" />
-		<surface>
-		<friction>
-			<ode>
-			<mu>0.133</mu> 
-			<mu2>0.133</mu2>
-			</ode>
-		</friction>
-		</surface>
+			<material>Gazebo/Grey</material>
+			<kp value="1e4" />
+			<kd value="1e2" />
+			<surface>
+			<friction>
+				<ode>
+				<mu>0.133</mu> 
+				<mu2>0.133</mu2>
+				</ode>
+			</friction>
+			</surface>
 		</gazebo>
 
     </xacro:macro>
