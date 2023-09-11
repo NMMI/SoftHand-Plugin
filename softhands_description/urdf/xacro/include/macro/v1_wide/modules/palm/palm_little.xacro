@@ -5,7 +5,7 @@
     <xacro:macro name="palm_little" params="name parent side *origin ns">
 
 
-		<joint name="${ns}_${name}_joint" type="fixed">
+		<joint name="${ns}_${name}_joint" type="revolute">
 			<parent link="${ns}_${parent}_link"/>
 			<child link="${ns}_${name}_link"/>
 			<xacro:insert_block name="origin"/>
@@ -42,9 +42,19 @@
 				</collision>
 		</link>
 
-	<gazebo reference="${ns}_${name}_link">
-		<selfCollide>false</selfCollide>
-		<material>Gazebo/Grey</material>
-	</gazebo>
+		<gazebo reference="${ns}_${name}_link">
+			<material>Gazebo/Grey</material>
+			<selfCollide>false</selfCollide>
+			<kp value="1e4" />
+			<kd value="1e2" />
+			<surface>
+			<friction>
+				<ode>
+				<mu>0.133</mu> 
+				<mu2>0.133</mu2>
+				</ode>
+			</friction>
+			</surface>
+		</gazebo>
     </xacro:macro>
 </robot>

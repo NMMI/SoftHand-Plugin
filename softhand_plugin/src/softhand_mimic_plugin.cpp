@@ -113,36 +113,36 @@ void SoftHandMimicPlugin::getExtTau_callback(const std_msgs::Float64& e_tau){
 // Funcrion to display the joint positions with basic and mimic
 void SoftHandMimicPlugin::DisplayJointPos(){
     /* --------------------------------------- BASIC JOINTS ------------------------------------------------------- */
-    std::cout << "----------------------------- Basic joint ---------------------------" << std::endl;
+    // std::cout << "----------------------------- Basic joint ---------------------------" << std::endl;
     int fing_basic_idx = 0;
     for (auto i = fingers_joint.begin(); i < fingers_joint.end(); i++)    // fingers
     {
       int joint_idx = 0;
       for (auto j = i->begin(); j < i->end(); j++)                        // joints
       {
-        std::cout << q_fingers[fing_basic_idx][joint_idx];
-        std::cout << "\t";
+        // std::cout << q_fingers[fing_basic_idx][joint_idx];
+        // std::cout << "\t";
         joint_idx++;
       }
       fing_basic_idx++;
-      std::cout << std::endl;
+      // std::cout << std::endl;
     }
     /* --------------------------------------- MIMIC JOINTS ------------------------------------------------------- */
-    std::cout << "----------------------------- Mimic joint ---------------------------" << std::endl;
+    // std::cout << "----------------------------- Mimic joint ---------------------------" << std::endl;
     int fing_mimic_idx = 0;
     for (auto i = fingers_mimic_joint.begin(); i < fingers_mimic_joint.end(); i++)    // fingers
     {
       int joint_idx = 0;
       for (auto j = i->begin(); j < i->end(); j++)                                    // joints
       {
-        std::cout << std::to_string(qMimic_fingers[fing_mimic_idx][joint_idx]);
-        std::cout << "\t";
+        // std::cout << std::to_string(qMimic_fingers[fing_mimic_idx][joint_idx]);
+        // std::cout << "\t";
         joint_idx++;
       }
       fing_mimic_idx++;
-      std::cout << std::endl;
+      // std::cout << std::endl;
     }
-    std::cout << std::endl;
+    // std::cout << std::endl;
 }
 
 // Function to  retrieve the joint finger position and velocity

@@ -44,6 +44,7 @@
 			<namespace>$(arg ns)</namespace> 
 			<operation_mode>$(arg operation_mode)</operation_mode>
 			<close_rate>0.001</close_rate>
+
 			<spring_k>0.5</spring_k>
 
 			
@@ -56,6 +57,7 @@
 			<k_thumb_j1>0.8</k_thumb_j1>
 			<k_thumb_j2>0.8</k_thumb_j2>
 			<k_thumb_j3>0.8</k_thumb_j3>
+
 			<synS_index_j1>-0.3</synS_index_j1>
 			<synS_index_j2>1.57</synS_index_j2>
 			<synS_index_j3>1.25</synS_index_j3>
@@ -92,16 +94,8 @@
 			<k_little_j3>0.5</k_little_j3>
 			<k_little_j4>0.5</k_little_j4>
 
+
 		</plugin>
 	</gazebo>
-
-	  <!-- # Gazebo NEW custom synergy-plugin
-	  <gazebo>
-	          <plugin name="synergy_plugin" filename="libsofthand_plugin.so">
-	                      <namespace>$(arg ns)</namespace> 
-	                      <operation_mode>0</operation_mode>
-	                      <spring_k>5</spring_k>
-	          </plugin>
-	  </gazebo> -->
 
 </robot>

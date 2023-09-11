@@ -37,50 +37,43 @@
  *
 -->
 
-<robot name="v1_wide" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="right_hand_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
   
 
-	<!-- # palm central -->
-	<xacro:palm_central name="palm_central" parent="$(arg root_link)" side="$(arg side)" ns="$(arg ns)">
+	<!-- # iso -->
+	<xacro:iso name="iso" parent="$(arg root_link)" ns="$(arg ns)" side="$(arg side)">
 		<origin rpy="$(arg orientation)" xyz="$(arg position)"/>
-	</xacro:palm_central>
+	</xacro:iso>
 	
-	<!-- # palm thumb -->
-	<xacro:palm_thumb name="palm_thumb" parent="palm_central_thumb_virtual" side="$(arg side)" ns="$(arg ns)">
-		<origin rpy="0 0 0 " xyz="12e-3 -0.0000414746e-3 0"/>
-	</xacro:palm_thumb>
-
-	<!-- # palm little -->
-	<xacro:palm_little name="palm_little" parent="palm_central_little_virtual" side="$(arg side)" ns="$(arg ns)">
-		<origin rpy="0 0 0 " xyz="12e-3 -0.0000466576e-3 0"/>
-	</xacro:palm_little>
-
+	<!-- # palm  -->
+	<xacro:palm name="palm" parent="iso" ns="$(arg ns)" side="$(arg side)">
+		<origin rpy="1.57 0 0" xyz="-0.0045 0.0145 0.144"/>
+	</xacro:palm>
 
 	<!-- # thumb -->
-	<xacro:thumb name="thumb" parent="palm_thumb_support" side="$(arg side)" ns="$(arg ns)">
-		<origin rpy="-1.5707963 0 0" xyz="21.9577e-3 0 -2.8e-3"/>
+	<xacro:thumb name="thumb" parent="palm" ns="$(arg ns)" side="$(arg side)">
+		<origin rpy="-1.57 3.14 0.0" xyz="-0.044 -0.0465 -0.002"/>
 	</xacro:thumb>
 
 	<!-- # Index -->
-	<xacro:finger name="index" parent="palm_central" side="$(arg side)" ns="$(arg ns)">
-		<origin  rpy="-3.1415927  -1.396264 1.5707963" xyz="5e-3 44.8953e-3 112.230e-3"/>
+	<xacro:finger name="index" parent="palm" ns="$(arg ns)" side="$(arg side)">
+		<origin rpy="0 0 1.57" xyz="-0.02 -0.007 0.014"/>
 	</xacro:finger>
 
 	<!-- # Middle -->
-	<xacro:finger name="middle" parent="palm_central" side="$(arg side)" ns="$(arg ns)">
-		<origin  rpy="0 -1.5707963 -1.5707963" xyz="5e-3 12.5e-3 115e-3"/>
+	<xacro:finger name="middle" parent="palm" ns="$(arg ns)" side="$(arg side)">
+		<origin rpy="0 0 1.57" xyz="0 0 0.014"/>
 	</xacro:finger>
 
-	<!-- # Ring --> 
-	<xacro:finger name="ring" parent="palm_little" side="$(arg side)" ns="$(arg ns)">
-	    <origin rpy="0 -1.3089971 0" xyz=" 8.6355e-3 5e-3 44.4863e-3" />  
+	<!-- # Ring -->
+	<xacro:finger name="ring" parent="palm" ns="$(arg ns)" side="$(arg side)">
+		<origin rpy="0 0 1.57" xyz="0.02 -0.007 0.014"/>
 	</xacro:finger>
 
-    <!-- # Little -->
-	<xacro:finger name="little" parent="palm_little" side="$(arg side)" ns="$(arg ns)">
-		<origin rpy="0 -1.221731 0" xyz="39.2985e-3 5e-3 34.8419e-3" />
+	<!-- # Little -->
+	<xacro:finger name="little" parent="palm" ns="$(arg ns)" side="$(arg side)">
+		<origin rpy="0 0 1.57" xyz="0.04 -0.012 0.014"/>
 	</xacro:finger>
 
 	
-
 </robot>

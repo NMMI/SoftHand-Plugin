@@ -8,7 +8,7 @@
 
 		<joint name="${ns}_${name}_joint" type="revolute">
 			<axis xyz="0 1 0"/>
-			<limit effort="30" velocity="1.0" lower="0" upper="0.0" />
+			<limit effort="30" velocity="1.0" lower="0.0" upper="0.0" />
 			<xacro:insert_block name="origin"/>
             <parent link="${ns}_${parent}_link"/>
 			<child link="${ns}_${name}_link"/>
@@ -41,8 +41,18 @@
 
 
 	<gazebo reference="${ns}_${name}_link">
-		<material>Gazebo/White</material>
-		<selfCollide>false</selfCollide>
+			<material>Gazebo/White</material>
+			<selfCollide>false</selfCollide>
+			<kp value="1e4" />
+			<kd value="1e2" />
+			<surface>
+			<friction>
+				<ode>
+				<mu>0.133</mu> 
+				<mu2>0.133</mu2>
+				</ode>
+			</friction>
+			</surface>
 	</gazebo>
     </xacro:macro>
 </robot>
