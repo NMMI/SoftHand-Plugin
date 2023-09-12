@@ -43,8 +43,8 @@
 		<plugin name="synergy_plugin" filename="libsofthand_mimic_plugin.so">
 			<namespace>$(arg ns)</namespace> 
 			<operation_mode>$(arg operation_mode)</operation_mode>
-			<close_rate>0.001</close_rate>
 			<spring_k>0.5</spring_k>
+			<wide>true</wide>
 
 			
 			<r_finger>0.0033</r_finger>
@@ -91,6 +91,16 @@
 			<k_little_j2>0.5</k_little_j2>
 			<k_little_j3>0.5</k_little_j3>
 			<k_little_j4>0.5</k_little_j4>
+
+
+			<synS_palm_j1>0.1</synS_palm_j1>
+			<synS_palm_j2>1.57</synS_palm_j2>
+			<k_palm_j1>0.5</k_palm_j1>
+			<k_palm_j2>0.5</k_palm_j2>
+			<k_palm_j1_mimic>0.5</k_palm_j1_mimic>
+			<k_palm_j2_mimic>0.5</k_palm_j2_mimic>
+
+
 
 		</plugin>
 	</gazebo>

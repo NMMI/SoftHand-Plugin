@@ -39,14 +39,18 @@
 
 <robot name="right_hand_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
   
-
+		
+	<!-- World -->
+	<link name="$(arg root_link)">
+	</link>
+		
 	<!-- # iso -->
-	<xacro:iso name="iso" parent="$(arg root_link)" ns="$(arg ns)" side="$(arg side)">
+	<!-- <xacro:iso name="iso" parent="$(arg root_link)" ns="$(arg ns)" side="$(arg side)">
 		<origin rpy="$(arg orientation)" xyz="$(arg position)"/>
-	</xacro:iso>
+	</xacro:iso> -->
 	
 	<!-- # palm  -->
-	<xacro:palm name="palm" parent="iso" ns="$(arg ns)" side="$(arg side)">
+	<xacro:palm name="palm" parent="$(arg root_link)" ns="$(arg ns)" side="$(arg side)">
 		<origin rpy="1.57 0 0" xyz="-0.0045 0.0145 0.144"/>
 	</xacro:palm>
 

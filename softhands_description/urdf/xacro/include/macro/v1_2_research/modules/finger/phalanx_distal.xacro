@@ -50,7 +50,7 @@
 			<parent link="${ns}_${parent}_link"/>
 			<child link="${ns}_${name}_virtual_link"/>
       <limit effort="30" velocity="10" lower="0" upper="0.785398" />
-       <dynamics damping="$(arg virtual_damping)" friction="0.0"/>
+      <dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
 		</joint>
 
     <!-- VIRTUAL LINK -->
@@ -103,16 +103,7 @@
     <!-- GAZEBO REF -->
     <gazebo reference="${ns}_${name}_link">
       <material>Gazebo/Grey</material>
-      <kp value="1e4" />
-      <kd value="1e2" />
-      <surface>
-       <friction>
-        <ode>
-         <mu>0.133</mu> 
-         <mu2>0.133</mu2>
-        </ode>
-       </friction>
-      </surface>
+      <selfCollide>$(arg selfCollide)</selfCollide>
 	  </gazebo>
     
 

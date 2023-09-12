@@ -15,6 +15,7 @@
 			<xacro:insert_block name="origin"/>
 			<parent link="${ns}_${parent}_link"/>
 			<child link="${ns}_${name}_virtual_link"/>
+			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
 		</joint>
 
 		<link name="${ns}_${name}_virtual_link">
@@ -34,6 +35,7 @@
 			<origin rpy="0 0 0" xyz="9e-3 0 0"/>
             <parent link="${ns}_${name}_virtual_link"/>
 			<child link="${ns}_${name}_link"/>
+			<dynamics damping="$(arg damping)" friction="$(arg friction)"/>
 		</joint>
 
 		<link name="${ns}_${name}_link">
@@ -63,7 +65,7 @@
 
 		<gazebo reference="${ns}_${name}_link">
 			<material>Gazebo/Gray</material>
-			<selfCollide>false</selfCollide>
+			<selfCollide>$(arg selfCollide)</selfCollide>
 			<kp value="1e4" />
 			<kd value="1e2" />
 			<surface>

@@ -42,7 +42,7 @@
 
 	<gazebo reference="${ns}_${name}_link">
 			<material>Gazebo/White</material>
-			<selfCollide>false</selfCollide>
+			<selfCollide>$(arg selfCollide)</selfCollide>
 			<kp value="1e4" />
 			<kd value="1e2" />
 			<surface>

@@ -46,16 +46,16 @@
 
 
 		<!-- palm base to Thumb -->
-		<joint name="${ns}_${name}_thumb_virtual_joint" type="revolute">
+		<joint name="${ns}_${name}_thumb_joint" type="revolute">
 			<axis xyz="0 0 -1"/>
 			<limit effort="30" velocity="10" lower="0" upper="1.57" />
 			<dynamics damping="0.0" friction="0.0" />
 			<origin xyz=" -0.0000000021 32.5059e-3 39.6398e-3" rpy="0 0.3490656 1.5707963"/>
 			<parent link="${ns}_${name}_link"/>
-			<child link="${ns}_${name}_thumb_virtual_link"/>
+			<child link="${ns}_${name}_thumb_link"/>
 		</joint>
 
-	    <link name="${ns}_${name}_thumb_virtual_link">
+	    <link name="${ns}_${name}_thumb_link">
 		   <inertial>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
 				<mass value="0.001"/>
@@ -68,16 +68,16 @@
 
 		<!-- palm base to Litte virtual -->
 
-		<joint name="${ns}_${name}_little_virtual_joint" type="revolute">
+		<joint name="${ns}_${name}_little_joint" type="revolute">
 			<axis xyz="0 0 1"/>
 			<dynamics damping="0.0" friction="0.0"/>
 			<limit effort="100" lower="0.0" upper="0.4" velocity="100"/>
 			<origin xyz=" -0.0000000091 -10.6603e-3 66.1817e-3" rpy="0 -0.1745327 -1.5707963"/>
 			<parent link="${ns}_${name}_link"/>
-			<child link="${ns}_${name}_little_virtual_link"/>
+			<child link="${ns}_${name}_little_link"/>
 		</joint>
 
-		<link name="${ns}_${name}_little_virtual_link">
+		<link name="${ns}_${name}_little_link">
 		   <inertial>
 			<origin rpy="0 0 0" xyz="0 0 0"/>
 			<mass value="0.001"/>

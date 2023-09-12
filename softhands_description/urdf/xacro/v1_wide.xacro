@@ -46,12 +46,12 @@
 	</xacro:palm_central>
 	
 	<!-- # palm thumb -->
-	<xacro:palm_thumb name="palm_thumb" parent="palm_central_thumb_virtual" side="$(arg side)" ns="$(arg ns)">
+	<xacro:palm_thumb name="palm_thumb" parent="palm_central_thumb" side="$(arg side)" ns="$(arg ns)">
 		<origin rpy="0 0 0 " xyz="12e-3 -0.0000414746e-3 0"/>
 	</xacro:palm_thumb>
 
 	<!-- # palm little -->
-	<xacro:palm_little name="palm_little" parent="palm_central_little_virtual" side="$(arg side)" ns="$(arg ns)">
+	<xacro:palm_little name="palm_little" parent="palm_central_little" side="$(arg side)" ns="$(arg ns)">
 		<origin rpy="0 0 0 " xyz="12e-3 -0.0000466576e-3 0"/>
 	</xacro:palm_little>
 

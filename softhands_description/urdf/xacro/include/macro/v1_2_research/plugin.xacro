@@ -43,8 +43,6 @@
 		<plugin name="synergy_plugin" filename="libsofthand_mimic_plugin.so">
 			<namespace>$(arg ns)</namespace> 
 			<operation_mode>$(arg operation_mode)</operation_mode>
-			<close_rate>0.001</close_rate>
-
 			<spring_k>0.5</spring_k>
 
 			

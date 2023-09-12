@@ -52,13 +52,15 @@
   	<xacro:arg name="yaw" default="0"/>
   	<xacro:arg name="orientation" default="$(arg roll) $(arg pitch) $(arg yaw)"/>
   	<xacro:arg name="operation_mode" default="0"/>
+  	<xacro:arg name="selfCollide" default="0"/>
 	
 	<xacro:include filename="$(arg root_dir)/header.xacro"/>
-  	<xacro:arg name="high_friction" default="0.7"/>
-  	<xacro:arg name="friction" default="1e-3"/>
-  	<xacro:arg name="damping" default="1e-4"/>
-  	<xacro:arg name="virtual_friction" default="0.0"/>
+	
+  	<xacro:arg name="friction" default="1e-2"/>
+  	<xacro:arg name="virtual_friction" default="1e-2"/>
   	<xacro:arg name="virtual_damping" default="0.0"/>
+  	<xacro:arg name="damping" default="0.0"/>
+
 	<xacro:include filename="$(find softhands_description)/urdf/xacro/$(arg sh_version).xacro"/>
 
 

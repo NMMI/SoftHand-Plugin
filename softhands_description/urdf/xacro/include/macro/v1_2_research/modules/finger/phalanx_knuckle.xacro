@@ -49,7 +49,7 @@
       <child link="${ns}_${name}_link"/>
       <axis xyz="0 0 -1"/>
       <limit effort="30" velocity="1.0" lower="-0.524" upper="0.524" />
-      <dynamics damping="$(arg damping)" friction="$(arg friction)"/>
+       <dynamics damping="0.08" friction="0"/>
     </joint>
 
     <!-- LINK -->
@@ -79,17 +79,7 @@
         <!-- GAZEBO REF -->
     <gazebo reference="${ns}_${name}_link">
       <material>Gazebo/Grey</material>
-      <!-- <selfCollide>false</selfCollide> -->
-      <kp value="1e4" />
-      <kd value="1e2" />
-      <surface>
-       <friction>
-        <ode>
-         <mu>0.133</mu> 
-         <mu2>0.133</mu2>
-        </ode>
-       </friction>
-      </surface>
+      <selfCollide>$(arg selfCollide)</selfCollide>
     </gazebo>
     
     
