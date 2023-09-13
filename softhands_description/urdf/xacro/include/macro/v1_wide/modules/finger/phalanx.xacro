@@ -59,7 +59,7 @@
 				<collision>
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/phalanx.stl"
+						filename="$(arg meshes_dir)/phalanx_collision.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -70,17 +70,7 @@
 		
 		<gazebo reference="${ns}_${name}_link">
 			<material>Gazebo/Gray</material>
-			<selfCollide>$(arg selfCollide)</selfCollide>
-			<kp value="1e4" />
-			<kd value="1e2" />
-			<surface>
-			<friction>
-				<ode>
-				<mu>0.133</mu> 
-				<mu2>0.133</mu2>
-				</ode>
-			</friction>
-			</surface>
+			<selfCollide>false</selfCollide>
 		</gazebo>
     </xacro:macro>
 </robot>

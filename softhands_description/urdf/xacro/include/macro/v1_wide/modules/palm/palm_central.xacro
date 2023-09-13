@@ -35,7 +35,7 @@
 				<collision>
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/palm_central.stl"
+						filename="$(arg meshes_dir)/palm_central_collision.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -49,7 +49,7 @@
 		<joint name="${ns}_${name}_thumb_joint" type="revolute">
 			<axis xyz="0 0 -1"/>
 			<limit effort="30" velocity="10" lower="0" upper="1.57" />
-			<dynamics damping="0.0" friction="0.0" />
+			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
 			<origin xyz=" -0.0000000021 32.5059e-3 39.6398e-3" rpy="0 0.3490656 1.5707963"/>
 			<parent link="${ns}_${name}_link"/>
 			<child link="${ns}_${name}_thumb_link"/>
@@ -70,7 +70,7 @@
 
 		<joint name="${ns}_${name}_little_joint" type="revolute">
 			<axis xyz="0 0 1"/>
-			<dynamics damping="0.0" friction="0.0"/>
+			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
 			<limit effort="100" lower="0.0" upper="0.4" velocity="100"/>
 			<origin xyz=" -0.0000000091 -10.6603e-3 66.1817e-3" rpy="0 -0.1745327 -1.5707963"/>
 			<parent link="${ns}_${name}_link"/>
@@ -91,16 +91,6 @@
 		<gazebo reference="${ns}_${name}_link">
 			<selfCollide>false</selfCollide>
 			<material>Gazebo/Grey</material>
-			<kp value="1e4" />
-			<kd value="1e2" />
-			<surface>
-			<friction>
-				<ode>
-				<mu>0.133</mu> 
-				<mu2>0.133</mu2>
-				</ode>
-			</friction>
-			</surface>
 		</gazebo>
 
     </xacro:macro>

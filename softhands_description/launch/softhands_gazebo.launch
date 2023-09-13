@@ -6,6 +6,7 @@
 	<arg name="side" default="right"/>
 	<arg name="sh_version" default="v1_wide" doc="The version of the hand [ v1_2_research , v1_wide]"/>
 	<arg name="model" default="$(arg side)_hand_$(arg sh_version)"/>
+	<arg name="selfCollide" default="false"/>
 
   	<arg name="roll" default="0"/>
   	<arg name="pitch" default="0"/>
@@ -32,6 +33,7 @@
 	<!-- load the robot description to the param server -->
 	<param name="$(arg model)_description" 
 		   command="$(find xacro)/xacro $(arg urdf_dir) 
+		   selfCollide:=$(arg selfCollide)
 		   virtual_friction:=$(arg virtual_friction) 
 		   friction:=$(arg friction) 
 		   side:=$(arg side) 

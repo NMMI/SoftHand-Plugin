@@ -11,7 +11,7 @@
 			<xacro:insert_block name="origin"/>
 			<axis xyz="0 0 -1" />
       		<limit effort="30" velocity="1.0" lower="0" upper="1.57" />
-			<dynamics damping="0.0" friction="0.0" />
+			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
 		</joint>
 
 	
@@ -35,7 +35,7 @@
 				<collision>
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/palm_thumb.stl"
+						filename="$(arg meshes_dir)/palm_thumb_collision.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -71,7 +71,7 @@
 				<collision>
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/thumb_support.stl"
+						filename="$(arg meshes_dir)/thumb_support_collision.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -79,34 +79,13 @@
 		</link>
 
 		<gazebo reference="${ns}_${name}_link">
-			<material>Gazebo/Grey</material>
 			<selfCollide>false</selfCollide>
-			<kp value="1e4" />
-			<kd value="1e2" />
-			<surface>
-			<friction>
-				<ode>
-				<mu>0.133</mu> 
-				<mu2>0.133</mu2>
-				</ode>
-			</friction>
-			</surface>
+			<material>Gazebo/Grey</material>
 		</gazebo>
 
-
 		<gazebo reference="${ns}_${name}_support_link">
-				<material>Gazebo/White</material>
-				<selfCollide>false</selfCollide>
-				<kp value="1e4" />
-				<kd value="1e2" />
-				<surface>
-				<friction>
-					<ode>
-					<mu>0.133</mu> 
-					<mu2>0.133</mu2>
-					</ode>
-				</friction>
-				</surface>
+			<selfCollide>false</selfCollide>
+			<material>Gazebo/White</material>
 		</gazebo>
 
     </xacro:macro>

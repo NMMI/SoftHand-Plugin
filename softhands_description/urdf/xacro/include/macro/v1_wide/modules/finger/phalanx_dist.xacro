@@ -65,17 +65,7 @@
 
 		<gazebo reference="${ns}_${name}_link">
 			<material>Gazebo/Gray</material>
-			<selfCollide>$(arg selfCollide)</selfCollide>
-			<kp value="1e4" />
-			<kd value="1e2" />
-			<surface>
-			<friction>
-				<ode>
-				<mu>0.133</mu> 
-				<mu2>0.133</mu2>
-				</ode>
-			</friction>
-			</surface>
+			<selfCollide>true</selfCollide>
 		</gazebo>
 
     </xacro:macro>
