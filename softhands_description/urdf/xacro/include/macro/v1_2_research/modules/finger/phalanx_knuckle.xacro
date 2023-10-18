@@ -49,7 +49,7 @@
       <child link="${ns}_${name}_link"/>
       <axis xyz="0 0 -1"/>
       <limit effort="30" velocity="1.0" lower="-0.524" upper="0.524" />
-       <dynamics damping="0.08" friction="0"/>
+       <dynamics damping="0.08" friction="$(arg friction)"/>
     </joint>
 
     <!-- LINK -->

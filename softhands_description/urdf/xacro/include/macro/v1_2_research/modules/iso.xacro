@@ -69,7 +69,7 @@
 		</link>
 		<gazebo reference="${ns}_${name}_link">
     	  	<material>Gazebo/Grey</material>
-			<selfCollide>true</selfCollide>
+			<selfCollide>$(arg selfCollide)</selfCollide>
 	  	</gazebo>
 	</xacro:macro>
 

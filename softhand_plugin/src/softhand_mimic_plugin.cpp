@@ -331,6 +331,7 @@ void SoftHandMimicPlugin::OnUpdateSoftSyn(const common::UpdateInfo & info){
       fing_mimic_idx++;
     }
 
+    //Case for the Wide hand
     if(wide){
       double tauCoupling_palm[1][2];
       for (int i = 0; i < 2; ++i)
@@ -857,7 +858,7 @@ void SoftHandMimicPlugin::InitParams(sdf::ElementPtr _sdf)
   INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_mimic_each[4][2], _sdf, "k_little_j3_mimic", spring_k_mimic )
   INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_mimic_each[4][3], _sdf, "k_little_j4_mimic", spring_k_mimic )     
 
-  //palm ha 2 giunti
+  //Palm joints
     
   INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_each_palm[0][0], _sdf, "k_palm_j1", spring_k )
   INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_each_palm[0][1], _sdf, "k_palm_j2", spring_k )

@@ -70,7 +70,7 @@
 		
 		<gazebo reference="${ns}_${name}_link">
 			<material>Gazebo/Gray</material>
-			<selfCollide>false</selfCollide>
+			<selfCollide>$(arg selfCollide)</selfCollide>
 		</gazebo>
     </xacro:macro>
 </robot>

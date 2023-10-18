@@ -12,8 +12,8 @@
   	<arg name="pitch" default="0"/>
   	<arg name="yaw" default="0"/>
 
-  	<arg name="friction" default="1e-2"/>
-  	<arg name="virtual_friction" default="1e-2"/>
+  	<arg name="friction" default="0"/>
+  	<arg name="virtual_friction" default="0"/>
 
 	<arg name="x" default="0"/>
 	<arg name="y" default="0"/>
