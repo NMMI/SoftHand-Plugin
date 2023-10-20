@@ -3,7 +3,7 @@
 
 	<arg name="use_rviz" default="false"/>
 	<arg name="urdf_dir" default="$(find softhands_description)/urdf/softhands.urdf.xacro"/>
-	<arg name="side" default="right"/>
+	<arg name="side" default="left"/>
 	<arg name="sh_version" default="v1_wide" doc="The version of the hand [ v1_2_research , v1_wide]"/>
 	<arg name="model" default="$(arg side)_hand_$(arg sh_version)"/>
 	<arg name="selfCollide" default="false"/>
@@ -34,6 +34,9 @@
 	<param name="$(arg model)_description" 
 		   command="$(find xacro)/xacro $(arg urdf_dir) 
 		   selfCollide:=$(arg selfCollide)
+		   x:=$(arg x) 
+		   y:=$(arg y)
+		   z:=$(arg z)
 		   virtual_friction:=$(arg virtual_friction) 
 		   friction:=$(arg friction) 
 		   side:=$(arg side) 
@@ -47,20 +50,22 @@
 		args="-urdf -param $(arg model)_description -model $(arg model) -x $(arg x) -y $(arg y) -z $(arg z)"/> 
 	
 
-	<!-- get joint states and publish  TFs -->
-	<!-- <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" respawn="true"/> -->
+
+
+	<group if="$(arg use_rviz)">
+		<!-- get joint states and publish  TFs -->
 	<node name="joint_state_publisher_$(arg sh_version)_$(arg suffix)" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true">
 		<rosparam param="source_list" subst_value="true">$(arg source_list)</rosparam>
 		<param name="rate" value="200"/>
 		<remap from="robot_description" to="$(arg model)_description"/>
 	</node>
-	<!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"	respawn="true" >
+	<node name="robot_state_publisher_$(arg sh_version)_$(arg suffix)" pkg="robot_state_publisher" type="robot_state_publisher"	respawn="true" >
 		<param name="publish_frequency" value="200" />
 		<param name="rate" value="200"/>
 		<remap from="robot_description" to="$(arg model)_description"/>
-	</node> -->
+	</node>
 
-	<group if="$(arg use_rviz)">
+		<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" respawn="true"/>
 		<node name="rviz" pkg="rviz" type="rviz" args="-d $(find softhands_description)/rviz/softhand.rviz"/>
 	</group>
 	

@@ -43,7 +43,7 @@
 		<plugin name="synergy_plugin" filename="libsofthand_mimic_plugin.so">
 			<namespace>$(arg ns)</namespace> 
 			<operation_mode>$(arg operation_mode)</operation_mode>
-			<spring_k>0.5</spring_k>
+			<spring_k>5</spring_k>
 
 			
 			<r_finger>0.0033</r_finger>

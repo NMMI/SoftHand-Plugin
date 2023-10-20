@@ -60,6 +60,12 @@
                   iyy="0.0001" 	    iyz="0" 
         		      izz="0.0001" />
       </inertial>
+      <visual>
+        <geometry>
+          <cylinder length="0.005" radius="0.004"/>
+        </geometry>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+      </visual> 
     </link>
 
     <!-- Proximal JOINT -->
@@ -75,10 +81,17 @@
     <!-- LINK -->
     <link name="${ns}_${name}_link">
       <inertial>
-        <mass value="0.0082"/>
+      
         <origin rpy="0 0 0" xyz="8.7707437e-03 -1.7863138e-03 0.0"/>
-        <inertia ixx="2.2722068e-07" ixy="1.1586053e-08" ixz="0.0" iyy="5.5947233e-07" iyz="0.0" izz="5.9562195e-07"/>
-        <!-- <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/> -->
+
+        <!-- Original value -->
+        <!-- <mass value="0.0082"/>
+        <inertia ixx="2.2722068e-07" ixy="1.1586053e-08" ixz="0.0" iyy="5.5947233e-07" iyz="0.0" izz="5.9562195e-07"/> -->
+        
+        <!-- Old value -->
+        <mass value="0.005"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/> 
+
       </inertial>
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -100,6 +113,16 @@
     <gazebo reference="${ns}_${name}_link">
       <material>Gazebo/Grey</material>
       <selfCollide>$(arg selfCollide)</selfCollide>
+      <kp value="1e4" />
+      <kd value="1e2" />
+      <surface>
+       <friction>
+        <ode>
+         <mu>0.133</mu> 
+         <mu2>0.133</mu2>
+        </ode>
+       </friction>
+      </surface>
     </gazebo>
     
   </xacro:macro>

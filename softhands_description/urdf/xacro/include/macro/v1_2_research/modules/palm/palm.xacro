@@ -39,7 +39,7 @@
 
 <robot name="palm_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-	<xacro:macro name="palm" params="ns name parent *origin side">
+	<xacro:macro name="palm" params="ns name parent *origin">
 		
 
 
@@ -51,9 +51,17 @@
 
 		<link name="${ns}_palm_link">
 			<inertial>
-				<mass value="0.45"/>
-				<origin rpy="0 0 0" xyz="0.0030 -0.0449 0.0135"/>
-				<inertia ixx="0.00045" ixy="0.0" ixz="0.0" iyy="0.00025" iyz="0.0" izz="0.0006"/>
+			
+				<origin rpy="0 0 0" xyz="0.0030 -0.0449 ${sign*0.0135}"/>
+
+				<!-- Original value -->
+				<!-- <mass value="0.45"/>
+				<inertia ixx="0.00045" ixy="0.0" ixz="0.0" iyy="0.00025" iyz="0.0" izz="0.0006"/> -->
+				
+				<!-- Old value -->
+				<mass value="2.28"/>
+				<inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/> 
+
 			</inertial>
 			<visual>
 			<origin rpy="0 0 0" xyz="0 0 0"/>
@@ -74,6 +82,16 @@
 		<gazebo reference="${ns}_palm_link">
 			<material>Gazebo/Grey</material>
 			<selfCollide>$(arg selfCollide)</selfCollide>
+			<kp value="1e4" />
+			<kd value="1e2" />
+			<surface>
+			<friction>
+				<ode>
+				<mu>0.133</mu> 
+				<mu2>0.133</mu2>
+				</ode>
+			</friction>
+			</surface>
 		</gazebo>
 	</xacro:macro>
 

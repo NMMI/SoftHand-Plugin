@@ -15,19 +15,35 @@
 	<!-- start gazebo server with empty world -->
 	<include file="$(find softhands_description)/launch/softhands_gazebo.launch">
 		<arg name="sh_version" value="v1_2_research"/>
-		<arg name="selfCollide" value="true"/>
+		<arg name="selfCollide" value="false"/>
+		<arg name="side" value="right"/>
 		<arg name="x" value="0"/>
 		<arg name="y" value="0"/>
 		<arg name="z" value="0.01"/>
 		<arg name="roll" value="0"/>
 		<arg name="pitch" value="0"/>
 		<arg name="yaw" value="0"/>
-		<arg name="friction" value="0.0"/>
   		<arg name="suffix" value="0"/>
-  		<arg name="virtual_friction" value="1e-2"/>
 	</include>	
 	
-	<include file="$(find softhands_description)/launch/softhands_gazebo.launch">
+
+		<!-- start gazebo server with empty world -->
+	<!-- <include file="$(find softhands_description)/launch/softhands_gazebo.launch">
+		<arg name="sh_version" value="v1_2_research"/>
+		<arg name="selfCollide" value="false"/>
+		<arg name="side" value="left"/>
+		<arg name="x" value="0.2"/>
+		<arg name="y" value="0"/>
+		<arg name="z" value="0.01"/>
+		<arg name="roll" value="0"/>
+		<arg name="pitch" value="0"/>
+		<arg name="yaw" value="0"/>
+  		<arg name="suffix" value="1"/>
+  		<arg name="use_rviz" value="false"/>
+	</include>	 -->
+
+
+	<!-- <include file="$(find softhands_description)/launch/softhands_gazebo.launch">
 		<arg name="sh_version" value="v1_wide"/>
 		<arg name="selfCollide" value="false"/>
 		<arg name="x" value="0.3"/>
@@ -37,7 +53,7 @@
   		<arg name="friction" value="1e-2"/>
   		<arg name="virtual_friction" value="1e-2"/>
   		<arg name="suffix" value="1"/>
-	</include>	
+	</include>	 -->
 	
 	
 </launch>

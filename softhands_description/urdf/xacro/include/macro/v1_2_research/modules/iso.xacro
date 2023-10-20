@@ -39,7 +39,7 @@
 
 <robot name="iso_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-	<xacro:macro name="iso" params="ns name parent *origin side">
+	<xacro:macro name="iso" params="ns name parent *origin">
 
 		<!-- World to palm base -->
 		<joint name="${ns}_${name}_joint" type="fixed">
@@ -49,9 +49,17 @@
 		</joint>
 		<link name="${ns}_${name}_link">
 			<inertial>
+			
+				<origin rpy="0 0 0" xyz="0.0 7.8738498e-04 1.5878899e-02"/>
+
+				<!-- Original value -->
+				<!--<mass value="0.205"/>
+				<inertia ixx="0.00012506929" ixy="0.0" ixz="0.0" iyy="0.0001338779" iyz="0.0" izz="0.00019218394"/> -->
+				
+				<!-- Old value -->
 				<mass value="0.205"/>
-				<origin rpy="0 0 0" xyz="0.0030 -0.0449 0.0135"/>
-				<inertia ixx="0.00012506929" ixy="0.0" ixz="0.0" iyy="0.0001338779" iyz="0.0" izz="0.00019218394"/>
+				<inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/> 
+
 			</inertial>
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0"/>

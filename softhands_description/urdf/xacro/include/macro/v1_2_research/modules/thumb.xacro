@@ -43,12 +43,17 @@
 
     <!-- Knuckle -->
     <xacro:thumb_knuckle name="${name}_knuckle" parent="${parent}" ns="$(arg ns)" side="$(arg side)">
-      <origin rpy="-1.57 3.14 0.0" xyz="-0.044 -0.0465 -0.002"/>
+      <origin rpy="-1.57 3.14 0.0" xyz="-0.044 -0.0465 ${sign*-0.002}"/>
     </xacro:thumb_knuckle>
 
     <!-- Proximal  -->
     <xacro:thumb_short name="${name}_proximal" parent="${name}_knuckle" ns="$(arg ns)" side="$(arg side)">
-      <origin rpy="-1.1415 0.0 0.0" xyz="0.0255 -0.0038 -0.00012"/>
+      <xacro:if value="${side == 'left'}">
+        <origin rpy="-2 0.0 0.0" xyz="0.0255 0.0038 -0.00012"/>
+      </xacro:if>	
+      <xacro:if value="${side == 'right'}">
+        <origin rpy="-1.1415 0.0 0.0" xyz="0.0255 -0.0038 -0.00012"/>
+      </xacro:if>			
     </xacro:thumb_short>
 
     <!-- Distal  -->
