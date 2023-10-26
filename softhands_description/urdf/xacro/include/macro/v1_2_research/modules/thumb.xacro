@@ -47,19 +47,25 @@
     </xacro:thumb_knuckle>
 
     <!-- Proximal  -->
-    <xacro:thumb_short name="${name}_proximal" parent="${name}_knuckle" ns="$(arg ns)" side="$(arg side)">
+    <xacro:phalanx_generic name="${name}_proximal" parent="${name}_knuckle" ns="$(arg ns)" mass="0.0063" mesh="ph_short">
       <xacro:if value="${side == 'left'}">
-        <origin rpy="-2 0.0 0.0" xyz="0.0255 0.0038 -0.00012"/>
+         <virtual_origin> <origin rpy="-2 0.0 0.0" xyz="0.0255 0.0038 -0.00012"/></virtual_origin>
       </xacro:if>	
       <xacro:if value="${side == 'right'}">
-        <origin rpy="-1.1415 0.0 0.0" xyz="0.0255 -0.0038 -0.00012"/>
-      </xacro:if>			
-    </xacro:thumb_short>
+         <virtual_origin> <origin rpy="-1.1415 0.0 0.0" xyz="0.0255 -0.0038 -0.00012"/></virtual_origin>
+      </xacro:if>	
+      <real_origin>     <origin rpy="0 0 0" xyz="0.013 0 0"/>                         </real_origin>
+      <inertia_origin>  <origin rpy="0 0 0" xyz="4.7601567e-03 -1.3786947e-03 0.0"/>  </inertia_origin>
+      <inertia ixx="1.8024201e-07" ixy="5.756798e-09" ixz="0.0" iyy="2.3516266e-07" iyz="0.0" izz="2.691504e-07"/>
+    </xacro:phalanx_generic>
 
     <!-- Distal  -->
-    <xacro:phalanx_distal name="${name}_distal" parent="${name}_proximal" ns="$(arg ns)" side="$(arg side)">
-      <origin rpy="0 0 0" xyz="0.009 0 0"/>
-    </xacro:phalanx_distal>
+    <xacro:phalanx_generic name="${name}_distal" parent="${name}_proximal" ns="$(arg ns)" mass="0.009" mesh="ph_distal">
+      <virtual_origin>  <origin rpy="0 0 0" xyz="0.009 0 0"/>                        </virtual_origin>
+      <real_origin>     <origin rpy="0 0 0" xyz="0.013 0 0"/>                         </real_origin>
+      <inertia_origin>  <origin rpy="0 0 0" xyz="8.8025467e-03 -1.7219289e-03 0.0"/>  </inertia_origin>
+      <inertia ixx="2.6586142e-07" ixy="1.2416847e-08" ixz="0.0" iyy="5.9935767e-07" iyz="0.0" izz="6.6781963e-07"/>
+    </xacro:phalanx_generic>
 
   </xacro:macro>
 

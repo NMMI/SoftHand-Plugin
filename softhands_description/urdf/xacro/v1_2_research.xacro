@@ -46,8 +46,8 @@
 	</xacro:if>	
 
 	<!-- World -->
-	<link name="$(arg root_link)">
-	</link>
+	<!-- <link name="$(arg root_link)">
+	</link> -->
 		
 	<!-- # iso -->
 	<xacro:iso name="iso" parent="$(arg root_link)" ns="$(arg ns)">

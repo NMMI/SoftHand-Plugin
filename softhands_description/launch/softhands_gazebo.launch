@@ -12,9 +12,6 @@
   	<arg name="pitch" default="0"/>
   	<arg name="yaw" default="0"/>
 
-  	<arg name="friction" default="0"/>
-  	<arg name="virtual_friction" default="0"/>
-
 	<arg name="x" default="0"/>
 	<arg name="y" default="0"/>
 	<arg name="z" default="0"/>
@@ -37,8 +34,6 @@
 		   x:=$(arg x) 
 		   y:=$(arg y)
 		   z:=$(arg z)
-		   virtual_friction:=$(arg virtual_friction) 
-		   friction:=$(arg friction) 
 		   side:=$(arg side) 
 		   sh_version:=$(arg sh_version) 
 		   roll:=$(arg roll) 

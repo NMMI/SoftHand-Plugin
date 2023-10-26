@@ -44,16 +44,16 @@
 	<xacro:include filename="$(arg root_dir)/modules/iso.xacro" />
   <!-- Include xacro macro Thumb -->
   <xacro:include filename="$(arg root_dir)/modules/thumb.xacro" />
-  <xacro:include filename="$(arg root_dir)/modules/thumb/thumb_knuckle.xacro" />
-  <xacro:include filename="$(arg root_dir)/modules/thumb/thumb_short.xacro" />
 
   <!-- Include xacro macro Finger -->
-  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_short.xacro" />
-  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_knuckle.xacro" />
-  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx.xacro" />
-  <xacro:include filename="$(arg root_dir)/modules/finger/phalanx_distal.xacro" />
   <xacro:include filename="$(arg root_dir)/modules/finger.xacro" />
+
+  <!-- Phalanges -->
+  <xacro:include filename="$(arg root_dir)/modules/phalanges/phalanx_generic.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/phalanges/phalanx_knuckle.xacro" />
+  <xacro:include filename="$(arg root_dir)/modules/phalanges/thumb_knuckle.xacro" />
 
   <!-- Color definitions -->
   <xacro:include filename="$(arg root_dir)/color.xacro" />
+
 </robot>

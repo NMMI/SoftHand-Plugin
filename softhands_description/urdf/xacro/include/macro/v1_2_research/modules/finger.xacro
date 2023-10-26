@@ -47,20 +47,28 @@
     </xacro:phalanx_knuckle>
    
     <!-- Proximal -->
-    <xacro:phalanx name="${name}_proximal" parent="${name}_knuckle" side="$(arg side)" ns="$(arg ns)">
-      <origin rpy="1.57 0 0" xyz="0.009 0 0"/>
-    </xacro:phalanx>
+    <xacro:phalanx_generic name="${name}_proximal" parent="${name}_knuckle" ns="$(arg ns)" mass="0.009" mesh="ph_medium">
+      <virtual_origin>  <origin rpy="1.57 0 0" xyz="0.009 0 0"/>                      </virtual_origin>
+      <real_origin>     <origin rpy="0.0 0 0" xyz="0.013 0 0"/>                       </real_origin>
+      <inertia_origin>  <origin rpy="0 0 0" xyz="8.7707437e-03 -1.7863138e-03 0.0"/>  </inertia_origin>
+      <inertia ixx="2.2722068e-07" ixy="1.1586053e-08" ixz="0.0" iyy="5.5947233e-07" iyz="0.0" izz="5.9562195e-07"/>
+    </xacro:phalanx_generic>
 
     <!-- Middle -->
-    <xacro:phalanx_short name="${name}_middle" parent="${name}_proximal" side="$(arg side)" ns="$(arg ns)">
-      <origin rpy="0.0 0.0 0.0" xyz="0.013 0 0 "/>
-    </xacro:phalanx_short>
+    <xacro:phalanx_generic name="${name}_middle" parent="${name}_proximal" ns="$(arg ns)" mass="0.0063" mesh="ph_short">
+      <virtual_origin>  <origin rpy="0.0 0.0 0.0" xyz="0.013 0 0 "/>                  </virtual_origin>
+      <real_origin>     <origin rpy="0 0 0" xyz="0.017 0 0"/>                         </real_origin>
+      <inertia_origin>  <origin rpy="0 0 0" xyz="4.7601567e-03 -1.3786947e-03 0.0"/>  </inertia_origin>
+      <inertia ixx="1.8024201e-07" ixy="5.756798e-09" ixz="0.0" iyy="2.3516266e-07" iyz="0.0" izz="2.691504e-07"/>
+    </xacro:phalanx_generic>
 
     <!-- Distal -->
-    <xacro:phalanx_distal name="${name}_distal" parent="${name}_middle" side="$(arg side)" ns="$(arg ns)">
-      <origin rpy="0 0 0" xyz="0.009 0 0"/>
-    </xacro:phalanx_distal>
-
+    <xacro:phalanx_generic name="${name}_distal" parent="${name}_middle" ns="$(arg ns)" mass="0.009" mesh="ph_distal">
+      <virtual_origin>  <origin rpy="0 0 0" xyz="0.009 0 0"/>                        </virtual_origin>
+      <real_origin>     <origin rpy="0 0 0" xyz="0.013 0 0"/>                         </real_origin>
+      <inertia_origin>  <origin rpy="0 0 0" xyz="8.8025467e-03 -1.7219289e-03 0.0"/>  </inertia_origin>
+      <inertia ixx="2.6586142e-07" ixy="1.2416847e-08" ixz="0.0" iyy="5.9935767e-07" iyz="0.0" izz="6.6781963e-07"/>
+    </xacro:phalanx_generic>
 
   </xacro:macro>
 

@@ -16,9 +16,11 @@
                 <pose>0.41151 0.558737 0.384584 0 0.452 -1.98001</pose>
             </camera>
         </gui>
+        <gravity>0.0 0 -9.81</gravity>
+
         <physics type="ode" update_rate="1000">
             <ode>
-                <solver type="quick" dt="0.001" iters="10" sor="1.3" />
+                <solver type="quick" dt="0.001" iters="50" sor="1.3" />
                 
             </ode>
         </physics>

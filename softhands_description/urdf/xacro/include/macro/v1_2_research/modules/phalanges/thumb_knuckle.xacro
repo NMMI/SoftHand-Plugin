@@ -38,98 +38,63 @@
 -->
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-  
-  <xacro:macro name="phalanx_distal" params="ns name parent *origin side">
 
-
-
-    <!-- VIRTUAL JOINT -->
-		<joint name="${ns}_${name}_virtual_joint" type="revolute">
-      <axis xyz="0 0 -1"/>
-      <xacro:insert_block name="origin"/>
-			<parent link="${ns}_${parent}_link"/>
-			<child link="${ns}_${name}_virtual_link"/>
-      <limit effort="30" velocity="10" lower="0" upper="0.785398" />
-      <dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
-		</joint>
-
-    <!-- VIRTUAL LINK -->
-    <link name="${ns}_${name}_virtual_link">
-      <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="0.001"/>
-        <inertia  ixx="0.0001"      ixy="0"  	    ixz="0" 
-                  iyy="0.0001" 	    iyz="0" 
-        		      izz="0.0001" />
-      </inertial>
-      <visual>
-        <geometry>
-          <box size="0.001 0.001 0.001"/> 
-        </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-      </visual> 
-    </link>
+  <xacro:macro name="thumb_knuckle" params="ns name parent *origin side">
 
 
     <!-- Proximal JOINT -->
     <joint name="${ns}_${name}_joint" type="revolute">
-			<origin rpy="0 0 0" xyz="0.013 0 0"/>
-      <parent link="${ns}_${name}_virtual_link"/>
+      <xacro:insert_block name="origin"/>
+      <parent link="${ns}_${parent}_link"/>
       <child link="${ns}_${name}_link"/>
-      <axis xyz="0 0 -1"/>
-      <limit effort="30" velocity="1.0" lower="0" upper="0.785398" />
-       <dynamics damping="$(arg damping)" friction="$(arg friction)"/>
+      <axis xyz="0 0 ${sign*-1}"/>
+      <limit effort="30" velocity="10.0" lower="0.0" upper="1.57" />
+      <dynamics damping="$(arg damping)" friction="$(arg friction)" />
     </joint>
 
     <!-- LINK -->
     <link name="${ns}_${name}_link">
-        <inertial>
+      <inertial>
 
-          <origin rpy="0 0 0" xyz="8.8025467e-03 -1.7219289e-03 0.0"/>
+        <origin rpy="0 0 0" xyz="1.3071561e-02 ${sign*-2.7346340e-03} 6.4090487e-04"/>
 
-          <!-- Original value -->
-          <!-- <mass value="0.009"/>
-          <inertia ixx="2.6586142e-07" ixy="1.2416847e-08" ixz="0.0" iyy="5.9935767e-07" iyz="0.0" izz="6.6781963e-07"/> -->
-          
-          <!-- Old value -->
-          <mass value="0.005"/>
-          <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/> 
+        <!-- Original value -->
+        <mass value="0.01"/>
+        <inertia ixx="3.5865978e-07" ixy="${sign*2.0944224e-07}" ixz="-6.8657569e-08" iyy="1.3885564e-06" iyz="${sign*3.2170608e-08}" izz="1.3571203e-06"/>
 
-        </inertial>
+        <!-- Old value -->
+        <!-- <mass value="0.005"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>  -->
+
+      </inertial>
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="$(arg meshes_dir)/ph_distal.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="$(arg meshes_dir)/ph_thumb.stl" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="qbhand/palm"/>
+        <material name="qbhand/knuckle"/>
       </visual>
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="$(arg meshes_dir)/ph_distal.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="$(arg meshes_dir)/ph_thumb.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>
-
-
 
     <!-- GAZEBO REF -->
     <gazebo reference="${ns}_${name}_link">
       <material>Gazebo/Grey</material>
       <selfCollide>$(arg selfCollide)</selfCollide>
-      <kp value="1e4" />
-      <kd value="1e2" />
-      <surface>
-       <friction>
-        <ode>
-         <mu>0.133</mu> 
-         <mu2>0.133</mu2>
-        </ode>
-       </friction>
-      </surface>
+    </gazebo>
+
+        <!-- GAZEBO REF -->
+    <gazebo reference="${ns}_${name}_joint">
+      <implicitSpringDamper>true</implicitSpringDamper>
+			<springStiffness>0.4</springStiffness>
+			<springReference>0</springReference>
 	  </gazebo>
     
-
   </xacro:macro>
 
 </robot>

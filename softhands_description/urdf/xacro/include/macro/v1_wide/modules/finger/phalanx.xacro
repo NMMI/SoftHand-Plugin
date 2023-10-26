@@ -11,7 +11,7 @@
 
 		<joint name="${ns}_${name}_virtual_joint" type="revolute">
 			<axis xyz="0 0 1"/>
-			<limit effort="30" velocity="1.0" lower="0" upper="0.785398" />
+			<limit effort="30" velocity="0.0" lower="0" upper="0.785398" />
 			<xacro:insert_block name="origin"/>
 			<parent link="${ns}_${parent}_link"/>
 			<child link="${ns}_${name}_virtual_link"/>
@@ -33,7 +33,7 @@
 
 		<joint name="${ns}_${name}_joint" type="revolute">
 			<axis xyz="0 0 1"/>
-			<limit effort="30" velocity="1.0" lower="0" upper="0.785398" />
+			<limit effort="30" velocity="0.0" lower="0" upper="0.785398" />
 			<origin rpy="0 0 0" xyz="9e-3 0 0"/>
             <parent link="${ns}_${name}_virtual_link"/>
 			<child link="${ns}_${name}_link"/>

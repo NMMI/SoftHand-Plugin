@@ -48,7 +48,7 @@
 		<!-- palm base to Thumb -->
 		<joint name="${ns}_${name}_thumb_joint" type="revolute">
 			<axis xyz="0 0 -1"/>
-			<limit effort="30" velocity="10" lower="0" upper="1.57" />
+			<limit effort="30" velocity="0.0" lower="0" upper="1.57" />
 			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
 			<origin xyz=" -0.0000000021 32.5059e-3 39.6398e-3" rpy="0 0.3490656 1.5707963"/>
 			<parent link="${ns}_${name}_link"/>
@@ -71,7 +71,7 @@
 		<joint name="${ns}_${name}_little_joint" type="revolute">
 			<axis xyz="0 0 1"/>
 			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
-			<limit effort="100" lower="0.0" upper="0.4" velocity="100"/>
+			<limit effort="100" lower="0.0" upper="0.4" velocity="0.00"/>
 			<origin xyz=" -0.0000000091 -10.6603e-3 66.1817e-3" rpy="0 -0.1745327 -1.5707963"/>
 			<parent link="${ns}_${name}_link"/>
 			<child link="${ns}_${name}_little_link"/>

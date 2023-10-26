@@ -39,76 +39,50 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="phalanx_short" params="ns name parent *origin side">
+  <xacro:macro name="phalanx_knuckle" params="ns name parent *origin side">
 
 
-
-    <!-- VIRTUAL JOINT -->
-		<joint name="${ns}_${name}_joint" type="revolute">
-      <axis xyz="0 0 -1"/>
-      <xacro:insert_block name="origin"/>
-			<parent link="${ns}_${parent}_link"/>
-			<child link="${ns}_${name}_virtual_link"/>
-      <limit effort="30" velocity="10" lower="0.0" upper="0.785"/>
-      <dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
-		</joint>
-
-    <!-- VIRTUAL LINK -->
-    <link name="${ns}_${name}_virtual_link">
-      <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-        <mass value="0.001"/>
-        <inertia  ixx="0.0001"      ixy="0"  	    ixz="0" 
-                  iyy="0.0001" 	    iyz="0" 
-        		      izz="0.0001" />
-      </inertial>
-	      <visual>
-        <geometry>
-          <cylinder length="0.005" radius="0.004"/>
-        </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-      </visual> 
-    </link>
-
-    
     <!-- Proximal JOINT -->
-    <joint name="${ns}_${name}_virtual_joint" type="revolute">
-      <origin rpy="0 0 0" xyz="0.017 0 0"/>
-      <parent link="${ns}_${name}_virtual_link"/>
+    <joint name="${ns}_${name}_joint" type="revolute">
+      <xacro:insert_block name="origin"/>
+      <parent link="${ns}_${parent}_link"/>
       <child link="${ns}_${name}_link"/>
       <axis xyz="0 0 -1"/>
-      <limit effort="30" velocity="1.0" lower="0.0" upper="0.785"/>
-      <dynamics damping="$(arg damping)" friction="$(arg friction)"/>
+      <limit effort="30" velocity="10.0" lower="-0.524" upper="0.524" />
+      <dynamics damping="$(arg damping)" friction="$(arg friction)" />
     </joint>
 
     <!-- LINK -->
     <link name="${ns}_${name}_link">
       <inertial>
       
-        <origin rpy="0 0 0" xyz="4.7601567e-03 -1.3786947e-03 0.0"/>
+        <origin rpy="0 0 0" xyz="4.2753603e-04  0.0 -1.4321738e-03"/>
 
         <!-- Original value -->
-        <!-- <mass value="0.0063"/>
-        <inertia ixx="1.8024201e-07" ixy="5.756798e-09" ixz="0.0" iyy="2.3516266e-07" iyz="0.0" izz="2.691504e-07"/> -->
+        <mass value="0.0095"/>
+        <inertia ixx="6.4337303e-07" ixy="0.0" ixz="-3.9373913e-08" iyy="1.1253771e-06" iyz="0.0" izz="7.2336948e-07"/>
         
         <!-- Old value -->
-        <mass value="0.005"/>
-        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/> 
+        <!-- <mass value="0.005"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.001"/>  -->
 
       </inertial>
+      
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="$(arg meshes_dir)/ph_short.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="$(arg meshes_dir)/ph_knuckle.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="qbhand/palm"/>
       </visual>
+
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="$(arg meshes_dir)/ph_short.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="$(arg meshes_dir)/ph_knuckle.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
+      
     </link>
 
 
@@ -117,17 +91,14 @@
     <gazebo reference="${ns}_${name}_link">
       <material>Gazebo/Grey</material>
       <selfCollide>$(arg selfCollide)</selfCollide>
-      <kp value="1e4" />
-      <kd value="1e2" />
-      <surface>
-       <friction>
-        <ode>
-         <mu>0.133</mu> 
-         <mu2>0.133</mu2>
-        </ode>
-       </friction>
-      </surface>
     </gazebo>
+    
+            <!-- GAZEBO REF -->
+    <gazebo reference="${ns}_${name}_joint">
+      <implicitSpringDamper>true</implicitSpringDamper>
+			<springStiffness>0.4</springStiffness>
+			<springReference>0</springReference>
+	  </gazebo>
     
   </xacro:macro>
 

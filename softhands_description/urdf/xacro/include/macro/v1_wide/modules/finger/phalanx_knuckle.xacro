@@ -8,7 +8,7 @@
 
 		<joint name="${ns}_${name}_joint" type="revolute">
 			<axis xyz="0 1 0"/>
-			<limit effort="30" velocity="1.0" lower="0.0" upper="0.0" />
+			<limit effort="30" velocity="0.0" lower="0.0" upper="0.0" />
 			<xacro:insert_block name="origin"/>
             <parent link="${ns}_${parent}_link"/>
 			<child link="${ns}_${name}_link"/>

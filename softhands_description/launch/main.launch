@@ -17,9 +17,9 @@
 		<arg name="sh_version" value="v1_2_research"/>
 		<arg name="selfCollide" value="false"/>
 		<arg name="side" value="right"/>
-		<arg name="x" value="0"/>
+		<arg name="x" value="0.2"/>
 		<arg name="y" value="0"/>
-		<arg name="z" value="0.01"/>
+		<arg name="z" value="0.00"/>
 		<arg name="roll" value="0"/>
 		<arg name="pitch" value="0"/>
 		<arg name="yaw" value="0"/>
@@ -28,19 +28,19 @@
 	
 
 		<!-- start gazebo server with empty world -->
-	<!-- <include file="$(find softhands_description)/launch/softhands_gazebo.launch">
+	<include file="$(find softhands_description)/launch/softhands_gazebo.launch">
 		<arg name="sh_version" value="v1_2_research"/>
 		<arg name="selfCollide" value="false"/>
 		<arg name="side" value="left"/>
-		<arg name="x" value="0.2"/>
+		<arg name="x" value="0.0"/>
 		<arg name="y" value="0"/>
-		<arg name="z" value="0.01"/>
+		<arg name="z" value="0.00"/>
 		<arg name="roll" value="0"/>
 		<arg name="pitch" value="0"/>
 		<arg name="yaw" value="0"/>
   		<arg name="suffix" value="1"/>
   		<arg name="use_rviz" value="false"/>
-	</include>	 -->
+	</include>	
 
 
 	<!-- <include file="$(find softhands_description)/launch/softhands_gazebo.launch">
