@@ -2,7 +2,7 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
    
-    <xacro:macro name="palm_little" params="name parent side *origin ns">
+    <xacro:macro name="palm_little" params="name parent side ns mass *origin **inertia_origin *inertia ">
 
 
 		<joint name="${ns}_${parent}_virtual_joint" type="revolute">
@@ -10,8 +10,8 @@
 			<child link="${ns}_${name}_link"/>
 			<xacro:insert_block name="origin"/>
 			<axis xyz="0 0 1" />
-      		<limit effort="30" velocity="0.0" lower="0" upper="0.3" />
-			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
+      		<limit effort="30" velocity="0.0" lower="0" upper="0.35" />
+			<dynamics damping="$(arg damping)" friction="$(arg friction)"/>
 		</joint>
 
 	
@@ -20,22 +20,20 @@
 				<material name="grey" />
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/palm_little.stl"
+						filename="package://softhands_description/meshes/v1_wide/${side}/palm_little.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				</visual>
 				<inertial>
-				<origin xyz="1.9466642e-02  5.5041380e-03 -7.9253974e-04" rpy="0 0 0" />
-				<mass value="1.7998957e-1" />
-					<inertia ixx=" 2.4776164e-04" ixy="-2.2762031e-06"  ixz="-2.5699035e-05"
-											iyy="2.6460918e-04"  iyz=" 1.5348716e-05"
-																izz="5.9121350e-05" />
+					<mass value="${mass}" />
+					<xacro:insert_block name="inertia_origin"/>
+					<xacro:insert_block name="inertia"/>
 					</inertial>
 				<collision>
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/palm_little_collision.stl"
+						filename="package://softhands_description/meshes/v1_wide/${side}/palm_little_collision.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -46,5 +44,14 @@
 			<selfCollide>$(arg selfCollide)</selfCollide>
 			<material>Gazebo/Grey</material>
 		</gazebo>
+
+
+		        <!-- GAZEBO REF -->
+		<gazebo reference="${ns}_${name}_virtual_joint">
+		<implicitSpringDamper>true</implicitSpringDamper>
+				<springStiffness>0.4</springStiffness>
+				<springReference>0</springReference>
+		</gazebo>
+
     </xacro:macro>
 </robot>

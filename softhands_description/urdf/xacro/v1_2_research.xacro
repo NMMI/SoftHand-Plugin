@@ -37,78 +37,84 @@
  *
 -->
 
-<robot name="right_hand_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
-  
-	<xacro:property name="side" value="$(arg side)"/>
-	<xacro:property name="sign" default="1"/>
-	<xacro:if value="${side == 'left'}">
-		<xacro:property name="sign" value="-1"/>
-	</xacro:if>	
-
-	<!-- World -->
-	<!-- <link name="$(arg root_link)">
-	</link> -->
-		
-	<!-- # iso -->
-	<xacro:iso name="iso" parent="$(arg root_link)" ns="$(arg ns)">
-		<origin rpy="$(arg orientation)" xyz="$(arg position)"/>
-	</xacro:iso>
+<robot name="v1_2_research" xmlns:xacro="http://www.ros.org/wiki/xacro">
 	
-	<!-- # palm  -->
-	<xacro:palm name="palm" parent="iso" ns="$(arg ns)">
-		<xacro:if value="${side == 'left'}">
-			<origin rpy="1.57 0  3.14" xyz="0.0045 0.0145 0.144"/>
-		</xacro:if>	
-		<xacro:if value="${side == 'right'}">
-			<origin rpy="1.57 0 0" xyz="-0.0045 0.0145 0.144"/>
-		</xacro:if>			
-	</xacro:palm>
+	<xacro:macro name="v1_2_research" params="side parent position orientation fixed_hands:=false">
 
-	<!-- # thumb -->
-	<xacro:thumb name="thumb" parent="palm" ns="$(arg ns)" side="$(arg side)">
-		<origin rpy="-1.57 3.14 0.0" xyz="-0.044 -0.0465 -0.002"/>
-	</xacro:thumb>
+		<xacro:arg name="friction"			default="0.0"/>
+		<xacro:arg name="virtual_friction" 	default="0.0"/>
+		<xacro:arg name="virtual_damping" 	default="3e-2"/>
+		<xacro:arg name="damping" 			default="3e-2"/>
+		<xacro:arg name="selfCollide" 		default="0"/>
 
-	<!-- # Index -->
-	<xacro:finger name="index" parent="palm" ns="$(arg ns)" side="$(arg side)">
+		<xacro:property name="sign" default="1"/>
 		<xacro:if value="${side == 'left'}">
-			<origin rpy="0 3.14 -1.57" xyz="-0.02 -0.007 -0.014"/>
+			<xacro:property name="sign" value="-1"/>
 		</xacro:if>	
-		<xacro:if value="${side == 'right'}">
-			<origin rpy="0 0 1.57" xyz="-0.02 -0.007 0.014"/>
-		</xacro:if>		
-	</xacro:finger>
 
-	<!-- # Middle -->
-	<xacro:finger name="middle" parent="palm" ns="$(arg ns)" side="$(arg side)">
-		<xacro:if value="${side == 'left'}">
-			<origin rpy="0 3.14 -1.57" xyz="0 0 -0.014"/>
-		</xacro:if>	
-		<xacro:if value="${side == 'right'}">
-			<origin rpy="0 0 1.57" xyz="0 0 0.014"/>
-		</xacro:if>	
-	</xacro:finger>
+    	<xacro:softhand_mimic_plugin ns="${side}_hand_v1_2_research" wide="false"/>
 
-	<!-- # Ring -->
-	<xacro:finger name="ring" parent="palm" ns="$(arg ns)" side="$(arg side)">
-		<xacro:if value="${side == 'left'}">
-			<origin rpy="0 3.14 -1.57" xyz="0.02 -0.007 -0.014"/>
-		</xacro:if>	
-		<xacro:if value="${side == 'right'}">
-			<origin rpy="0 0 1.57" xyz="0.02 -0.007 0.014"/>
-		</xacro:if>			
-	</xacro:finger>
+		<!-- # iso -->
+		<xacro:iso name="iso" parent="${parent}" ns="${side}_hand_v1_2_research">
+			<origin rpy="${orientation}" xyz="${position}"/>
+		</xacro:iso>
+		
+		<!-- # palm  -->
+		<xacro:palm name="palm" parent="iso" ns="${side}_hand_v1_2_research">
+			<xacro:if value="${side == 'left'}">
+				<origin rpy="1.57 0  3.14" xyz="0.0045 0.0145 0.144"/>
+			</xacro:if>	
+			<xacro:if value="${side == 'right'}">
+				<origin rpy="1.57 0 0" xyz="-0.0045 0.0145 0.144"/>
+			</xacro:if>			
+		</xacro:palm>
 
-	<!-- # Little -->
-	<xacro:finger name="little" parent="palm" ns="$(arg ns)" side="$(arg side)">
-		<xacro:if value="${side == 'left'}">
-			<origin rpy="0 3.14 -1.57" xyz="0.04 -0.012 -0.014"/>
-		</xacro:if>	
-		<xacro:if value="${side == 'right'}">
-			<origin rpy="0 0 1.57" xyz="0.04 -0.012 0.014"/>
-		</xacro:if>	
-	</xacro:finger>
+		<!-- # thumb -->
+		<xacro:thumb name="thumb" parent="palm" ns="${side}_hand_v1_2_research" side="${side}">
+			<origin rpy="-1.57 3.14 0.0" xyz="-0.044 -0.0465 -0.002"/>
+		</xacro:thumb>
+
+		<!-- # Index -->
+		<xacro:finger name="index" parent="palm" ns="${side}_hand_v1_2_research" side="${side}">
+			<xacro:if value="${side == 'left'}">
+				<origin rpy="0 3.14 -1.57" xyz="-0.02 -0.007 -0.014"/>
+			</xacro:if>	
+			<xacro:if value="${side == 'right'}">
+				<origin rpy="0 0 1.57" xyz="-0.02 -0.007 0.014"/>
+			</xacro:if>		
+		</xacro:finger>
+
+		<!-- # Middle -->
+		<xacro:finger name="middle" parent="palm" ns="${side}_hand_v1_2_research" side="${side}">
+			<xacro:if value="${side == 'left'}">
+				<origin rpy="0 3.14 -1.57" xyz="0 0 -0.014"/>
+			</xacro:if>	
+			<xacro:if value="${side == 'right'}">
+				<origin rpy="0 0 1.57" xyz="0 0 0.014"/>
+			</xacro:if>	
+		</xacro:finger>
+
+		<!-- # Ring -->
+		<xacro:finger name="ring" parent="palm" ns="${side}_hand_v1_2_research" side="${side}">
+			<xacro:if value="${side == 'left'}">
+				<origin rpy="0 3.14 -1.57" xyz="0.02 -0.007 -0.014"/>
+			</xacro:if>	
+			<xacro:if value="${side == 'right'}">
+				<origin rpy="0 0 1.57" xyz="0.02 -0.007 0.014"/>
+			</xacro:if>			
+		</xacro:finger>
+
+		<!-- # Little -->
+		<xacro:finger name="little" parent="palm" ns="${side}_hand_v1_2_research" side="${side}">
+			<xacro:if value="${side == 'left'}">
+				<origin rpy="0 3.14 -1.57" xyz="0.04 -0.012 -0.014"/>
+			</xacro:if>	
+			<xacro:if value="${side == 'right'}">
+				<origin rpy="0 0 1.57" xyz="0.04 -0.012 0.014"/>
+			</xacro:if>	
+		</xacro:finger>
 
 	    
+	</xacro:macro>
 
 </robot>

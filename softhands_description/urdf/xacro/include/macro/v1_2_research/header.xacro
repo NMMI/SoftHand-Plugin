@@ -40,20 +40,18 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="header">
 
   <!-- Include xacro macro  Palm-->
-	<xacro:include filename="$(arg root_dir)/modules/palm/palm.xacro" />
-	<xacro:include filename="$(arg root_dir)/modules/iso.xacro" />
+	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1_2_research/modules/palm/palm.xacro" />
+	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1_2_research/modules/iso.xacro" />
   <!-- Include xacro macro Thumb -->
-  <xacro:include filename="$(arg root_dir)/modules/thumb.xacro" />
+  <xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1_2_research/modules/thumb.xacro" />
 
   <!-- Include xacro macro Finger -->
-  <xacro:include filename="$(arg root_dir)/modules/finger.xacro" />
+  <xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1_2_research/modules/finger.xacro" />
 
   <!-- Phalanges -->
-  <xacro:include filename="$(arg root_dir)/modules/phalanges/phalanx_generic.xacro" />
-  <xacro:include filename="$(arg root_dir)/modules/phalanges/phalanx_knuckle.xacro" />
-  <xacro:include filename="$(arg root_dir)/modules/phalanges/thumb_knuckle.xacro" />
+  <xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1_2_research/modules/phalanges/phalanx_generic.xacro" />
+  <xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1_2_research/modules/phalanges/phalanx_knuckle.xacro" />
+  <xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1_2_research/modules/phalanges/thumb_knuckle.xacro" />
 
-  <!-- Color definitions -->
-  <xacro:include filename="$(arg root_dir)/color.xacro" />
-
+  
 </robot>

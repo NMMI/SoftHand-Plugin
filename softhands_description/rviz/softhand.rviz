@@ -1,14 +1,14 @@
 Panels:
   - Class: rviz/Displays
-    Help Height: 138
+    Help Height: 78
     Name: Displays
     Property Tree Widget:
       Expanded:
         - /Global Options1
         - /Status1
-        - /TF1/Frames1
-      Splitter Ratio: 0.7704590559005737
-    Tree Height: 654
+        - /RobotModel1
+      Splitter Ratio: 0.5
+    Tree Height: 746
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -52,9 +52,9 @@ Visualization Manager:
       Plane Cell Count: 10
       Reference Frame: <Fixed Frame>
       Value: true
-    - Alpha: 0.699999988079071
+    - Alpha: 1
       Class: rviz/RobotModel
-      Collision Enabled: true
+      Collision Enabled: false
       Enabled: true
       Links:
         All Links Enabled: true
@@ -62,16 +62,144 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        left_hand_v1_2_research_index_distal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_index_distal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_hand_v1_2_research_index_knuckle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_index_middle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_index_middle_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_hand_v1_2_research_index_proximal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_index_proximal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         left_hand_v1_2_research_iso_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
+        left_hand_v1_2_research_little_distal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_little_distal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_hand_v1_2_research_little_knuckle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_little_middle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_little_middle_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_hand_v1_2_research_little_proximal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_little_proximal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_hand_v1_2_research_middle_distal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_middle_distal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_hand_v1_2_research_middle_knuckle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_middle_middle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_middle_middle_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_hand_v1_2_research_middle_proximal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_middle_proximal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         left_hand_v1_2_research_palm_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
+        left_hand_v1_2_research_ring_distal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_ring_distal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_hand_v1_2_research_ring_knuckle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_ring_middle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_ring_middle_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_hand_v1_2_research_ring_proximal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        left_hand_v1_2_research_ring_proximal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         left_hand_v1_2_research_thumb_distal_link:
           Alpha: 1
           Show Axes: false
@@ -81,7 +209,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
         left_hand_v1_2_research_thumb_knuckle_link:
           Alpha: 1
           Show Axes: false
@@ -96,37 +223,144 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
-        world:
+        right_hand_v1_2_research_index_distal_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-      Name: RobotModel
-      Robot Description: /left_hand_v1_2_research_description
-      TF Prefix: ""
-      Update Interval: 0
-      Value: true
-      Visual Enabled: true
-    - Alpha: 0.699999988079071
-      Class: rviz/RobotModel
-      Collision Enabled: true
-      Enabled: true
-      Links:
-        All Links Enabled: true
-        Expand Joint Details: false
-        Expand Link Details: false
-        Expand Tree: false
-        Link Tree Style: Links in Alphabetic Order
+          Value: true
+        right_hand_v1_2_research_index_distal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_hand_v1_2_research_index_knuckle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_index_middle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_index_middle_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_hand_v1_2_research_index_proximal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_index_proximal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         right_hand_v1_2_research_iso_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
+        right_hand_v1_2_research_little_distal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_little_distal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_hand_v1_2_research_little_knuckle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_little_middle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_little_middle_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_hand_v1_2_research_little_proximal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_little_proximal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_hand_v1_2_research_middle_distal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_middle_distal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_hand_v1_2_research_middle_knuckle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_middle_middle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_middle_middle_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_hand_v1_2_research_middle_proximal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_middle_proximal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         right_hand_v1_2_research_palm_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
+        right_hand_v1_2_research_ring_distal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_ring_distal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_hand_v1_2_research_ring_knuckle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_ring_middle_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_ring_middle_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_hand_v1_2_research_ring_proximal_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_hand_v1_2_research_ring_proximal_virtual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
         right_hand_v1_2_research_thumb_distal_link:
           Alpha: 1
           Show Axes: false
@@ -136,7 +370,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
         right_hand_v1_2_research_thumb_knuckle_link:
           Alpha: 1
           Show Axes: false
@@ -151,80 +384,16 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
         world:
           Alpha: 1
           Show Axes: false
           Show Trail: false
       Name: RobotModel
-      Robot Description: /right_hand_v1_2_research_description
+      Robot Description: sh_hand_v1_2_research_description
       TF Prefix: ""
       Update Interval: 0
       Value: true
       Visual Enabled: true
-    - Class: rviz/TF
-      Enabled: true
-      Filter (blacklist): ""
-      Filter (whitelist): ""
-      Frame Timeout: 15
-      Frames:
-        All Enabled: false
-        left_hand_v1_2_research_iso_link:
-          Value: true
-        left_hand_v1_2_research_palm_link:
-          Value: true
-        left_hand_v1_2_research_thumb_distal_link:
-          Value: true
-        left_hand_v1_2_research_thumb_distal_virtual_link:
-          Value: true
-        left_hand_v1_2_research_thumb_knuckle_link:
-          Value: true
-        left_hand_v1_2_research_thumb_proximal_link:
-          Value: true
-        left_hand_v1_2_research_thumb_proximal_virtual_link:
-          Value: true
-        right_hand_v1_2_research_iso_link:
-          Value: true
-        right_hand_v1_2_research_palm_link:
-          Value: true
-        right_hand_v1_2_research_thumb_distal_link:
-          Value: true
-        right_hand_v1_2_research_thumb_distal_virtual_link:
-          Value: true
-        right_hand_v1_2_research_thumb_knuckle_link:
-          Value: true
-        right_hand_v1_2_research_thumb_proximal_link:
-          Value: true
-        right_hand_v1_2_research_thumb_proximal_virtual_link:
-          Value: true
-        world:
-          Value: false
-      Marker Alpha: 1
-      Marker Scale: 0.05000000074505806
-      Name: TF
-      Show Arrows: true
-      Show Axes: true
-      Show Names: false
-      Tree:
-        world:
-          left_hand_v1_2_research_iso_link:
-            left_hand_v1_2_research_palm_link:
-              left_hand_v1_2_research_thumb_knuckle_link:
-                left_hand_v1_2_research_thumb_proximal_virtual_link:
-                  left_hand_v1_2_research_thumb_proximal_link:
-                    left_hand_v1_2_research_thumb_distal_virtual_link:
-                      left_hand_v1_2_research_thumb_distal_link:
-                        {}
-          right_hand_v1_2_research_iso_link:
-            right_hand_v1_2_research_palm_link:
-              right_hand_v1_2_research_thumb_knuckle_link:
-                right_hand_v1_2_research_thumb_proximal_virtual_link:
-                  right_hand_v1_2_research_thumb_proximal_link:
-                    right_hand_v1_2_research_thumb_distal_virtual_link:
-                      right_hand_v1_2_research_thumb_distal_link:
-                        {}
-      Update Interval: 0
-      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -253,7 +422,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.5067969560623169
+      Distance: 0.6727237701416016
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -261,17 +430,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.08467400819063187
-        Y: 0.04610644280910492
-        Z: 0.15501707792282104
+        X: 0.08442237973213196
+        Y: -0.11544077843427658
+        Z: 0.17050772905349731
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.0653984323143959
+      Pitch: 0.2103986293077469
       Target Frame: <Fixed Frame>
-      Yaw: 1.5104023218154907
+      Yaw: 1.0803977251052856
     Saved: ~
 Window Geometry:
   Displays:
@@ -279,7 +448,7 @@ Window Geometry:
   Height: 1043
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd0000000400000000000001f700000355fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000b0fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d00000355000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000015f00000355fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003d00000355000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000007800000005efc0100000002fb0000000800540069006d0065010000000000000780000003bc00fffffffb0000000800540069006d006501000000000000045000000000000000000000041e0000035500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000004000000000000015600000375fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d00000375000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000010f00000375fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003d00000375000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000007800000003efc0100000002fb0000000800540069006d0065010000000000000780000003bc00fffffffb0000000800540069006d006501000000000000045000000000000000000000050f0000037500000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -289,5 +458,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1920
-  X: 0
-  Y: 0
+  X: 893
+  Y: 1080

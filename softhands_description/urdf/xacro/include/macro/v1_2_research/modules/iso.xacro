@@ -40,7 +40,7 @@
 <robot name="iso_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 	<xacro:macro name="iso" params="ns name parent *origin">
-
+		
 		<!-- World to palm base -->
 		<joint name="${ns}_${name}_joint" type="fixed">
 			<parent link="${parent}"/>
@@ -56,21 +56,21 @@
 			<visual>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
 				<geometry>
-					<mesh filename="$(arg meshes_dir)/flange_iso_04.stl" scale="0.001 0.001 0.001"/>
+					<mesh filename="package://softhands_description/meshes/v1_2_research/${side}/flange_iso_04.stl" scale="0.001 0.001 0.001"/>
 				</geometry>
 				<material name="qbhand/base"/>
 			</visual>
 			<collision>
 			<origin rpy="0 0 0" xyz="0 0 0"/>
 			<geometry>
-				<mesh filename="$(arg meshes_dir)/flange_iso_04.stl" scale="0.001 0.001 0.001"/>
+				<mesh filename="package://softhands_description/meshes/v1_2_research/${side}/flange_iso_04.stl" scale="0.001 0.001 0.001"/>
 			</geometry>
 			</collision>
 		</link>
 
 		<gazebo reference="${ns}_${name}_link">
     	  	<material>Gazebo/Grey</material>
-			<selfCollide>$(arg selfCollide)</selfCollide>
+			<selfCollide>0</selfCollide>
 	  	</gazebo>
 
 		

@@ -1097,8 +1097,8 @@ void SoftHandMimicPlugin::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
   {
     // basic joints
     int jnt_basic_idx = 0;
-    std::cout << "Fingers number " << finger_idx << std::endl;
-    std::cout << "--------------- basic ---------------- " << std::endl;
+    // std::cout << "Fingers number " << finger_idx << std::endl;
+    // std::cout << "--------------- basic ---------------- " << std::endl;
     for (auto j = i->begin(); j < i->end(); j++)                        // joints
     {
       std::string temp_name;
@@ -1108,10 +1108,10 @@ void SoftHandMimicPlugin::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
         temp_name = ns_name + "_" + finger_names[finger_idx] + "_" + finger_part_names[jnt_basic_idx] + "_joint";
       }
       fingers_joint[finger_idx][jnt_basic_idx] = model->GetJoint(temp_name);
-      std::cout << "Joints number " << jnt_basic_idx << "\t name = " << temp_name << "\n";
+      // std::cout << "Joints number " << jnt_basic_idx << "\t name = " << temp_name << "\n";
       jnt_basic_idx++;
     }
-    std::cout << "--------------- mimic ---------------- " << std::endl;
+    // std::cout << "--------------- mimic ---------------- " << std::endl;
     // basic joints
     int jnt_mimic_idx = 0;
     for (auto j = i->begin(); j < i->end()-1; j++)                        // joints
@@ -1123,10 +1123,10 @@ void SoftHandMimicPlugin::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
         temp_name = ns_name + "_" + finger_names[finger_idx] + "_" + finger_part_names[jnt_mimic_idx+1] + "_virtual_joint";
       }
       fingers_mimic_joint[finger_idx][jnt_mimic_idx] = model->GetJoint(temp_name);
-      std::cout << "Joints number " << jnt_mimic_idx << "\t name = " << temp_name << "\n";
+      // std::cout << "Joints number " << jnt_mimic_idx << "\t name = " << temp_name << "\n";
       jnt_mimic_idx++;
     }
-    std::cout << std::endl;
+    // std::cout << std::endl;
     finger_idx++;
   }
 
@@ -1136,18 +1136,18 @@ void SoftHandMimicPlugin::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
     int palm_idx = 0;
       // basic joints
       int palm_jnt_basic_idx = 0;
-      std::cout << "Palm  " << std::endl;
-      std::cout << "--------------- basic ---------------- " << std::endl;
+      // std::cout << "Palm  " << std::endl;
+      // std::cout << "--------------- basic ---------------- " << std::endl;
       for (int i = 0 ; i < 2; i++)                        // joints
       {
         std::string palm_temp_name;
         palm_temp_name = ns_name + "_" + palm_names[palm_idx] + "_" + palm_part_names[palm_jnt_basic_idx] + "_joint";
         
         palm_joint[palm_idx][palm_jnt_basic_idx] = model->GetJoint(palm_temp_name);
-        std::cout << "Joints number " << palm_jnt_basic_idx << "\t name = " << palm_temp_name << "\n";
+        // std::cout << "Joints number " << palm_jnt_basic_idx << "\t name = " << palm_temp_name << "\n";
         palm_jnt_basic_idx++;
       }
-      std::cout << "--------------- mimic ---------------- " << std::endl;
+      // std::cout << "--------------- mimic ---------------- " << std::endl;
       // basic joints
       int palm_jnt_mimic_idx = 0;
       for (int i = 0 ; i < 2; i++)                        // joints
@@ -1157,10 +1157,10 @@ void SoftHandMimicPlugin::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
         palm_temp_name = ns_name + "_" + palm_names[palm_idx] + "_" + palm_part_names[palm_jnt_mimic_idx] + "_virtual_joint";
         
         palm_mimic_joint[palm_idx][palm_jnt_mimic_idx] = model->GetJoint(palm_temp_name);
-        std::cout << "Joints number " << palm_jnt_mimic_idx << "\t name = " << palm_temp_name << "\n";
+        // std::cout << "Joints number " << palm_jnt_mimic_idx << "\t name = " << palm_temp_name << "\n";
         palm_jnt_mimic_idx++;
       }
-    std::cout << std::endl;
+    // std::cout << std::endl;
     
   } 
 

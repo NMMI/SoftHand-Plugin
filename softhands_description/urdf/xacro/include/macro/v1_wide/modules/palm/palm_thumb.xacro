@@ -2,44 +2,41 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
    
-    <xacro:macro name="palm_thumb" params="name parent side *origin ns">
+    <xacro:macro name="palm_thumb" params="name parent side ns mass  **inertia_origin *inertia **palm_thumb_origin **thumb_support_origin">
 
 
 		<joint name="${ns}_${parent}_virtual_joint" type="revolute">
 			<parent link="${ns}_${parent}_link"/>
 			<child link="${ns}_${name}_link"/>
-			<xacro:insert_block name="origin"/>
-			<axis xyz="0 0 -1" />
-      		<limit effort="30" velocity="0.0" lower="0" upper="1.57" />
-			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
+			<xacro:insert_block name="palm_thumb_origin"/>
+			<axis xyz="0 0 ${sign*-1}" />
+      		<limit effort="30" velocity="0.0" lower="0" upper="0.35" />
+			 <dynamics damping="$(arg damping)" friction="$(arg friction)"/>
 		</joint>
 
 	
 		<link name="${ns}_${name}_link">
-				<visual>
-				<material name="grey" />
-					<geometry>
-					<mesh
-						filename="$(arg meshes_dir)/palm_thumb.stl"
-						scale="0.001 0.001 0.001" />
-					</geometry>
+			<visual>
+				<geometry>
+				<mesh
+					filename="package://softhands_description/meshes/v1_wide/${side}/palm_thumb.stl"
+					scale="0.001 0.001 0.001" />
+				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
-				</visual>
-				<inertial>
-				<origin xyz="1.3888149e-2 -7.0704771e-3  1.1337304e-3" rpy="0 0 0" />
-				<mass value="9.2767000e-02" />
-					<inertia ixx="5.2239281e-5" ixy="2.7341002e-6"  ixz="6.0525027e-6"
-											iyy="5.5447805e-5"  iyz="-4.6570702e-6"
-																izz="2.7144559e-5" />
-					</inertial>
-				<collision>
-					<geometry>
-					<mesh
-						filename="$(arg meshes_dir)/palm_thumb_collision.stl"
-						scale="0.001 0.001 0.001" />
-					</geometry>
+			</visual>
+			<inertial>
+				<mass value="${mass}" />
+				<xacro:insert_block name="inertia_origin"/>
+				<xacro:insert_block name="inertia"/>
+			</inertial>
+			<collision>
+				<geometry>
+				<mesh
+					filename="package://softhands_description/meshes/v1_wide/${side}/palm_thumb_collision.stl"
+					scale="0.001 0.001 0.001" />
+				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
-				</collision>
+			</collision>
 		</link>
 
 
@@ -48,15 +45,14 @@
 		<joint name="${ns}_${name}_support_joint" type="fixed">
 			<parent link="${ns}_${name}_link"/>
 			<child link="${ns}_${name}_support_link"/>
-			<origin xyz=" 24.2343e-3 -5.0e-3 9.13010e-3" rpy="-1.5707963 -1.0471972 0"/>
+			<xacro:insert_block name="thumb_support_origin"/>
 		</joint>
 
 		<link name="${ns}_${name}_support_link">
 				<visual>
-				<material name="grey" />
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/thumb_support.stl"
+						filename="package://softhands_description/meshes/v1_wide/${side}/thumb_support.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -71,7 +67,7 @@
 				<collision>
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/thumb_support_collision.stl"
+						filename="package://softhands_description/meshes/v1_wide/${side}/thumb_support_collision.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />

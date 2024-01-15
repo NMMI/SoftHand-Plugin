@@ -60,12 +60,6 @@
         <mass value="${mass}"/>
         <xacro:insert_block name="inertia"/>
       </inertial>
-      <visual>
-        <geometry>
-          <box size="0.001 0.001 0.001"/> 
-        </geometry>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-      </visual> 
     </link>
 
 
@@ -89,14 +83,14 @@
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="$(arg meshes_dir)/${mesh}.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://softhands_description/meshes/v1_2_research/${side}/${mesh}.stl" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="qbhand/palm"/>
       </visual>
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="$(arg meshes_dir)/${mesh}.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://softhands_description/meshes/v1_2_research/${side}/${mesh}.stl" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>

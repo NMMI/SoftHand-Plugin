@@ -16,10 +16,9 @@
 
 		<link name="${ns}_${name}_link">
 				<visual>
-				<material name="grey" />
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/phalanx_pros_sup.stl"
+						filename="package://softhands_description/meshes/v1_wide/${side}/phalanx_pros_sup.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
@@ -32,7 +31,7 @@
 				<collision>
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/phalanx_pros_sup_collision.stl"
+						filename="package://softhands_description/meshes/v1_wide/${side}/phalanx_pros_sup_collision.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />

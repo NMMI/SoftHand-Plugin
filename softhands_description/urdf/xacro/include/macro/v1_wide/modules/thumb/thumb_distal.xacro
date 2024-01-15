@@ -2,7 +2,7 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
    
-    <xacro:macro name="thumb_distal" params="name parent side ns *origin">
+    <xacro:macro name="thumb_distal" params="name parent side ns mass *origin **inertia_origin *inertia">
 		
 		
 
@@ -19,8 +19,8 @@
 	    <link name="${ns}_${name}_virtual_link">
 		   <inertial>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
-				<mass value="0.001"/>
-				<inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001" />
+				<mass value="${mass}"/>
+				<xacro:insert_block name="inertia"/>
 		   </inertial>
 	
 	    </link>
@@ -43,32 +43,46 @@
 				<material name="grey" />
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/phalanx_dist_thumb.stl"
+						filename="package://softhands_description/meshes/v1_wide/${side}/phalanx_dist_thumb.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				</visual>
 				<inertial>
-					<mass value="2.3674554e-02"/>
-					<origin rpy="0 0 0" xyz="1.6161362e-02  1.6241404e-03 -3.2684152e-05 "/>
-					<inertia ixx="2.578454e-06" ixy="0.0" ixz="0.0" iyy="2.9887569e-06" iyz="0.0" izz="3.8277106e-06"/>
+					<mass value="${mass}"/>
+					<xacro:insert_block name="inertia"/>
+					<xacro:insert_block name="inertia_origin"/>
 				</inertial>
 				<collision>
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/phalanx_dist_thumb_collision.stl"
-						scale="0.001 0.001 0.001" />
+						filename="package://softhands_description/meshes/v1_wide/${side}/phalanx_dist_thumb_collision.stl"
+						scale="0.0009 0.0009 0.0009" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				</collision>
 		</link>
 
 
-
+		<!-- GAZEBO REF -->
 		<gazebo reference="${ns}_${name}_link">
 			<material>Gazebo/Grey</material>
 			<selfCollide>$(arg selfCollide)</selfCollide>
 		</gazebo>
+
+		<!-- GAZEBO REF -->
+		<gazebo reference="${ns}_${name}_virtual_joint">
+		<implicitSpringDamper>true</implicitSpringDamper>
+				<springStiffness>0.4</springStiffness>
+				<springReference>0</springReference>
+		</gazebo>
+		<!-- GAZEBO REF -->
+		<gazebo reference="${ns}_${name}_joint">
+		<implicitSpringDamper>true</implicitSpringDamper>
+				<springStiffness>0.4</springStiffness>
+				<springReference>0</springReference>
+		</gazebo>
+
 
     </xacro:macro>
 </robot>

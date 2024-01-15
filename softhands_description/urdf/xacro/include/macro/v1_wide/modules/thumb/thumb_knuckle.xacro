@@ -20,21 +20,21 @@
 				<material name="grey" />
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/phalanx_pros_thumb.stl"
+						filename="package://softhands_description/meshes/v1_wide/${side}/phalanx_pros_thumb.stl"
 						scale="0.001 0.001 0.001" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				</visual>
 				<inertial>
 					<mass value="2.4657976e-02"/>
-					<origin rpy="0 0 0" xyz="2.2747515e-02  4.5872045e-03 -1.3868568e-03  "/>
-					<inertia ixx="2.6529131e-6" ixy="-2.6016685e-07" ixz="1.3433999e-07" iyy="4.4499492e-06" iyz="-7.5218787e-08" izz="5.0393400e-06"/>
+					<origin rpy="0 0 0" xyz="2.2747515e-02  4.5872045e-03 ${sign*1.3868568e-03}  "/>
+					<inertia ixx="2.6529131e-6" ixy="-2.6016685e-07" ixz="${sign*1.3433999e-07}" iyy="4.4499492e-06" iyz="${sign*-7.5218787e-08}" izz="5.0393400e-06"/>
 				</inertial>
 				<collision>
 					<geometry>
 					<mesh
-						filename="$(arg meshes_dir)/phalanx_pros_thumb_collision.stl"
-						scale="0.001 0.001 0.001" />
+						filename="package://softhands_description/meshes/v1_wide/${side}/phalanx_pros_thumb_collision.stl"
+						scale="0.0009 0.0009 0.0009" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				</collision>
@@ -43,6 +43,13 @@
 		<gazebo reference="${ns}_${name}_link">
 			<material>Gazebo/Grey</material>
 			<selfCollide>$(arg selfCollide)</selfCollide>
+		</gazebo>
+
+				        <!-- GAZEBO REF -->
+		<gazebo reference="${ns}_${name}_joint">
+		<implicitSpringDamper>true</implicitSpringDamper>
+				<springStiffness>0.4</springStiffness>
+				<springReference>0</springReference>
 		</gazebo>
 
     </xacro:macro>

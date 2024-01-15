@@ -42,12 +42,12 @@
   <xacro:macro name="finger" params="ns name parent *origin side">
 
     <!-- Proximal -->
-    <xacro:phalanx_knuckle name="${name}_knuckle" parent="${parent}" ns="$(arg ns)" side="$(arg side)">
+    <xacro:phalanx_knuckle name="${name}_knuckle" parent="${parent}" ns="${ns}" side="${side}">
       <xacro:insert_block name="origin"/>
     </xacro:phalanx_knuckle>
    
     <!-- Proximal -->
-    <xacro:phalanx_generic name="${name}_proximal" parent="${name}_knuckle" ns="$(arg ns)" mass="0.009" mesh="ph_medium">
+    <xacro:phalanx_generic name="${name}_proximal" parent="${name}_knuckle" ns="${ns}" mass="0.009" mesh="ph_medium">
       <virtual_origin>  <origin rpy="1.57 0 0" xyz="0.009 0 0"/>                      </virtual_origin>
       <real_origin>     <origin rpy="0.0 0 0" xyz="0.013 0 0"/>                       </real_origin>
       <inertia_origin>  <origin rpy="0 0 0" xyz="8.7707437e-03 -1.7863138e-03 0.0"/>  </inertia_origin>
@@ -55,7 +55,7 @@
     </xacro:phalanx_generic>
 
     <!-- Middle -->
-    <xacro:phalanx_generic name="${name}_middle" parent="${name}_proximal" ns="$(arg ns)" mass="0.0063" mesh="ph_short">
+    <xacro:phalanx_generic name="${name}_middle" parent="${name}_proximal" ns="${ns}" mass="0.0063" mesh="ph_short">
       <virtual_origin>  <origin rpy="0.0 0.0 0.0" xyz="0.013 0 0 "/>                  </virtual_origin>
       <real_origin>     <origin rpy="0 0 0" xyz="0.017 0 0"/>                         </real_origin>
       <inertia_origin>  <origin rpy="0 0 0" xyz="4.7601567e-03 -1.3786947e-03 0.0"/>  </inertia_origin>
@@ -63,7 +63,7 @@
     </xacro:phalanx_generic>
 
     <!-- Distal -->
-    <xacro:phalanx_generic name="${name}_distal" parent="${name}_middle" ns="$(arg ns)" mass="0.009" mesh="ph_distal">
+    <xacro:phalanx_generic name="${name}_distal" parent="${name}_middle" ns="${ns}" mass="0.009" mesh="ph_distal">
       <virtual_origin>  <origin rpy="0 0 0" xyz="0.009 0 0"/>                        </virtual_origin>
       <real_origin>     <origin rpy="0 0 0" xyz="0.013 0 0"/>                         </real_origin>
       <inertia_origin>  <origin rpy="0 0 0" xyz="8.8025467e-03 -1.7219289e-03 0.0"/>  </inertia_origin>

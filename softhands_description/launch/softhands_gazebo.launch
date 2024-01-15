@@ -3,64 +3,62 @@
 
 	<arg name="use_rviz" default="false"/>
 	<arg name="urdf_dir" default="$(find softhands_description)/urdf/softhands.urdf.xacro"/>
-	<arg name="side" default="left"/>
 	<arg name="sh_version" default="v1_wide" doc="The version of the hand [ v1_2_research , v1_wide]"/>
-	<arg name="model" default="$(arg side)_hand_$(arg sh_version)"/>
-	<arg name="selfCollide" default="false"/>
+	<arg name="model" default="sh_hand_$(arg sh_version)"/>
 
-  	<arg name="roll" default="0"/>
-  	<arg name="pitch" default="0"/>
-  	<arg name="yaw" default="0"/>
-
-	<arg name="x" default="0"/>
-	<arg name="y" default="0"/>
-	<arg name="z" default="0"/>
-  	<arg name="suffix" default="0"/>
-  	<!-- <param name="yamlPlugin" command="$(find softhands_description)/config/wide.yaml" /> -->
 
 	<arg name="source_list" default="[
-										/$(arg model)/palm_state, 
-										/$(arg model)/thumb_state, 
-										/$(arg model)/index_state, 
-										/$(arg model)/middle_state, 
-										/$(arg model)/ring_state, 
-										/$(arg model)/little_state ]" doc="The joint_states source list for the joint_state_publisher."/>
+	
+										/right_hand_$(arg sh_version)/palm_state, 
+										/right_hand_$(arg sh_version)/thumb_state, 
+										/right_hand_$(arg sh_version)/index_state, 
+										/right_hand_$(arg sh_version)/middle_state, 
+										/right_hand_$(arg sh_version)/ring_state, 
+										/right_hand_$(arg sh_version)/little_state,
+										/left_hand_$(arg sh_version)/palm_state, 
+										/left_hand_$(arg sh_version)/thumb_state, 
+										/left_hand_$(arg sh_version)/index_state, 
+										/left_hand_$(arg sh_version)/middle_state, 
+										/left_hand_$(arg sh_version)/ring_state, 
+										/left_hand_$(arg sh_version)/little_state ]" doc="The joint_states source list for the joint_state_publisher."/>
 
 
 	<!-- load the robot description to the param server -->
-	<param name="$(arg model)_description" 
-		   command="$(find xacro)/xacro $(arg urdf_dir) 
-		   selfCollide:=$(arg selfCollide)
-		   x:=$(arg x) 
-		   y:=$(arg y)
-		   z:=$(arg z)
-		   side:=$(arg side) 
-		   sh_version:=$(arg sh_version) 
-		   roll:=$(arg roll) 
-		   pitch:=$(arg pitch) 
-		   yaw:=$(arg yaw)"/>
+	<param name="$(arg model)_description"  
+		command="$(find xacro)/xacro $(arg urdf_dir)
+		sh_version:=$(arg sh_version)  "/>
 
 	<!-- spwan the hands in gazebo -->
-	<node name="my_robot_spawn_$(arg sh_version)_$(arg suffix)" pkg="gazebo_ros" type="spawn_model" output="screen" 
-		args="-urdf -param $(arg model)_description -model $(arg model) -x $(arg x) -y $(arg y) -z $(arg z)"/> 
+	<node name="my_robot_spawn_$(arg sh_version)" pkg="gazebo_ros" type="spawn_model" output="screen" 
+		args="-urdf -param $(arg model)_description -model $(arg model) "/> 
 	
 
+	<!-- start gazebo server with empty world -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(find softhands_description)/worlds/empty.world"/>
+		<arg name="paused" value="true"/>
+    	<arg name="use_sim_time" value="true"/>
+    	<arg name="gui" value="true"/>
+    	<arg name="headless" value="true"/>
+    	<arg name="verbose" value="false"/>
+    	<arg name="debug" value="false"/>
+	</include>	
 
 
 	<group if="$(arg use_rviz)">
 		<!-- get joint states and publish  TFs -->
-	<node name="joint_state_publisher_$(arg sh_version)_$(arg suffix)" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true">
-		<rosparam param="source_list" subst_value="true">$(arg source_list)</rosparam>
-		<param name="rate" value="200"/>
-		<remap from="robot_description" to="$(arg model)_description"/>
-	</node>
-	<node name="robot_state_publisher_$(arg sh_version)_$(arg suffix)" pkg="robot_state_publisher" type="robot_state_publisher"	respawn="true" >
-		<param name="publish_frequency" value="200" />
-		<param name="rate" value="200"/>
-		<remap from="robot_description" to="$(arg model)_description"/>
-	</node>
+		<node name="joint_state_publisher_$(arg sh_version)" pkg="joint_state_publisher" type="joint_state_publisher" respawn="true">
+			<rosparam param="source_list" subst_value="true">$(arg source_list)</rosparam>
+			<param name="rate" value="200"/>
+			<remap from="robot_description" to="$(arg model)_description"/>
+		</node>
+		<node name="robot_state_publisher_$(arg sh_version)" pkg="robot_state_publisher" type="robot_state_publisher"	respawn="true" >
+			<param name="publish_frequency" value="200" />
+			<param name="rate" value="200"/>
+			<remap from="robot_description" to="$(arg model)_description"/>
+		</node>
 
-		<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" respawn="true"/>
+		<!-- <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" respawn="true"/> -->
 		<node name="rviz" pkg="rviz" type="rviz" args="-d $(find softhands_description)/rviz/softhand.rviz"/>
 	</group>
 	

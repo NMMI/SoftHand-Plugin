@@ -24,6 +24,28 @@
                 
             </ode>
         </physics>
+
+        <!-- <model name="my_box">
+        <pose>-0.01 0.08 0.18 0 0 0</pose>
+        <static>true</static>
+        <link name="link">
+            <collision name="collision">
+            <geometry>
+                <sphere>
+                <radius>0.05</radius>
+                </sphere>
+            </geometry>
+            </collision>
+            <visual name="visual">
+            <geometry>
+                <sphere>
+                <radius>0.05</radius>
+                </sphere>
+            </geometry>
+            </visual>
+        </link>
+        </model> -->
+
     </world>
   
 </sdf>

@@ -2,44 +2,39 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
    
-    <xacro:macro name="palm_central" params="name parent side *origin ns">
+    <xacro:macro name="palm_central" params="name parent side  ns mass *origin **inertia_origin *inertia **thumb_origin **little_origin ">
 
-		<!-- World -->
-		<link name="${parent}">
-		</link>
 		
 		<!-- World to palm base -->
 		<joint name="${ns}_${name}_joint" type="fixed">
 			<parent link="${parent}"/>
 			<child link="${ns}_${name}_link"/>
 			<xacro:insert_block name="origin"/>
+			 <dynamics damping="$(arg damping)" friction="$(arg friction)"/>
 		</joint>
 
 		<link name="${ns}_${name}_link">
-				<visual>
-				<material name="grey" />
-					<geometry>
-					<mesh
-						filename="$(arg meshes_dir)/palm_central.stl"
-						scale="0.001 0.001 0.001" />
-					</geometry>
+			<visual>
+				<geometry>
+				<mesh
+					filename="package://softhands_description/meshes/v1_wide/${side}/palm_central.stl"
+					scale="0.001 0.001 0.001" />
+				</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
-				</visual>
-				<inertial>
-					<mass value="5.5962922e-1" />
-					<origin xyz="-7.3637766e-03 1.5857667e-02  6.7065321e-02" rpy="0 0 0" />
-					<inertia ixx="8.2936450e-04" ixy="-1.9292962e-06"  ixz="1.6410516e-05"
-											iyy="8.0447768e-04"  iyz="-1.3735281e-04"
-																izz="3.0664811e-04" />
-					</inertial>
-				<collision>
-					<geometry>
-					<mesh
-						filename="$(arg meshes_dir)/palm_central_collision.stl"
-						scale="0.001 0.001 0.001" />
-					</geometry>
-				<origin xyz="0 0 0" rpy="0 0 0" />
-				</collision>
+			</visual>
+			<inertial>
+				<mass value="${mass}" />
+				<xacro:insert_block name="inertia_origin"/>
+				<xacro:insert_block name="inertia"/>
+			</inertial>
+			<collision>
+				<geometry>
+				<mesh
+					filename="package://softhands_description/meshes/v1_wide/${side}/palm_central_collision.stl"
+					scale="0.001 0.001 0.001" />
+				</geometry>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			</collision>
 		</link>
 
 
@@ -47,10 +42,10 @@
 
 		<!-- palm base to Thumb -->
 		<joint name="${ns}_${name}_thumb_joint" type="revolute">
-			<axis xyz="0 0 -1"/>
-			<limit effort="30" velocity="0.0" lower="0" upper="1.57" />
+			<axis xyz="0 0 ${sign*-1}"/>
+			<limit effort="30" velocity="0.0" lower="0" upper="0.3" />
 			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
-			<origin xyz=" -0.0000000021 32.5059e-3 39.6398e-3" rpy="0 0.3490656 1.5707963"/>
+			<xacro:insert_block name="thumb_origin"/>
 			<parent link="${ns}_${name}_link"/>
 			<child link="${ns}_${name}_thumb_link"/>
 		</joint>
@@ -58,12 +53,9 @@
 	    <link name="${ns}_${name}_thumb_link">
 		   <inertial>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
-				<mass value="0.001"/>
-				<inertia  ixx="0.0001"      ixy="0"  	    ixz="0" 
-						iyy="0.0001" 	    iyz="0" 
-							izz="0.0001" />
+				<mass value="${mass}"/>
+				<xacro:insert_block name="inertia"/>
 		   </inertial>
-	
 	    </link>
 
 		<!-- palm base to Litte virtual -->
@@ -71,26 +63,38 @@
 		<joint name="${ns}_${name}_little_joint" type="revolute">
 			<axis xyz="0 0 1"/>
 			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
-			<limit effort="100" lower="0.0" upper="0.4" velocity="0.00"/>
-			<origin xyz=" -0.0000000091 -10.6603e-3 66.1817e-3" rpy="0 -0.1745327 -1.5707963"/>
+			<limit effort="100" velocity="0.00" lower="0.0" upper="0.3" />
+			<xacro:insert_block name="little_origin"/>
 			<parent link="${ns}_${name}_link"/>
 			<child link="${ns}_${name}_little_link"/>
 		</joint>
 
 		<link name="${ns}_${name}_little_link">
-		   <inertial>
-			<origin rpy="0 0 0" xyz="0 0 0"/>
-			<mass value="0.001"/>
-			<inertia  ixx="0.0001"      ixy="0"  	    ixz="0" 
-					iyy="0.0001" 	    iyz="0" 
-						izz="0.0001" />
-		   </inertial>
-	
+			<inertial>
+				<origin rpy="0 0 0" xyz="0 0 0"/>
+				<mass value="${mass}"/>
+				<xacro:insert_block name="inertia"/>
+			</inertial>
 	    </link>
 		
 		<gazebo reference="${ns}_${name}_link">
 			<selfCollide>$(arg selfCollide)</selfCollide>
 			<material>Gazebo/Grey</material>
+		</gazebo> 
+
+		        <!-- GAZEBO REF -->
+		<gazebo reference="${ns}_${name}_thumb_joint">
+		<implicitSpringDamper>true</implicitSpringDamper>
+				<springStiffness>0.4</springStiffness>
+				<springReference>0</springReference>
+		</gazebo>
+
+
+        <!-- GAZEBO REF -->
+		<gazebo reference="${ns}_${name}_little_link">
+		<implicitSpringDamper>true</implicitSpringDamper>
+				<springStiffness>0.4</springStiffness>
+				<springReference>0</springReference>
 		</gazebo>
 
     </xacro:macro>
