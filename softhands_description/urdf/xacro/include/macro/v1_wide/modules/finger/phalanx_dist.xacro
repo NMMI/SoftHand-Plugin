@@ -56,7 +56,7 @@
 				<collision>
 					<geometry>
 					<mesh
-						filename="package://softhands_description/meshes/v1_wide/${side}/phalanx_dist.stl"
+						filename="package://softhands_description/meshes/v1_wide/${side}/phalanx_dist_collision.stl"
 						scale="0.0009 0.0009 0.0009" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />

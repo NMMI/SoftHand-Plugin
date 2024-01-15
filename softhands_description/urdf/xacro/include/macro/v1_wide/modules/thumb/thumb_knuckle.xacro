@@ -42,7 +42,7 @@
 
 		<gazebo reference="${ns}_${name}_link">
 			<material>Gazebo/Grey</material>
-			<selfCollide>$(arg selfCollide)</selfCollide>
+			<selfCollide>0</selfCollide>
 		</gazebo>
 
 				        <!-- GAZEBO REF -->

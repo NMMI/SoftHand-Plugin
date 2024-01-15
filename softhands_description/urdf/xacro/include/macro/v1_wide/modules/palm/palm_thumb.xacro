@@ -68,19 +68,19 @@
 					<geometry>
 					<mesh
 						filename="package://softhands_description/meshes/v1_wide/${side}/thumb_support_collision.stl"
-						scale="0.001 0.001 0.001" />
+						scale="0.0009 0.0009 0.0009" />
 					</geometry>
 				<origin xyz="0 0 0" rpy="0 0 0" />
 				</collision>
 		</link>
 
 		<gazebo reference="${ns}_${name}_link">
-			<selfCollide>$(arg selfCollide)</selfCollide>
+			<selfCollide>0</selfCollide>
 			<material>Gazebo/Grey</material>
 		</gazebo>
 
 		<gazebo reference="${ns}_${name}_support_link">
-			<selfCollide>$(arg selfCollide)</selfCollide>
+			<selfCollide>0</selfCollide>
 			<material>Gazebo/White</material>
 		</gazebo>
 

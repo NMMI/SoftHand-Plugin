@@ -31,7 +31,7 @@
 				<geometry>
 				<mesh
 					filename="package://softhands_description/meshes/v1_wide/${side}/palm_central_collision.stl"
-					scale="0.001 0.001 0.001" />
+					scale="0.0009 0.0009 0.0009" />
 				</geometry>
 			<origin xyz="0 0 0" rpy="0 0 0" />
 			</collision>
@@ -53,7 +53,7 @@
 	    <link name="${ns}_${name}_thumb_link">
 		   <inertial>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
-				<mass value="${mass}"/>
+				<mass value="0.001"/>
 				<xacro:insert_block name="inertia"/>
 		   </inertial>
 	    </link>
@@ -72,13 +72,13 @@
 		<link name="${ns}_${name}_little_link">
 			<inertial>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
-				<mass value="${mass}"/>
+				<mass value="0.001"/>
 				<xacro:insert_block name="inertia"/>
 			</inertial>
 	    </link>
 		
 		<gazebo reference="${ns}_${name}_link">
-			<selfCollide>$(arg selfCollide)</selfCollide>
+			<selfCollide>0</selfCollide>
 			<material>Gazebo/Grey</material>
 		</gazebo> 
 

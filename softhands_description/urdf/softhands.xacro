@@ -83,13 +83,11 @@
 		<xacro:if value="${version == 'v1_wide'}">
 			<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1_wide/header.xacro"/>
 			<xacro:include filename="$(find softhands_description)/urdf/xacro/v1_wide.xacro"/>
-
-
-
+			
 			<xacro:v1_wide 
 				side="left"
 				parent="world" 
-				position="0 -0.2 0" 
+				position="0 -0.2 0.02" 
 				orientation="${orientation}" 
 				fixed_hands="false">
 			</xacro:v1_wide>
@@ -97,7 +95,7 @@
 			<xacro:v1_wide 
 				side="right" 
 				parent="world" 
-				position="0 0.2 0"  
+				position="0 0.2 0.02"  
 				orientation="${orientation}" 
 				fixed_hands="false">
 			</xacro:v1_wide>

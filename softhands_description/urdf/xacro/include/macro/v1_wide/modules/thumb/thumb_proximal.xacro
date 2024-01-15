@@ -61,7 +61,6 @@
 				</collision>
 		</link>
 
-
 		<gazebo reference="${ns}_${name}_link">
 			<material>Gazebo/Grey</material>
 			<selfCollide>$(arg selfCollide)</selfCollide>
