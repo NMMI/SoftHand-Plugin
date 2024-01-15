@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:macro name="virtual_link" params="name parent side ns *origin">
+  
+    <!-- Virtual joint from thumb knuckle to thumb proximal   -->
+    <joint name="${ns}_${name}_joint" type="fixed">
+      <axis xyz="0 0 1"/>
+      <limit effort="0.0" lower="0" upper="0"  velocity="0.0"/>
+      <xacro:insert_block name="origin"/>
+      <parent link="${ns}_${parent}_link"/>
+      <child link="${ns}_${name}_virtual_link"/>
+    </joint>
+
+    <link name="${ns}_${name}_virtual_link">
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="1e-3"/>
+        <inertia ixx="1e-6" ixy="0.0" ixz="0.0" iyy="1e-6" iyz="0.0" izz="1e-6"/>
+      </inertial>
+    </link>
+
+  </xacro:macro>
+</robot>

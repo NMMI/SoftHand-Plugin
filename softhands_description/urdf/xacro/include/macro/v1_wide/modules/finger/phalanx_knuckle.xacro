@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+   
+    <xacro:macro name="phalanx_knuckle" params="name parent side *origin ns">
+
+		<!-- Support -->
+
+		<joint name="${ns}_${name}_joint" type="revolute">
+			<axis xyz="0 1 0"/>
+			<limit effort="30" velocity="0.0" lower="0.0" upper="0.0" />
+			<xacro:insert_block name="origin"/>
+            <parent link="${ns}_${parent}_link"/>
+			<child link="${ns}_${name}_link"/>
+		</joint>
+
+		<link name="${ns}_${name}_link">
+				<visual>
+					<geometry>
+					<mesh
+						filename="package://softhands_description/meshes/v1_wide/${side}/phalanx_pros_sup.stl"
+						scale="0.001 0.001 0.001" />
+					</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				</visual>
+				<inertial>
+					<mass value="7.4913242e-03"/>
+					<origin rpy="0 0 0" xyz="1.8035857e-02 -4.0351343e-03 -4.4165266e-05 "/>
+					<inertia ixx="5.3708642e-07" ixy="0.0" ixz="1.5304482e-07" iyy="6.1466440e-07" iyz="-4.4383298e-09" izz="5.5136271e-07"/>
+					</inertial>
+				<collision>
+					<geometry>
+					<mesh
+						filename="package://softhands_description/meshes/v1_wide/${side}/phalanx_pros_sup_collision.stl"
+						scale="0.0009 0.0009 0.0009" />
+					</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				</collision>
+		</link>
+
+
+		<gazebo reference="${ns}_${name}_link">
+			<selfCollide>0</selfCollide>
+			<material>Gazebo/White</material>
+		</gazebo>
+
+    </xacro:macro>
+</robot>

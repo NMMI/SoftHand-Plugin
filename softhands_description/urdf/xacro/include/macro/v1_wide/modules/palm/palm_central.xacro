@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+   
+    <xacro:macro name="palm_central" params="name parent side  ns mass *origin **inertia_origin *inertia **thumb_origin **little_origin ">
+
+		
+		<!-- World to palm base -->
+		<joint name="${ns}_${name}_joint" type="fixed">
+			<parent link="${parent}"/>
+			<child link="${ns}_${name}_link"/>
+			<xacro:insert_block name="origin"/>
+			 <dynamics damping="$(arg damping)" friction="$(arg friction)"/>
+		</joint>
+
+		<link name="${ns}_${name}_link">
+			<visual>
+				<geometry>
+				<mesh
+					filename="package://softhands_description/meshes/v1_wide/${side}/palm_central.stl"
+					scale="0.001 0.001 0.001" />
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+			</visual>
+			<inertial>
+				<mass value="${mass}" />
+				<xacro:insert_block name="inertia_origin"/>
+				<xacro:insert_block name="inertia"/>
+			</inertial>
+			<collision>
+				<geometry>
+				<mesh
+					filename="package://softhands_description/meshes/v1_wide/${side}/palm_central_collision.stl"
+					scale="0.0009 0.0009 0.0009" />
+				</geometry>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			</collision>
+		</link>
+
+
+
+
+		<!-- palm base to Thumb -->
+		<joint name="${ns}_${name}_thumb_joint" type="revolute">
+			<axis xyz="0 0 ${sign*-1}"/>
+			<limit effort="30" velocity="0.0" lower="0" upper="0.3" />
+			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
+			<xacro:insert_block name="thumb_origin"/>
+			<parent link="${ns}_${name}_link"/>
+			<child link="${ns}_${name}_thumb_link"/>
+		</joint>
+
+	    <link name="${ns}_${name}_thumb_link">
+		   <inertial>
+				<origin rpy="0 0 0" xyz="0 0 0"/>
+				<mass value="0.001"/>
+				<xacro:insert_block name="inertia"/>
+		   </inertial>
+	    </link>
+
+		<!-- palm base to Litte virtual -->
+
+		<joint name="${ns}_${name}_little_joint" type="revolute">
+			<axis xyz="0 0 1"/>
+			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
+			<limit effort="100" velocity="0.00" lower="0.0" upper="0.3" />
+			<xacro:insert_block name="little_origin"/>
+			<parent link="${ns}_${name}_link"/>
+			<child link="${ns}_${name}_little_link"/>
+		</joint>
+
+		<link name="${ns}_${name}_little_link">
+			<inertial>
+				<origin rpy="0 0 0" xyz="0 0 0"/>
+				<mass value="0.001"/>
+				<xacro:insert_block name="inertia"/>
+			</inertial>
+	    </link>
+		
+		<gazebo reference="${ns}_${name}_link">
+			<selfCollide>0</selfCollide>
+			<material>Gazebo/Grey</material>
+		</gazebo> 
+
+		        <!-- GAZEBO REF -->
+		<gazebo reference="${ns}_${name}_thumb_joint">
+		<implicitSpringDamper>true</implicitSpringDamper>
+				<springStiffness>0.4</springStiffness>
+				<springReference>0</springReference>
+		</gazebo>
+
+
+        <!-- GAZEBO REF -->
+		<gazebo reference="${ns}_${name}_little_link">
+		<implicitSpringDamper>true</implicitSpringDamper>
+				<springStiffness>0.4</springStiffness>
+				<springReference>0</springReference>
+		</gazebo>
+
+    </xacro:macro>
+</robot>

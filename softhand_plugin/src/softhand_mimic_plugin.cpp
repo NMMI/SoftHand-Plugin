@@ -113,36 +113,36 @@ void SoftHandMimicPlugin::getExtTau_callback(const std_msgs::Float64& e_tau){
 // Funcrion to display the joint positions with basic and mimic
 void SoftHandMimicPlugin::DisplayJointPos(){
     /* --------------------------------------- BASIC JOINTS ------------------------------------------------------- */
-    std::cout << "----------------------------- Basic joint ---------------------------" << std::endl;
+    // std::cout << "----------------------------- Basic joint ---------------------------" << std::endl;
     int fing_basic_idx = 0;
     for (auto i = fingers_joint.begin(); i < fingers_joint.end(); i++)    // fingers
     {
       int joint_idx = 0;
       for (auto j = i->begin(); j < i->end(); j++)                        // joints
       {
-        std::cout << q_fingers[fing_basic_idx][joint_idx];
-        std::cout << "\t";
+        // std::cout << q_fingers[fing_basic_idx][joint_idx];
+        // std::cout << "\t";
         joint_idx++;
       }
       fing_basic_idx++;
-      std::cout << std::endl;
+      // std::cout << std::endl;
     }
     /* --------------------------------------- MIMIC JOINTS ------------------------------------------------------- */
-    std::cout << "----------------------------- Mimic joint ---------------------------" << std::endl;
+    // std::cout << "----------------------------- Mimic joint ---------------------------" << std::endl;
     int fing_mimic_idx = 0;
     for (auto i = fingers_mimic_joint.begin(); i < fingers_mimic_joint.end(); i++)    // fingers
     {
       int joint_idx = 0;
       for (auto j = i->begin(); j < i->end(); j++)                                    // joints
       {
-        std::cout << std::to_string(qMimic_fingers[fing_mimic_idx][joint_idx]);
-        std::cout << "\t";
+        // std::cout << std::to_string(qMimic_fingers[fing_mimic_idx][joint_idx]);
+        // std::cout << "\t";
         joint_idx++;
       }
       fing_mimic_idx++;
-      std::cout << std::endl;
+      // std::cout << std::endl;
     }
-    std::cout << std::endl;
+    // std::cout << std::endl;
 }
 
 // Function to  retrieve the joint finger position and velocity
@@ -175,6 +175,29 @@ void SoftHandMimicPlugin::GetFingersState(){
       }
       fing_mimic_idx++;
     }
+
+  if(wide){
+        /* --------------------------------------- BASIC JOINTS ------------------------------------------------------- */
+    int palm_basic_idx = 0;
+    int joint_idx = 0;
+    for (int i = 0; i < 2; ++i)                        // joints
+    {
+      q_palm[palm_basic_idx][joint_idx] = palm_joint[palm_basic_idx][joint_idx]->Position(0);
+      dq_palm[palm_basic_idx][joint_idx] = palm_joint[palm_basic_idx][joint_idx]->GetVelocity(0);
+
+      joint_idx++;
+    }
+    /* --------------------------------------- MIMIC JOINTS ------------------------------------------------------- */
+    int palm_mimic_idx = 0;
+    int mimic_joint_idx = 0;
+    for (int i = 0; i < 2; ++i)                        // joints
+    {
+      qMimic_palm[0][mimic_joint_idx] = palm_mimic_joint[0][mimic_joint_idx]->Position(0);
+      dqMimic_palm[0][mimic_joint_idx] = palm_mimic_joint[0][mimic_joint_idx]->GetVelocity(0);
+
+      mimic_joint_idx++;
+    }
+  }
 }
 
 // Function to set the fingers torque in Gazebo
@@ -202,6 +225,36 @@ void SoftHandMimicPlugin::SetFingersTorque(double tauFingers[][4], double tauMim
         joint_idx++;
       }
       fing_mimic_idx++;
+    }
+}
+
+
+
+// Function to set the fingers torque in Gazebo
+void SoftHandMimicPlugin::SetPalmTorque(double tauPalm[][2], double tauMimicPalm[][2]){
+    /* --------------------------------------- BASIC JOINTS ------------------------------------------------------- */
+    int palm_basic_idx = 0;
+    for (auto i = palm_joint.begin(); i < palm_joint.end(); i++)    // fingers
+    {
+      int joint_idx = 0;
+      for (auto j = i->begin(); j < i->end(); j++)                        // joints
+      {
+        palm_joint[palm_basic_idx][joint_idx]->SetForce(0, tauPalm[palm_basic_idx][joint_idx]);
+        joint_idx++;
+      }
+      palm_basic_idx++;
+    }
+    /* --------------------------------------- MIMIC JOINTS ------------------------------------------------------- */
+    int palm_mimic_idx = 0;
+    for (auto i = palm_mimic_joint.begin(); i < palm_mimic_joint.end(); i++)    // fingers
+    {
+      int joint_idx = 0;
+      for (auto j = i->begin(); j < i->end(); j++)                                    // joints
+      {
+        palm_mimic_joint[palm_mimic_idx][joint_idx]->SetForce(0, tauMimicPalm[palm_mimic_idx][joint_idx]);
+        joint_idx++;
+      }
+      palm_mimic_idx++;
     }
 }
 
@@ -277,6 +330,32 @@ void SoftHandMimicPlugin::OnUpdateSoftSyn(const common::UpdateInfo & info){
       }
       fing_mimic_idx++;
     }
+
+    //Case for the Wide hand
+    if(wide){
+      double tauCoupling_palm[1][2];
+      for (int i = 0; i < 2; ++i)
+      {
+        tauCoupling_palm[0][i] = spring_k_mimic_each_palm[0][i]*(q_palm[0][i+1] - qMimic_palm[0][i]);
+      }
+
+          // compute old elastic torque & update joint effort
+      double tauEl_palm[1][2], tauEl_mimic_palm[1][2];
+      int palm_basic_idx = 0;
+      int joint_idx = 0;
+      for (int i = 0; i < 2; ++i)    // fingers
+      {
+        // /* --------------------------------------- BASIC JOINTS ------------------------------------------------------- */
+        tauEl_palm[palm_basic_idx][joint_idx] = spring_k_each_palm[palm_basic_idx][joint_idx]*(palm_syn_S[palm_basic_idx][joint_idx]*qR - q_palm[palm_basic_idx][joint_idx]) - tauCoupling_palm[palm_basic_idx][joint_idx-1];  
+        // /* --------------------------------------- MIMIC JOINTS ------------------------------------------------------- */
+        tauEl_mimic_palm[palm_basic_idx][joint_idx] = spring_k_each_palm[palm_basic_idx][joint_idx]*(palm_syn_S[palm_basic_idx][joint_idx]*qR - qMimic_palm[palm_basic_idx][joint_idx]) + tauCoupling_palm[palm_basic_idx][joint_idx];
+        
+        joint_idx++;
+      }
+      SetPalmTorque(tauEl_palm, tauEl_mimic_palm);
+
+    }
+
     SetFingersTorque(tauEl, tauEl_mimic);
     DisplayJointPos();
 
@@ -651,6 +730,9 @@ void SoftHandMimicPlugin::Publish(double tauFing[][4], double tauFingMimic[][3])
   pub_middle_state.publish(fingers_state[2]);
   pub_ring_state.publish(fingers_state[3]);
   pub_little_state.publish(fingers_state[4]);
+
+  //if wide hand
+  
 }
 
 // Publish information relative to the synergy motor
@@ -699,7 +781,8 @@ void SoftHandMimicPlugin::InitParams(sdf::ElementPtr _sdf)
   INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_each[4][1], _sdf, "k_little_j2", spring_k )
   INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_each[4][2], _sdf, "k_little_j3", spring_k )
   INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_each[4][3], _sdf, "k_little_j4", spring_k )      
-  
+
+
   // ------------------- coefficents for R_transp synergy matrix ------------------------
   INITIALIZE_PARAMETER_FROM_TAG( double, fingers_syn_Rt[0][0], _sdf, "synR_thumb_j1", n_param )
   INITIALIZE_PARAMETER_FROM_TAG( double, fingers_syn_Rt[0][1], _sdf, "synR_thumb_j2", n_param )
@@ -773,8 +856,17 @@ void SoftHandMimicPlugin::InitParams(sdf::ElementPtr _sdf)
   INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_mimic_each[4][0], _sdf, "k_little_j1_mimic", spring_k_mimic )
   INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_mimic_each[4][1], _sdf, "k_little_j2_mimic", spring_k_mimic )
   INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_mimic_each[4][2], _sdf, "k_little_j3_mimic", spring_k_mimic )
-  INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_mimic_each[4][3], _sdf, "k_little_j4_mimic", spring_k_mimic )      
-  
+  INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_mimic_each[4][3], _sdf, "k_little_j4_mimic", spring_k_mimic )     
+
+  //Palm joints
+    
+  INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_each_palm[0][0], _sdf, "k_palm_j1", spring_k )
+  INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_each_palm[0][1], _sdf, "k_palm_j2", spring_k )
+  INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_mimic_each_palm[0][0], _sdf, "k_palm_j1_mimic", spring_k_mimic )
+  INITIALIZE_PARAMETER_FROM_TAG( double, spring_k_mimic_each_palm[0][1], _sdf, "k_palm_j2_mimic", spring_k_mimic )
+  INITIALIZE_PARAMETER_FROM_TAG( double, palm_syn_S[0][0], _sdf, "synS_palm_j1", 1.0 )
+  INITIALIZE_PARAMETER_FROM_TAG( double, palm_syn_S[0][1], _sdf, "synS_palm_j2", 1.0 )   
+
   // // ------------------- coefficents for R_transp synergy matrix ------------------------
   // INITIALIZE_PARAMETER_FROM_TAG( double, fingers_syn_Rt[0][0], _sdf, "syn_thumb_j1", n_param )
   // INITIALIZE_PARAMETER_FROM_TAG( double, fingers_syn_Rt[0][1], _sdf, "syn_thumb_j2", n_param )
@@ -828,8 +920,11 @@ void SoftHandMimicPlugin::InitParams(sdf::ElementPtr _sdf)
   // Maximum motor torque
   INITIALIZE_PARAMETER_FROM_TAG( double, mot.tauMax, _sdf, "tauMax", 1.5);
 
+  INITIALIZE_PARAMETER_FROM_TAG( bool, wide, _sdf, "wide", false);
+
   // Initialize variables
   // sizing fingers
+ 
   fingers_state.resize(5);        // fingers states
   cmd_fingers.resize(5);          // fingers command for fully actiation modes
   pid_fingers.resize(5);          // PID variables
@@ -865,6 +960,22 @@ void SoftHandMimicPlugin::InitParams(sdf::ElementPtr _sdf)
      pid_fingers[i].resize(joints_dim[i]);  
      pid_fingers_mimic[i].resize(joints_dim[i]-1);         
    } 
+    if(wide){
+      palm_joint.resize(1);           // Gazebo structures for the finger joints
+      palm_mimic_joint.resize(1);  // Gazebo structures for the finger mimic joints
+      qMimic_palm.resize(1);       // positions of the mimic fingers
+      dqMimic_palm.resize(1);      // velocities of the mimic fingers
+      q_palm.resize(1);            // positions of the fingers
+      dq_palm.resize(1);           // velocities of the fingers
+
+
+      q_palm[0].resize(2);
+      dq_palm[0].resize(2);
+      palm_joint[0].resize(2); // il palmo è uno e ha quattro giunti
+      palm_mimic_joint[0].resize(2);
+      qMimic_palm[0].resize(2);
+      dqMimic_palm[0].resize(2);
+    }
 
   // Synergy motor variables
   mot_state.position.resize(1);
@@ -914,6 +1025,8 @@ void SoftHandMimicPlugin::topicNames(std::string ns_name, std::string joint_name
   pub_middle_name = ns_name + "/middle_state";
   pub_ring_name = ns_name + "/ring_state";
   pub_little_name = ns_name + "/little_state";
+
+  if(wide) pub_palm_name = ns_name + "/palm_state";
 
   // Compose string name for the state publisher
   link_pub_name = ns_name + "/fingers_state";
@@ -984,8 +1097,8 @@ void SoftHandMimicPlugin::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
   {
     // basic joints
     int jnt_basic_idx = 0;
-    std::cout << "Fingers number " << finger_idx << std::endl;
-    std::cout << "--------------- basic ---------------- " << std::endl;
+    // std::cout << "Fingers number " << finger_idx << std::endl;
+    // std::cout << "--------------- basic ---------------- " << std::endl;
     for (auto j = i->begin(); j < i->end(); j++)                        // joints
     {
       std::string temp_name;
@@ -995,10 +1108,10 @@ void SoftHandMimicPlugin::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
         temp_name = ns_name + "_" + finger_names[finger_idx] + "_" + finger_part_names[jnt_basic_idx] + "_joint";
       }
       fingers_joint[finger_idx][jnt_basic_idx] = model->GetJoint(temp_name);
-      std::cout << "Joints number " << jnt_basic_idx << "\t name = " << temp_name << "\n";
+      // std::cout << "Joints number " << jnt_basic_idx << "\t name = " << temp_name << "\n";
       jnt_basic_idx++;
     }
-    std::cout << "--------------- mimic ---------------- " << std::endl;
+    // std::cout << "--------------- mimic ---------------- " << std::endl;
     // basic joints
     int jnt_mimic_idx = 0;
     for (auto j = i->begin(); j < i->end()-1; j++)                        // joints
@@ -1010,12 +1123,47 @@ void SoftHandMimicPlugin::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
         temp_name = ns_name + "_" + finger_names[finger_idx] + "_" + finger_part_names[jnt_mimic_idx+1] + "_virtual_joint";
       }
       fingers_mimic_joint[finger_idx][jnt_mimic_idx] = model->GetJoint(temp_name);
-      std::cout << "Joints number " << jnt_mimic_idx << "\t name = " << temp_name << "\n";
+      // std::cout << "Joints number " << jnt_mimic_idx << "\t name = " << temp_name << "\n";
       jnt_mimic_idx++;
     }
-    std::cout << std::endl;
+    // std::cout << std::endl;
     finger_idx++;
   }
+
+
+  // Retrieve palm joint
+  if(wide){
+    int palm_idx = 0;
+      // basic joints
+      int palm_jnt_basic_idx = 0;
+      // std::cout << "Palm  " << std::endl;
+      // std::cout << "--------------- basic ---------------- " << std::endl;
+      for (int i = 0 ; i < 2; i++)                        // joints
+      {
+        std::string palm_temp_name;
+        palm_temp_name = ns_name + "_" + palm_names[palm_idx] + "_" + palm_part_names[palm_jnt_basic_idx] + "_joint";
+        
+        palm_joint[palm_idx][palm_jnt_basic_idx] = model->GetJoint(palm_temp_name);
+        // std::cout << "Joints number " << palm_jnt_basic_idx << "\t name = " << palm_temp_name << "\n";
+        palm_jnt_basic_idx++;
+      }
+      // std::cout << "--------------- mimic ---------------- " << std::endl;
+      // basic joints
+      int palm_jnt_mimic_idx = 0;
+      for (int i = 0 ; i < 2; i++)                        // joints
+      {
+        std::string palm_temp_name;
+
+        palm_temp_name = ns_name + "_" + palm_names[palm_idx] + "_" + palm_part_names[palm_jnt_mimic_idx] + "_virtual_joint";
+        
+        palm_mimic_joint[palm_idx][palm_jnt_mimic_idx] = model->GetJoint(palm_temp_name);
+        // std::cout << "Joints number " << palm_jnt_mimic_idx << "\t name = " << palm_temp_name << "\n";
+        palm_jnt_mimic_idx++;
+      }
+    // std::cout << std::endl;
+    
+  } 
+
 
   // Compose the topic names
   SoftHandMimicPlugin::topicNames(ns_name, joint_name);
@@ -1050,6 +1198,8 @@ void SoftHandMimicPlugin::Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf)
     pub_middle_state = n.advertise<sensor_msgs::JointState>(pub_middle_name, 500);
     pub_ring_state = n.advertise<sensor_msgs::JointState>(pub_ring_name, 500);
     pub_little_state = n.advertise<sensor_msgs::JointState>(pub_little_name, 500);
+    if(wide) pub_palm_state = n.advertise<sensor_msgs::JointState>(pub_palm_name, 500);
+
   }
 
   updateConnection = event::Events::ConnectWorldUpdateBegin(boost::bind(&SoftHandMimicPlugin::OnUpdate, this, _1));

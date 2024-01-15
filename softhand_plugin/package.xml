@@ -5,11 +5,8 @@
   <description>The softhand_plugin package</description>
 
   <!-- Ownership -->
-  <maintainer email="riccardo.mengacci@gmail.com">Riccardo Mengacci</maintainer>
-
-  <!-- One license tag required, multiple allowed, one license per tag -->
-  <!-- Commonly used license strings: -->
-  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <maintainer email="giovanni.rosato@iit.com">Giovanni Rosato</maintainer>
+  <maintainer email="gr.zambella@gmail.com">Grazia Zambella</maintainer>
   <license>GPLv3</license>
 
   <buildtool_depend>catkin</buildtool_depend>
@@ -28,7 +25,6 @@
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>message_runtime</exec_depend>
 
-  <!-- The export tag contains other, unspecified, tags -->
   <export>
     <gazebo_ros plugin_path="${prefix}/lib" gazebo_media_path="${prefix}" />
   </export>

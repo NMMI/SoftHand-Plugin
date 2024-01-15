@@ -1,0 +1,166 @@
+<?xml version="1.0"?>
+<!-- 
+ *  Software License Agreement: BSD 3-Clause License
+ *
+ * Copyright (c) 2021, NMMI
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer.
+ *
+ * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * Neither the name of the copyright holder nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * \file      sh_v1_simple.xacro
+ *
+ * \author       _Centro di Ricerca "E.Piaggio"_
+ * \author       _Istituto Italiano di Tecnologia, Soft Robotics for Human Cooperation and Rehabilitation Lab_
+ *
+-->
+
+<robot name="v1_wide" xmlns:xacro="http://www.ros.org/wiki/xacro">
+	
+	<xacro:macro name="v1_wide" params="side parent position orientation fixed_hands:=false">
+  
+		<xacro:arg name="friction"			default="0.0"/>
+		<xacro:arg name="virtual_friction" 	default="0.0"/>
+		<xacro:arg name="virtual_damping" 	default="3e-2"/>
+		<xacro:arg name="damping" 			default="3e-2"/>
+		<xacro:arg name="selfCollide" 		default="1"/>
+
+
+		<!-- <xacro:property name="side" value="${side}"/> -->
+		<xacro:property name="sign" default="1"/>
+		<xacro:if value="${side == 'left'}">
+			<xacro:property name="sign" value="-1"/>
+		</xacro:if>	
+
+    	<xacro:softhand_mimic_plugin ns="${side}_hand_v1_wide" wide="true"/>
+
+
+		<!-- # palm central -->
+		<xacro:palm_central name="palm_central" parent="${parent}" side="${side}" ns="${side}_hand_v1_wide"  mass="5.5962922e-1">
+			<origin rpy="${orientation}" xyz="${position}"/>
+			<inertia_origin> <origin xyz="-7.3637766e-03 ${sign*1.5857667e-02}  6.7065321e-02" rpy="0 0 0" /> </inertia_origin>
+			<inertia ixx="8.2936450e-04" ixy="${sign*-1.9292962e-06}"  ixz="1.6410516e-05" iyy="8.0447768e-04"  iyz="${sign*-1.3735281e-04}" izz="3.0664811e-04" />
+
+			<xacro:if value="${side == 'left'}">
+				<thumb_origin> <origin xyz=" -0.0000000021 -32.5059e-3 39.6398e-3" rpy="0.3490656 0.0 0.0"/> </thumb_origin>
+				<little_origin> <origin xyz=" -0.0000000091 10.6603e-3 66.1817e-3" rpy="3.1415927 -0.1745327 1.5707963"/> </little_origin>
+			</xacro:if>	
+			<xacro:if value="${side == 'right'}">
+				<thumb_origin> <origin xyz=" -0.0000000021 32.5059e-3 39.6398e-3" rpy="0 0.3490656 1.5707963"/> </thumb_origin>
+				<little_origin> <origin xyz=" -0.0000000091 -10.6603e-3 66.1817e-3" rpy="0 -0.1745327 -1.5707963"/> </little_origin>
+			</xacro:if>	
+		
+		</xacro:palm_central>
+		
+
+
+
+		<!-- # palm thumb -->
+		<xacro:palm_thumb name="palm_thumb" parent="palm_central_thumb" side="${side}" ns="${side}_hand_v1_wide" mass="9.2767000e-02">
+
+			<xacro:if value="${side == 'left'}">
+				<inertia_origin> <origin xyz=" 7.0704771e-3  -1.3888149e-2 1.1337304e-3" rpy="0 0 0" /> </inertia_origin>
+				<inertia ixx="5.2239281e-5" ixy="2.7341002e-6"  ixz="4.6570694e-6" iyy="5.2239286e-5"  iyz="-6.0525011e-6" izz="2.7144565e-5" />
+				<palm_thumb_origin><origin rpy="0 0 0 " xyz="-0.0000454746e-3 -12e-3 0"/></palm_thumb_origin>
+				<thumb_support_origin><origin xyz="5.0e-3 -24.2343e-3 9.13010e-3" rpy="1.5707963 -0.5235992 1.5707963"/> </thumb_support_origin> 
+			</xacro:if>	
+			<xacro:if value="${side == 'right'}">
+				<inertia_origin> <origin xyz="1.3888149e-2 -7.0704771e-3  1.1337304e-3" rpy="0 0 0" /> </inertia_origin>
+				<inertia ixx="5.2239281e-5" ixy="2.7341002e-6"  ixz="6.0525027e-6" iyy="5.5447805e-5"  iyz="-4.6570702e-6" izz="2.7144559e-5" />
+				<palm_thumb_origin><origin rpy="0 0 0 " xyz="12e-3 -0.0000414746e-3 0"/></palm_thumb_origin>															
+				<thumb_support_origin><origin xyz=" 24.2343e-3 -5.0e-3 9.13010e-3" rpy="-1.5707963 -1.0471972 0"/> </thumb_support_origin> 
+			</xacro:if>	
+		</xacro:palm_thumb>
+
+																													 
+		<xacro:if value="${side == 'left'}">
+		</xacro:if>	
+		<xacro:if value="${side == 'right'}">
+		</xacro:if>	
+
+		<!-- # palm little -->
+		<xacro:palm_little name="palm_little" parent="palm_central_little" side="${side}" ns="${side}_hand_v1_wide"  mass="1.7998957e-1">
+			<origin rpy="0 0 0 " xyz="12e-3 ${sign*-0.0000466576e-3} 0"/>
+			<inertia_origin> <origin xyz="1.9466642e-02  5.5041380e-03 ${sign*-7.9253974e-04}" rpy="0 0 0" /> </inertia_origin>
+			<inertia ixx=" 2.4776164e-04" ixy="-2.2762031e-06"  ixz="${sign*-2.5699035e-05}" iyy="2.6460918e-04"  iyz=" ${sign*1.5348716e-05}" izz="5.9121350e-05" />
+		</xacro:palm_little>
+
+
+		<!-- # thumb -->
+		<xacro:thumb name="thumb" parent="palm_thumb_support" side="${side}" ns="${side}_hand_v1_wide">
+			<xacro:if value="${side == 'left'}">
+				<origin rpy="1.5707963 0 1.5707963" xyz="0 21.9577e-3 2.8e-3"/>
+			</xacro:if>	
+			<xacro:if value="${side == 'right'}">
+				<origin rpy="-1.5707963 0 0" xyz="21.9577e-3 0 -2.8e-3"/>
+			</xacro:if>	
+		</xacro:thumb>
+
+		<!-- # Index -->
+		<xacro:finger name="index" parent="palm_central" side="${side}" ns="${side}_hand_v1_wide">
+			<xacro:if value="${side == 'left'}">
+				<origin  rpy="0.1748327 0 0 " xyz="5e-3 -44.8953e-3 112.230e-3"/>
+			</xacro:if>	
+			<xacro:if value="${side == 'right'}">
+				<origin  rpy="-3.1415927  -1.396264 1.5707963" xyz="5e-3 44.8953e-3 112.230e-3"/>
+			</xacro:if>	
+		</xacro:finger>
+
+		<!-- # Middle -->
+		<xacro:finger name="middle" parent="palm_central" side="${side}" ns="${side}_hand_v1_wide">
+			
+			<xacro:if value="${side == 'left'}">
+				<origin  rpy="0 0 0 " xyz="5e-3 -12.5e-3 115e-3"/>
+			</xacro:if>	
+			<xacro:if value="${side == 'right'}">
+				<origin  rpy="0 -1.5707963 -1.5707963" xyz="5e-3 12.5e-3 115e-3"/>
+			</xacro:if>	
+		</xacro:finger>
+
+		<!-- # Ring --> 
+		<xacro:finger name="ring" parent="palm_little" side="${side}" ns="${side}_hand_v1_wide">
+			
+			<xacro:if value="${side == 'left'}">
+				<origin rpy="2.8797933 0 1.5707963 " xyz=" 8.6355e-3 5e-3 -44.4863e-3" /> 
+			</xacro:if>	
+			<xacro:if value="${side == 'right'}">
+				<origin rpy="0 -1.3089971 0" xyz=" 8.6355e-3 5e-3 44.4863e-3" /> 
+			</xacro:if>	
+		</xacro:finger>
+
+		<!-- # Little -->
+		<xacro:finger name="little" parent="palm_little" side="${side}" ns="${side}_hand_v1_wide">
+			<xacro:if value="${side == 'left'}">
+				<origin rpy="2.792527 0 1.5707963 " xyz="39.2985e-3 5e-3 -34.8419e-3" />
+			</xacro:if>	
+			<xacro:if value="${side == 'right'}">
+				<origin rpy="0 -1.221731 0" xyz="39.2985e-3 5e-3 34.8419e-3" />
+			</xacro:if>	
+		</xacro:finger>
+
+	</xacro:macro>
+	
+
+</robot>

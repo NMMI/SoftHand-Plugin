@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+   
+    <xacro:macro name="finger" params="name parent side *origin ns">
+      
+      <!-- Proximal Support -->
+      <xacro:phalanx_knuckle name="${name}_knuckle" parent="${parent}" side="${side}" ns="${ns}">
+        <xacro:insert_block name="origin"/>
+      </xacro:phalanx_knuckle>
+
+
+      <!-- Proximal -->
+      <xacro:phalanx name="${name}_proximal" parent="${name}_knuckle" side="${side}" ns="${ns}" mass="2.4190505e-02">
+        <xacro:if value="${side == 'left'}">
+          <origin rpy="-1.5707963 -1.5707963 0" xyz=" -6.5e-3 0 24e-3" />
+        </xacro:if>	
+        <xacro:if value="${side == 'right'}">
+          <origin rpy="0 0 0" xyz="24e-3 -6.5e-3 0" />
+        </xacro:if>	
+
+        
+        <inertia_origin> <origin rpy="0 0 0" xyz=" 2.0923634e-02  8.4162795e-04 -5.2131884e-05"/> </inertia_origin>
+        <inertia ixx="1.9981795e-06" ixy="-6.0806048e-08" ixz="0.0" iyy="4.7810654e-06" iyz="0.0" izz="5.0961924e-06"/>
+      </xacro:phalanx >
+
+      <!-- Middle -->
+      <xacro:phalanx name="${name}_middle" parent="${name}_proximal" side="${side}" ns="${ns}"  mass="2.4190505e-02">
+        <origin rpy="0 0 0" xyz="41e-3 0 0" />
+        <inertia_origin> <origin rpy="0 0 0" xyz=" 2.0923634e-02  8.4162795e-04 -5.2131884e-05"/> </inertia_origin>
+        <inertia ixx="1.9981795e-06" ixy="-6.0806048e-08" ixz="0.0" iyy="4.7810654e-06" iyz="0.0" izz="5.0961924e-06"/>
+      </xacro:phalanx>
+
+      <!-- Distal -->
+      <xacro:phalanx_dist name="${name}_distal" parent="${name}_middle" side="${side}" ns="${ns}" mass="1.2475845e-02">
+        <origin xyz="41e-3 0 0" rpy="0 0 0"/>
+        <inertia_origin><origin rpy="0 0 0" xyz="1.2887396e-02 6.2001804e-05 -1.1041989e-03"/></inertia_origin>
+        <inertia ixx="7.5548908e-07" ixy="0.0" ixz="0.0" iyy="1.2532982e-06" iyz="0.0" izz="1.3218760e-06"/>
+      </xacro:phalanx_dist>
+
+
+    </xacro:macro>
+</robot>

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(softhand_plugin)
 
-add_compile_options(-std=c++11)
+add_compile_options(-std=c++17)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -12,11 +12,6 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(gazebo REQUIRED)
-
-# add_message_files(
-#     FILES
-#   state_info.msg
-# )
 
 generate_messages(
   DEPENDENCIES
