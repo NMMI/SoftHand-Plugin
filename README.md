@@ -30,7 +30,13 @@ Two different versions (1.2 and Wide) of the SoftHand are present. Launch exampl
 
 * To spawn a hand inside Gazebo
 ```
-roslaunch softhands_description main.launch 
+roslaunch softhands_description softhands_gazebo.launch sh_version:=v1_2_research
+```
+
+Available versions:
+```
+sh_version:=v1_2_research
+sh_version:=v1_wide
 ```
 
 
