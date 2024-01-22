@@ -18,7 +18,7 @@ The above packages are tested on ROS Noetic and no external dependencies are req
 
 ```
 cd catkin_ws/src
-git clone https://github.com/IIT-SoftBots/SoftHand-Plugin.git
+git clone https://github.com/NMMI/SoftHand-Plugin.git
 cd ..
 catkin_make
 ```
