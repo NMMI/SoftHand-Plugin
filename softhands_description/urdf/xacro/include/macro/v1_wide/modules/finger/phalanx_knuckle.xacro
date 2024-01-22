@@ -8,7 +8,7 @@
 
 		<joint name="${ns}_${name}_joint" type="revolute">
 			<axis xyz="0 1 0"/>
-			<limit effort="30" velocity="0.0" lower="0.0" upper="0.0" />
+			<limit effort="30" velocity="0.0" lower="0.0" upper="0.01" />
 			<xacro:insert_block name="origin"/>
             <parent link="${ns}_${parent}_link"/>
 			<child link="${ns}_${name}_link"/>
@@ -16,6 +16,7 @@
 
 		<link name="${ns}_${name}_link">
 				<visual>
+				<material name="grey" />
 					<geometry>
 					<mesh
 						filename="package://softhands_description/meshes/v1_wide/${side}/phalanx_pros_sup.stl"

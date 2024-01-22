@@ -15,6 +15,7 @@
 
 		<link name="${ns}_${name}_link">
 			<visual>
+				<material name="grey" />
 				<geometry>
 				<mesh
 					filename="package://softhands_description/meshes/v1_wide/${side}/palm_central.stl"
@@ -23,7 +24,7 @@
 				<origin xyz="0 0 0" rpy="0 0 0" />
 			</visual>
 			<inertial>
-				<mass value="${mass}" />
+				<mass value="${mass/3}" />
 				<xacro:insert_block name="inertia_origin"/>
 				<xacro:insert_block name="inertia"/>
 			</inertial>
@@ -39,11 +40,20 @@
 
 
 
+		<!-- Fake joint and link for grasping -->
+	  	<joint name="${ns}_grasp_joint" type="fixed">
+			<origin rpy="0 0 0" xyz="0.03 -0.06 0.10"/>
+			<parent link="${ns}_${name}_link" />
+			<child link="${ns}_grasp_link" />
+		</joint>
+
+		<link name="${ns}_grasp_link"/>
+
 
 		<!-- palm base to Thumb -->
 		<joint name="${ns}_${name}_thumb_joint" type="revolute">
 			<axis xyz="0 0 ${sign*-1}"/>
-			<limit effort="30" velocity="0.0" lower="0" upper="0.3" />
+			<limit effort="30" velocity="0.0" lower="0" upper="0.17" />
 			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
 			<xacro:insert_block name="thumb_origin"/>
 			<parent link="${ns}_${name}_link"/>
@@ -53,7 +63,7 @@
 	    <link name="${ns}_${name}_thumb_link">
 		   <inertial>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
-				<mass value="0.001"/>
+				<mass value="${mass/3}" />
 				<xacro:insert_block name="inertia"/>
 		   </inertial>
 	    </link>
@@ -63,7 +73,7 @@
 		<joint name="${ns}_${name}_little_joint" type="revolute">
 			<axis xyz="0 0 1"/>
 			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
-			<limit effort="100" velocity="0.00" lower="0.0" upper="0.3" />
+			<limit effort="100" velocity="0.00" lower="0.0" upper="0.17" />
 			<xacro:insert_block name="little_origin"/>
 			<parent link="${ns}_${name}_link"/>
 			<child link="${ns}_${name}_little_link"/>
@@ -72,7 +82,7 @@
 		<link name="${ns}_${name}_little_link">
 			<inertial>
 				<origin rpy="0 0 0" xyz="0 0 0"/>
-				<mass value="0.001"/>
+				<mass value="${mass/3}" />
 				<xacro:insert_block name="inertia"/>
 			</inertial>
 	    </link>

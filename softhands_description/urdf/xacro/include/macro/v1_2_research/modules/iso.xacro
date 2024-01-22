@@ -72,7 +72,15 @@
     	  	<material>Gazebo/Grey</material>
 			<selfCollide>0</selfCollide>
 	  	</gazebo>
+		
+		<!-- Fake joint and link for grasping -->
+	  	<joint name="${ns}_grasp_joint" type="fixed">
+			<origin rpy="0 0 0" xyz="0.03 0.06 0.10"/>
+			<parent link="${ns}_${name}_link" />
+			<child link="${ns}_grasp_link" />
+		</joint>
 
+		<link name="${ns}_grasp_link"/>
 		
 	</xacro:macro>
 

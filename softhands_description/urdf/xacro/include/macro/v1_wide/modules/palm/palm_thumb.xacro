@@ -10,12 +10,13 @@
 			<child link="${ns}_${name}_link"/>
 			<xacro:insert_block name="palm_thumb_origin"/>
 			<axis xyz="0 0 ${sign*-1}" />
-      		<limit effort="30" velocity="0.0" lower="0" upper="0.35" />
+      		<limit effort="30" velocity="0.0" lower="0" upper="0.17" />
 			 <dynamics damping="$(arg damping)" friction="$(arg friction)"/>
 		</joint>
 
 	
 		<link name="${ns}_${name}_link">
+			<material name="grey" />
 			<visual>
 				<geometry>
 				<mesh
@@ -49,6 +50,7 @@
 		</joint>
 
 		<link name="${ns}_${name}_support_link">
+				<material name="grey" />
 				<visual>
 					<geometry>
 					<mesh
@@ -66,11 +68,11 @@
 					</inertial>
 				<collision>
 					<geometry>
-					<mesh
-						filename="package://softhands_description/meshes/v1_wide/${side}/thumb_support_collision.stl"
-						scale="0.0009 0.0009 0.0009" />
+						<mesh
+							filename="package://softhands_description/meshes/v1_wide/${side}/thumb_support_collision.stl"
+							scale="0.0009 0.0009 0.0009" />
 					</geometry>
-				<origin xyz="0 0 0" rpy="0 0 0" />
+					<origin xyz="0 0 0" rpy="0 0 0" />
 				</collision>
 		</link>
 
@@ -81,7 +83,7 @@
 
 		<gazebo reference="${ns}_${name}_support_link">
 			<selfCollide>0</selfCollide>
-			<material>Gazebo/White</material>
+			<material>Gazebo/Grey</material>
 		</gazebo>
 
     </xacro:macro>

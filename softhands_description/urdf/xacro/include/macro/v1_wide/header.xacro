@@ -39,7 +39,7 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="header">
 
-
+  <xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1_wide/modules/iso.xacro" />
   <!-- Include xacro macro  Palm-->
 	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1_wide/modules/palm/palm_central.xacro" />
 	<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1_wide/modules/palm/palm_thumb.xacro" />

@@ -10,7 +10,7 @@
 			<child link="${ns}_${name}_link"/>
 			<xacro:insert_block name="origin"/>
 			<axis xyz="0 0 1" />
-      		<limit effort="30" velocity="0.0" lower="0" upper="0.35" />
+      		<limit effort="30" velocity="0.0" lower="0" upper="0.17" />
 			<dynamics damping="$(arg damping)" friction="$(arg friction)"/>
 		</joint>
 

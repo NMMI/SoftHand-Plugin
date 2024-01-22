@@ -41,12 +41,6 @@
 	
 	<xacro:macro name="softhands" params="version position orientation fixed_hands:='false'">
 
-	
-		<xacro:property name="mm" value="1000"/>
-		<xacro:property name="mm2_to_m2" value="0.001"/>
-		<xacro:property name="gr_to_Kg" value="0.001"/>
-		<xacro:property name="negligible_mass" value="${10*gr_to_Kg}" />
-
 		<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/color.xacro" />
 		<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/plugin.xacro"/>
 
@@ -87,15 +81,15 @@
 			<xacro:v1_wide 
 				side="left"
 				parent="arm_1_7" 
-				position="0 -0.0 0.00" 
-				orientation="0 0 ${orientation}" 
+				position="0 0 0.0" 
+				orientation="0 0 ${-orientation}" 
 				fixed_hands="false">
 			</xacro:v1_wide>
 
 			<xacro:v1_wide 
 				side="right" 
 				parent="arm_2_7" 
-				position="0 0.0 0.0"  
+				position="0 0 0.0"  
 				orientation="0 0 ${orientation}" 
 				fixed_hands="false">
 			</xacro:v1_wide>
