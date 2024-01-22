@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!-- 
+ *  Software License Agreement: BSD 3-Clause License
+ *
+ * Copyright (c) 2021, NMMI
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer.
+ *
+ * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * Neither the name of the copyright holder nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * \file      finger.xacro
+ *
+ * \author       _Centro di Ricerca "E.Piaggio"_
+ * \author       _Istituto Italiano di Tecnologia, Soft Robotics for Human Cooperation and Rehabilitation Lab_
+ *
+-->
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="phalanx_knuckle" params="ns name parent *origin side">
+
+
+    <!-- Proximal JOINT -->
+    <joint name="${ns}_${name}_joint" type="revolute">
+      <xacro:insert_block name="origin"/>
+      <parent link="${ns}_${parent}_link"/>
+      <child link="${ns}_${name}_link"/>
+      <axis xyz="0 0 -1"/>
+      <limit effort="30" velocity="10.0" lower="-0.524" upper="0.524" />
+      <dynamics damping="$(arg damping)" friction="$(arg friction)" />
+    </joint>
+
+    <!-- LINK -->
+    <link name="${ns}_${name}_link">
+      <inertial>
+
+        <origin rpy="0 0 0" xyz="4.2753603e-04  0.0 -1.4321738e-03"/>
+        <mass value="0.0095"/>
+        <inertia ixx="6.4337303e-07" ixy="0.0" ixz="-3.9373913e-08" iyy="1.1253771e-06" iyz="0.0" izz="7.2336948e-07"/>
+      </inertial>
+      
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/v1_2_research/${side}/ph_knuckle.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="qbhand/palm"/>
+      </visual>
+
+      <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <mesh filename="package://softhands_description/meshes/v1_2_research/${side}/ph_knuckle.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+      
+    </link>
+
+
+
+        <!-- GAZEBO REF -->
+    <gazebo reference="${ns}_${name}_link">
+      <material>Gazebo/Grey</material>
+      <selfCollide>$(arg selfCollide)</selfCollide>
+    </gazebo>
+    
+            <!-- GAZEBO REF -->
+    <gazebo reference="${ns}_${name}_joint">
+      <implicitSpringDamper>true</implicitSpringDamper>
+			<springStiffness>0.8</springStiffness>
+			<springReference>0</springReference>
+	  </gazebo>
+    
+  </xacro:macro>
+
+</robot>

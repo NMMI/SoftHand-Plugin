@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+   
+    <xacro:macro name="thumb" params="name parent side *origin ns">
+
+      <!-- Proximal -->
+      <xacro:thumb_knuckle name="${name}_knuckle" parent="${parent}" side="${side}"  ns="${ns}"> 
+        <xacro:insert_block name="origin"/>
+      </xacro:thumb_knuckle>
+
+      <!-- Middle -->
+      <xacro:thumb_proximal name="${name}_proximal" parent="${name}_knuckle" side="${side}" ns="${ns}" mass="3.3679189e-02">
+        <origin rpy="${sign*-1.3962638} 0 0" xyz="38.5e-3 4.82952e-3 ${sign*-0.167417e-3}"/>
+        <inertia_origin> <origin rpy="0 0 0" xyz="2.0950700e-02  1.1175133e-03 -3.7424390e-05"/> </inertia_origin>
+        <inertia ixx="4.1328993e-06" ixy="-8.6599874e-08" ixz="0.0" iyy="7.4560101e-06" iyz="-1.0265429e-09" izz="6.6161853e-06"/>
+      </xacro:thumb_proximal>
+
+      <!-- Distal -->
+      <xacro:thumb_distal name="${name}_distal" parent="${name}_proximal" side="${side}" ns="${ns}" mass="2.3674554e-02">
+        <origin  rpy="0 0 0" xyz="41e-3 0 0"/>
+        <inertia_origin> <origin rpy="0 0 0" xyz="1.6161362e-02  1.6241404e-03 -3.2684152e-05 "/> </inertia_origin>
+        <inertia ixx="2.578454e-06" ixy="0.0" ixz="0.0" iyy="2.9887569e-06" iyz="0.0" izz="3.8277106e-06"/>
+      </xacro:thumb_distal>
+
+    </xacro:macro>
+</robot>

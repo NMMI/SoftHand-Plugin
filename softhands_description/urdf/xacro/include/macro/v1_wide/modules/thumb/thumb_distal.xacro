@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+   
+    <xacro:macro name="thumb_distal" params="name parent side ns mass *origin **inertia_origin *inertia">
+		
+		
+
+		<!-- Virtual joint from thumb proximal to thumb distal   -->
+		<joint name="${ns}_${name}_virtual_joint" type="revolute">
+			<axis xyz="0 0 1"/>
+			<xacro:insert_block name="origin"/>
+			<parent link="${ns}_${parent}_link"/>
+			<child link="${ns}_${name}_virtual_link"/>
+			<limit effort="30" velocity="0.0" lower="0" upper="0.785398" />
+			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
+		</joint>
+
+	    <link name="${ns}_${name}_virtual_link">
+		   <inertial>
+				<origin rpy="0 0 0" xyz="0 0 0"/>
+				<mass value="${mass}"/>
+				<xacro:insert_block name="inertia"/>
+		   </inertial>
+	
+	    </link>
+
+
+
+		<!-- Thumb middle  -->
+		<joint name="${ns}_${name}_joint" type="revolute">
+			<parent link="${ns}_${name}_virtual_link"/>
+			<child link="${ns}_${name}_link"/>
+			<origin rpy="0 0.0101229 0" xyz="8.99947e-3 0 -0.0973875e-3"/>
+			<axis xyz="0 0 1" />
+      		<limit effort="30" velocity="0.0" lower="0" upper="0.785398" />
+			<dynamics damping="$(arg damping)" friction="$(arg friction)"/>
+		</joint>
+
+	
+		<link name="${ns}_${name}_link">
+				<visual>
+				<material name="grey" />
+					<geometry>
+					<mesh
+						filename="package://softhands_description/meshes/v1_wide/${side}/phalanx_dist_thumb.stl"
+						scale="0.001 0.001 0.001" />
+					</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				</visual>
+				<inertial>
+					<mass value="${mass}"/>
+					<xacro:insert_block name="inertia"/>
+					<xacro:insert_block name="inertia_origin"/>
+				</inertial>
+				<collision>
+					<geometry>
+					<mesh
+						filename="package://softhands_description/meshes/v1_wide/${side}/phalanx_dist_thumb_collision.stl"
+						scale="0.0009 0.0009 0.0009" />
+					</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				</collision>
+		</link>
+
+
+		<!-- GAZEBO REF -->
+		<gazebo reference="${ns}_${name}_link">
+			<material>Gazebo/Grey</material>
+			<selfCollide>$(arg selfCollide)</selfCollide>
+		</gazebo>
+
+		<!-- GAZEBO REF -->
+		<gazebo reference="${ns}_${name}_virtual_joint">
+		<implicitSpringDamper>true</implicitSpringDamper>
+				<springStiffness>0.4</springStiffness>
+				<springReference>0</springReference>
+		</gazebo>
+		<!-- GAZEBO REF -->
+		<gazebo reference="${ns}_${name}_joint">
+		<implicitSpringDamper>true</implicitSpringDamper>
+				<springStiffness>0.4</springStiffness>
+				<springReference>0</springReference>
+		</gazebo>
+
+
+    </xacro:macro>
+</robot>

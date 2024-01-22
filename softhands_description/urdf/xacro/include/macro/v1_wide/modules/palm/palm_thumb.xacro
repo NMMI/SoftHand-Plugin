@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+   
+    <xacro:macro name="palm_thumb" params="name parent side ns mass  **inertia_origin *inertia **palm_thumb_origin **thumb_support_origin">
+
+
+		<joint name="${ns}_${parent}_virtual_joint" type="revolute">
+			<parent link="${ns}_${parent}_link"/>
+			<child link="${ns}_${name}_link"/>
+			<xacro:insert_block name="palm_thumb_origin"/>
+			<axis xyz="0 0 ${sign*-1}" />
+      		<limit effort="30" velocity="0.0" lower="0" upper="0.35" />
+			 <dynamics damping="$(arg damping)" friction="$(arg friction)"/>
+		</joint>
+
+	
+		<link name="${ns}_${name}_link">
+			<visual>
+				<geometry>
+				<mesh
+					filename="package://softhands_description/meshes/v1_wide/${side}/palm_thumb.stl"
+					scale="0.001 0.001 0.001" />
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+			</visual>
+			<inertial>
+				<mass value="${mass}" />
+				<xacro:insert_block name="inertia_origin"/>
+				<xacro:insert_block name="inertia"/>
+			</inertial>
+			<collision>
+				<geometry>
+				<mesh
+					filename="package://softhands_description/meshes/v1_wide/${side}/palm_thumb_collision.stl"
+					scale="0.001 0.001 0.001" />
+				</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+			</collision>
+		</link>
+
+
+
+		<!-- Palm thumb to thumb support -->
+		<joint name="${ns}_${name}_support_joint" type="fixed">
+			<parent link="${ns}_${name}_link"/>
+			<child link="${ns}_${name}_support_link"/>
+			<xacro:insert_block name="thumb_support_origin"/>
+		</joint>
+
+		<link name="${ns}_${name}_support_link">
+				<visual>
+					<geometry>
+					<mesh
+						filename="package://softhands_description/meshes/v1_wide/${side}/thumb_support.stl"
+						scale="0.001 0.001 0.001" />
+					</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				</visual>
+				<inertial>
+				<origin xyz="1.1097412e-02 -4.2327979e-05 -4.7109856e-04" rpy="0 0 0" />
+				<mass value="1.6408860e-02" />
+					<inertia ixx="1.8835019e-06" ixy="-4.9293913e-09" ixz="-2.5700318e-08"
+											iyy="1.2828797e-06"  iyz="-4.0065947e-09"
+																izz="2.2986135e-06" />
+					</inertial>
+				<collision>
+					<geometry>
+					<mesh
+						filename="package://softhands_description/meshes/v1_wide/${side}/thumb_support_collision.stl"
+						scale="0.0009 0.0009 0.0009" />
+					</geometry>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				</collision>
+		</link>
+
+		<gazebo reference="${ns}_${name}_link">
+			<selfCollide>0</selfCollide>
+			<material>Gazebo/Grey</material>
+		</gazebo>
+
+		<gazebo reference="${ns}_${name}_support_link">
+			<selfCollide>0</selfCollide>
+			<material>Gazebo/White</material>
+		</gazebo>
+
+    </xacro:macro>
+</robot>

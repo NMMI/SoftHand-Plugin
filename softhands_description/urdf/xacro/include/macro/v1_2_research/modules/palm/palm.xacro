@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!-- 
+ *  Software License Agreement: BSD 3-Clause License
+ *
+ * Copyright (c) 2021, NMMI
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer.
+ *
+ * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * Neither the name of the copyright holder nor the names of its
+ * contributors may be used to endorse or promote products derived from
+ * this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * \file      sh_v1_simple.xacro
+ *
+ * \author       _Centro di Ricerca "E.Piaggio"_
+ * \author       _Istituto Italiano di Tecnologia, Soft Robotics for Human Cooperation and Rehabilitation Lab_
+ *
+-->
+
+<robot name="palm_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+	<xacro:macro name="palm" params="ns name parent *origin">
+		
+
+
+	  	<joint name="${ns}_palm_joint" type="fixed">
+			<xacro:insert_block name="origin"/>
+			<parent link="${ns}_${parent}_link" />
+			<child link="${ns}_palm_link" />
+		</joint>
+
+		<link name="${ns}_palm_link">
+			<inertial>
+				<origin rpy="0 0 0" xyz="0.0030 -0.0449 ${sign*0.0135}"/>
+				<mass value="0.45"/>
+				<inertia ixx="0.00045" ixy="0.0" ixz="0.0" iyy="0.00025" iyz="0.0" izz="0.0006"/>
+			</inertial>
+			<visual>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="package://softhands_description/meshes/v1_2_research/${side}/palm_pinch.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+			<material name="qbhand/palm"/>
+			</visual>
+			<collision>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+			<geometry>
+				<mesh filename="package://softhands_description/meshes/v1_2_research/${side}/palm_pinch.stl" scale="0.001 0.001 0.001"/>
+			</geometry>
+			</collision>
+		</link>
+
+
+		<gazebo reference="${ns}_palm_link">
+			<material>Gazebo/Grey</material>
+			<selfCollide>0</selfCollide>
+		</gazebo>
+	</xacro:macro>
+
+</robot>

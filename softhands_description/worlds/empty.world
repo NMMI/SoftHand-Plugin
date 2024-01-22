@@ -13,9 +13,52 @@
         </include>
         <gui>
             <camera name="user_camera">
-                <pose>-0.231 -0.351 0.419 0.000 0.744 1.020</pose>
+                <pose>0.41151 0.558737 0.384584 0 0.452 -1.98001</pose>
             </camera>
         </gui>
+        <scene>
+            <ambient>0.4 0.4 0.4 1</ambient>
+            <background>0.7 0.7 0.7 1</background>
+            <!-- modified (shadows) to reduce computation effort, default : true -->
+            <shadows>false</shadows>
+        </scene>
+
+        <physics name="default_physics" default="true" type="ode">
+            <max_step_size>0.001</max_step_size>
+            <real_time_update_rate>4000.0</real_time_update_rate>
+            <real_time_factor>1</real_time_factor>
+            <gravity>0 0 -9.8</gravity>
+            <ode>
+                <solver>
+                    <type>quick</type>
+                    <precon>jacobi</precon>
+                    <iters>50</iters>
+                    <sor>1</sor>
+                </solver>
+            </ode>
+        </physics>
+
+        <!-- <model name="my_box">
+        <pose>-0.01 0.08 0.18 0 0 0</pose>
+        <static>true</static>
+        <link name="link">
+            <collision name="collision">
+            <geometry>
+                <sphere>
+                <radius>0.05</radius>
+                </sphere>
+            </geometry>
+            </collision>
+            <visual name="visual">
+            <geometry>
+                <sphere>
+                <radius>0.05</radius>
+                </sphere>
+            </geometry>
+            </visual>
+        </link>
+        </model> -->
+
     </world>
   
 </sdf>

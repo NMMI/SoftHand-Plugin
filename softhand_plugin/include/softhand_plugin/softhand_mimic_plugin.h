@@ -137,13 +137,14 @@ namespace gazebo{
     void DisplayJointPos();
     void GetFingersState();
 	  void SetFingersTorque(double tauFingers[][4], double tauMimicFingers[][3]);
+	  void SetPalmTorque(double tauPalm[][2], double tauMimicPalm[][2]);
 	  double ComputeActualSyn();
     // ROS handle
     ros::NodeHandle n;
 
     // publishers
     ros::Publisher pub_mot_state;   // for motor state
-    ros::Publisher pub_thumb_state, pub_index_state, pub_middle_state, pub_ring_state, pub_little_state;   	// for fingers state
+    ros::Publisher pub_thumb_state, pub_index_state, pub_middle_state, pub_ring_state, pub_little_state, pub_palm_state;   	// for fingers state
 
     // subscribers
     ros::Subscriber sub_cmd;  // for references
@@ -155,15 +156,15 @@ namespace gazebo{
     physics::LinkPtr link;
 
     // Pointer to output shaft joint
-    std::vector<std::vector<physics::JointPtr>> fingers_joint, fingers_mimic_joint;
+    std::vector<std::vector<physics::JointPtr>> fingers_joint, fingers_mimic_joint, palm_joint, palm_mimic_joint;
 
     // Pointer to the update event connection
     event::ConnectionPtr updateConnection;
 
     // Command name to create a specific publisher and subscribers
     std::string cmd_pub_name, cmd_ref_name;
-    std::string cmd_thumb_name, cmd_index_name, cmd_middle_name, cmd_ring_name, cmd_little_name;
-    std::string pub_thumb_name, pub_index_name, pub_middle_name, pub_ring_name, pub_little_name;
+    std::string cmd_thumb_name, cmd_index_name, cmd_middle_name, cmd_ring_name, cmd_little_name, cmd_palm_name;
+    std::string pub_thumb_name, pub_index_name, pub_middle_name, pub_ring_name, pub_little_name, pub_palm_name;
 
     // String names of the topic from which retrieve the desired motor variables
     std::string link_pub_name;
@@ -177,6 +178,8 @@ namespace gazebo{
     bool flag_pub_state = true;
     bool flag_sub_ext_tau = true;
 
+    std::vector<std::vector<double>> q_palm, dq_palm;   // thumb (first row), index (second row), middle (third row), ring (forth row), little (fifth row)
+    std::vector<std::vector<double>> qMimic_palm, dqMimic_palm;   // thumb (first row), index (second row), middle (third row), ring (forth row), little (fifth row)
     // Fingers state
     std::vector<std::vector<double>> q_fingers, dq_fingers;   // thumb (first row), index (second row), middle (third row), ring (forth row), little (fifth row)
     std::vector<std::vector<double>> qMimic_fingers, dqMimic_fingers;   // thumb (first row), index (second row), middle (third row), ring (forth row), little (fifth row)
@@ -187,6 +190,9 @@ namespace gazebo{
     std::vector<std_msgs::Float64MultiArray> cmd_fingers;
 
     // Finger string names
+    std::vector<std::string> palm_names = {"palm_central"};
+    std::vector<std::string> palm_part_names = {"thumb", "little"};
+
     std::vector<std::string> finger_names = {"thumb", "index", "middle", "ring", "little"};
     std::vector<std::string> finger_part_names = {"knuckle", "proximal", "middle", "distal"};
 
@@ -194,13 +200,20 @@ namespace gazebo{
     double r_finger, R_pulley, n_param;
 
     double fingers_syn_S[5][4], fingers_syn_Rt[5][4];
+    double palm_syn_S[1][2];
 
     // Elastic value of the spring of each finger (TODO: modify this with different springs values for the fingers)
     double spring_k, spring_k_mimic, spring_k_tendon;
     double spring_k_each[5][4], spring_k_mimic_each[5][4];
+    double spring_k_each_palm[1][2], spring_k_mimic_each_palm[1][2];
 
     // PID gains for each finger (supposed equal)
     double kP_fing, kI_fing, kD_fing;
+
+    // Palm
+    bool wide;
+    // std::vector<std::string> palm_names = {"thumb", "little"};
+    // sensor_msgs::JointState palm_state;
 
   };
 
