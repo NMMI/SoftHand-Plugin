@@ -75,7 +75,7 @@
 		
 		<!-- Fake joint and link for grasping -->
 	  	<joint name="${ns}_grasp_joint" type="fixed">
-			<origin rpy="0 0 0" xyz="0.03 0.06 0.10"/>
+			<origin rpy="0 0 1.57" xyz="0.03 0.06 0.10"/>
 			<parent link="${ns}_${name}_link" />
 			<child link="${ns}_grasp_link" />
 		</joint>
