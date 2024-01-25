@@ -42,7 +42,7 @@
 
 		<!-- Fake joint and link for grasping -->
 	  	<joint name="${ns}_grasp_joint" type="fixed">
-			<origin rpy="0 0 0" xyz="0.03 -0.06 0.10"/>
+			<origin rpy="0 0 0" xyz="0.03 -0.09 0.10"/>
 			<parent link="${ns}_${name}_link" />
 			<child link="${ns}_grasp_link" />
 		</joint>
@@ -51,7 +51,7 @@
 
 
 		<!-- palm base to Thumb -->
-		<joint name="${ns}_${name}_thumb_joint" type="revolute">
+		<joint name="${ns}_${name}_thumb_joint" type="${joint_type}">
 			<axis xyz="0 0 ${sign*-1}"/>
 			<limit effort="30" velocity="0.0" lower="0" upper="0.17" />
 			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
@@ -70,7 +70,7 @@
 
 		<!-- palm base to Litte virtual -->
 
-		<joint name="${ns}_${name}_little_joint" type="revolute">
+		<joint name="${ns}_${name}_little_joint" type="${joint_type}">
 			<axis xyz="0 0 1"/>
 			<dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)"/>
 			<limit effort="100" velocity="0.00" lower="0.0" upper="0.17" />

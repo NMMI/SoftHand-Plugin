@@ -5,7 +5,7 @@
     <xacro:macro name="palm_thumb" params="name parent side ns mass  **inertia_origin *inertia **palm_thumb_origin **thumb_support_origin">
 
 
-		<joint name="${ns}_${parent}_virtual_joint" type="revolute">
+		<joint name="${ns}_${parent}_virtual_joint" type="${joint_type}">
 			<parent link="${ns}_${parent}_link"/>
 			<child link="${ns}_${name}_link"/>
 			<xacro:insert_block name="palm_thumb_origin"/>

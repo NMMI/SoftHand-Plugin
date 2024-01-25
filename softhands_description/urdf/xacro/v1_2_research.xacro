@@ -47,6 +47,17 @@
 		<xacro:arg name="damping" 			default="3e-2"/>
 		<xacro:arg name="selfCollide" 		default="0"/>
 
+		<!-- <xacro:property name="fixed_hands" default="false"/> -->
+		<xacro:property name="joint_type" default="revolute"/>
+
+		<xacro:if value="${fixed_hands == True}">
+			<xacro:property name="joint_type" value="fixed"/>
+		</xacro:if>	
+
+		<xacro:if value="${fixed_hands == False}">
+			<xacro:property name="joint_type" value="revolute"/>
+		</xacro:if>	
+
 		<xacro:property name="sign" default="1"/>
 		<xacro:if value="${side == 'left'}">
 			<xacro:property name="sign" value="-1"/>

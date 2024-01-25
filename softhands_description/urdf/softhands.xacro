@@ -56,19 +56,17 @@
 				side="left"
 				parent="arm_1_7" 
 				position="0 -0. 0.00" 
-				orientation="0 0 ${orientation}" 
-				fixed_hands="false">
+				orientation="0 0 0" 
+				fixed_hands="${fixed_hands}">
 			</xacro:v1_2_research>
 			
 			<xacro:v1_2_research 
 				side="right" 
 				parent="arm_2_7" 
 				position="0 0.0 0.00"
-				orientation="0 0 ${orientation}" 
-				fixed_hands="false">
+				orientation="0 0 3.14" 
+				fixed_hands="${fixed_hands}">
 			</xacro:v1_2_research>
-
-
 			
 		</xacro:if>	
 
@@ -82,7 +80,7 @@
 				side="left"
 				parent="arm_1_7" 
 				position="0 0 0.0" 
-				orientation="0 0 ${-orientation}" 
+				orientation="0 0 0" 
 				fixed_hands="false">
 			</xacro:v1_wide>
 
@@ -90,10 +88,36 @@
 				side="right" 
 				parent="arm_2_7" 
 				position="0 0 0.0"  
-				orientation="0 0 ${orientation}" 
+				orientation="0 0 3.14" 
 				fixed_hands="false">
 			</xacro:v1_wide>
 		</xacro:if>	
+
+				<!-- IF VERSION == 1_wide -->
+
+		<xacro:if value="${version == 'mixed_hands'}">
+			<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1_wide/header.xacro"/>
+			<xacro:include filename="$(find softhands_description)/urdf/xacro/v1_wide.xacro"/>
+			<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v1_2_research/header.xacro"/>
+			<xacro:include filename="$(find softhands_description)/urdf/xacro/v1_2_research.xacro"/>
+			
+			<xacro:v1_wide 
+				side="left"
+				parent="arm_1_7" 
+				position="0 0 0.0" 
+				orientation="0 0 ${orientation}" 
+				fixed_hands="${fixed_hands}">
+			</xacro:v1_wide>
+
+			<xacro:v1_2_research 
+				side="right" 
+				parent="arm_2_7" 
+				position="0 0.0 0.00"
+				orientation="0 0 3.14" 
+				fixed_hands="${fixed_hands}">
+			</xacro:v1_2_research>
+		</xacro:if>	
+
 
 	</xacro:macro>
 

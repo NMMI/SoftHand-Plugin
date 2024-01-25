@@ -2,12 +2,12 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
    
-    <xacro:macro name="phalanx" params="name parent ns *origin side mass **inertia_origin *inertia">
+    <xacro:macro name="wide_phalanx" params="name parent ns *origin side mass **inertia_origin *inertia">
 
 
 
 		<!-- Virtual joint from knuckle->proximal or proximal->middle   -->
-		<joint name="${ns}_${name}_virtual_joint" type="revolute">
+		<joint name="${ns}_${name}_virtual_joint" type="${joint_type}">
 			<axis xyz="0 0 1"/>
 			<limit effort="30" velocity="0.0" lower="0" upper="0.785398" />
 			<xacro:insert_block name="origin"/>
@@ -29,7 +29,7 @@
 
 		<!-- Proximal phalanx -->
 
-		<joint name="${ns}_${name}_joint" type="revolute">
+		<joint name="${ns}_${name}_joint" type="${joint_type}">
 			<axis xyz="0 0 1"/>
 			<limit effort="30" velocity="0.0" lower="0" upper="0.785398" />
 			<origin rpy="0 0 0" xyz="9e-3 0 0"/>

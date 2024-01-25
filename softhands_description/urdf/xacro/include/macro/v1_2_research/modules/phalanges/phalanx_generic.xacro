@@ -44,7 +44,7 @@
 
 
     <!-- Inner VIRTUAL JOINT -->
-		<joint name="${ns}_${name}_virtual_joint" type="revolute">
+		<joint name="${ns}_${name}_virtual_joint" type="${joint_type}">
       <axis xyz="0 0 -1"/>
       <xacro:insert_block name="virtual_origin"/>
 			<parent link="${ns}_${parent}_link"/>
@@ -64,7 +64,7 @@
 
 
     <!-- Outer JOINT -->
-    <joint name="${ns}_${name}_joint" type="revolute">
+    <joint name="${ns}_${name}_joint" type="${joint_type}">
       <axis xyz="0 0 -1"/>
       <xacro:insert_block name="real_origin"/>
       <parent link="${ns}_${name}_virtual_link"/>

@@ -2,11 +2,11 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
    
-    <xacro:macro name="phalanx_knuckle" params="name parent side *origin ns">
+    <xacro:macro name="wide_phalanx_knuckle" params="name parent side *origin ns">
 
 		<!-- Support -->
 
-		<joint name="${ns}_${name}_joint" type="revolute">
+		<joint name="${ns}_${name}_joint" type="${joint_type}">
 			<axis xyz="0 1 0"/>
 			<limit effort="30" velocity="0.0" lower="0.0" upper="0.01" />
 			<xacro:insert_block name="origin"/>

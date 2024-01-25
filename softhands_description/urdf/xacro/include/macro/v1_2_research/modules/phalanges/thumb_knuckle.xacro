@@ -43,7 +43,7 @@
 
 
     <!-- Proximal JOINT -->
-    <joint name="${ns}_${name}_joint" type="revolute">
+    <joint name="${ns}_${name}_joint" type="${joint_type}">
       <xacro:insert_block name="origin"/>
       <parent link="${ns}_${parent}_link"/>
       <child link="${ns}_${name}_link"/>
