@@ -53,20 +53,10 @@
 		</xacro:if>	
 
     	<xacro:softhand_mimic_plugin ns="${side}_hand_v3" wide="false"/>
-
-		<!-- # iso -->
-		<!-- <xacro:iso name="iso" parent="${parent}" ns="${side}_hand_v3">
-			<origin rpy="${orientation}" xyz="${position}"/>
-		</xacro:iso> -->
 		
 		<!-- # palm  -->
 		<xacro:palm name="palm" parent="${parent}" ns="${side}_hand_v3">
-			<xacro:if value="${side == 'left'}">
-				<origin rpy="1.57 0  1.57" xyz="0.02 -0.005 0.11"/>
-			</xacro:if>	
-			<xacro:if value="${side == 'right'}">
-				<origin rpy="1.57 0 -1.57" xyz="0.02 0.005 0.11"/>
-			</xacro:if>			
+				<origin rpy="${orientation}" xyz="${position}"/>
 		</xacro:palm>
 
 		<!-- # thumb -->
