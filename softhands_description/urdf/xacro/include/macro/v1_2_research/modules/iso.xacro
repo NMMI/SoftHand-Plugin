@@ -74,13 +74,27 @@
 	  	</gazebo>
 		
 		<!-- Fake joint and link for grasping -->
-	  	<joint name="${ns}_grasp_joint" type="fixed">
+		<!-- QUIRINO: added xacro:if for left and right grasp_link-->
+	  	<xacro:if value="${ns == 'right_hand_v1_2_research'}">
+		<joint name="${ns}_grasp_joint" type="fixed">
 			<origin rpy="0 0 1.57" xyz="-0.06 0.03 0.16"/>
 			<parent link="${ns}_${name}_link" />
 			<child link="${ns}_grasp_link" />
 		</joint>
 
 		<link name="${ns}_grasp_link"/>
+		</xacro:if>
+
+		<xacro:if value="${ns == 'left_hand_v1_2_research'}">
+		<joint name="${ns}_grasp_joint" type="fixed">
+			<origin rpy="0 0 1.57" xyz="0.06 0.03 0.16"/>
+			<parent link="${ns}_${name}_link" />
+			<child link="${ns}_grasp_link" />
+		</joint>
+
+		<link name="${ns}_grasp_link"/>
+		</xacro:if>
+
 		
 	</xacro:macro>
 
