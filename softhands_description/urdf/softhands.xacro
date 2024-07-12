@@ -105,7 +105,7 @@
 				side="left"
 				parent="arm_1_7" 
 				position="0 0 0.0" 
-				orientation="0 0 ${orientation}" 
+				orientation="0 0 ${orientation/2}" 
 				fixed_hands="${fixed_hands}">
 			</xacro:v1_wide>
 
@@ -113,7 +113,7 @@
 				side="right" 
 				parent="arm_2_7" 
 				position="0 0.0 0.00"
-				orientation="0 0 ${orientation/2}" 
+				orientation="0 0 ${orientation}" 
 				fixed_hands="${fixed_hands}">
 			</xacro:v1_2_research>
 		</xacro:if>	

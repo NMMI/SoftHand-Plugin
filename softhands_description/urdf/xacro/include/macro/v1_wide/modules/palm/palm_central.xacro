@@ -45,7 +45,7 @@
 	  	<xacro:if value="${ns == 'right_hand_v1_wide'}">
 		<joint name="${ns}_grasp_joint" type="fixed">
 			<!-- QUIRINO: modified grasp_link for wide_hand-->
-			<origin rpy="0 0 0" xyz="0.03 0.10 0.15"/>
+			<origin rpy="0 0 1.57" xyz="0.03 0.10 0.15"/>
 			<parent link="${ns}_${name}_link" />
 			<child link="${ns}_grasp_link" />
 		</joint>
