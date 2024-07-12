@@ -39,7 +39,7 @@
 
 <robot name="softhands" xmlns:xacro="http://www.ros.org/wiki/xacro">
 	
-	<xacro:macro name="softhands" params="version position orientation fixed_hands:='false'">
+	<xacro:macro name="softhands" params="version position orientation arm_1_parent arm_2_parent fixed_hands:='false'">
 
 		<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/color.xacro" />
 		<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/plugin.xacro"/>
@@ -54,16 +54,16 @@
 			
 			<xacro:v1_2_research 
 				side="left"
-				parent="arm_1_7" 
-				position="0 -0. 0.00" 
+				parent="${arm_1_parent}" 
+				position="${position}"
 				orientation="0 0 ${orientation/2}" 
 				fixed_hands="${fixed_hands}">
 			</xacro:v1_2_research>
 			
 			<xacro:v1_2_research 
 				side="right" 
-				parent="arm_2_7" 
-				position="0 0.0 0.00"
+				parent="${arm_2_parent}" 
+				position="${position}"
 				orientation="0 0 ${orientation/2}" 
 				fixed_hands="${fixed_hands}">
 			</xacro:v1_2_research>
@@ -78,16 +78,16 @@
 			
 			<xacro:v1_wide 
 				side="left"
-				parent="arm_1_7" 
-				position="0 0 0.0" 
+				parent="${arm_1_parent}" 
+				position="${position}"
 				orientation="0 0 ${orientation}" 
 				fixed_hands="${fixed_hands}">
 			</xacro:v1_wide>
 
 			<xacro:v1_wide 
 				side="right" 
-				parent="arm_2_7" 
-				position="0 0 0.0"  
+				parent="${arm_2_parent}" 
+				position="${position}"
 				orientation="0 0 ${orientation}" 
 				fixed_hands="${fixed_hands}">
 			</xacro:v1_wide>
@@ -103,17 +103,17 @@
 			
 			<xacro:v1_wide 
 				side="left"
-				parent="arm_1_7" 
-				position="0 0 0.0" 
-				orientation="0 0 ${orientation/2}" 
+				parent="${arm_1_parent}" 
+				position="${position}"
+				orientation="0 0 ${orientation}" 
 				fixed_hands="${fixed_hands}">
 			</xacro:v1_wide>
 
 			<xacro:v1_2_research 
 				side="right" 
-				parent="arm_2_7" 
-				position="0 0.0 0.00"
-				orientation="0 0 ${orientation}" 
+				parent="${arm_2_parent}" 
+				position="${position}"
+				orientation="0 0 ${orientation/2}" 
 				fixed_hands="${fixed_hands}">
 			</xacro:v1_2_research>
 		</xacro:if>	

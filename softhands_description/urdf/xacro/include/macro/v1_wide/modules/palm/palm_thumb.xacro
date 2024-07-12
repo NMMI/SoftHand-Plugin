@@ -16,8 +16,8 @@
 
 	
 		<link name="${ns}_${name}_link">
-			<material name="grey" />
 			<visual>
+				<material name="grey" />
 				<geometry>
 				<mesh
 					filename="package://softhands_description/meshes/v1_wide/${side}/palm_thumb.stl"
@@ -50,8 +50,8 @@
 		</joint>
 
 		<link name="${ns}_${name}_support_link">
-				<material name="grey" />
 				<visual>
+					<material name="grey" />
 					<geometry>
 					<mesh
 						filename="package://softhands_description/meshes/v1_wide/${side}/thumb_support.stl"
