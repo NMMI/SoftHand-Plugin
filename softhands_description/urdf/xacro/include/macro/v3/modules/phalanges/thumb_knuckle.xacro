@@ -55,9 +55,9 @@
     <!-- LINK -->
     <link name="${ns}_${name}_link">
       <inertial>
-        <origin rpy="0 0 0" xyz="1.3071561e-02 ${sign*-2.7346340e-03} 6.4090487e-04"/>
-        <mass value="0.01"/>
-        <inertia ixx="3.5865978e-07" ixy="${sign*2.0944224e-07}" ixz="-6.8657569e-08" iyy="1.3885564e-06" iyz="${sign*3.2170608e-08}" izz="1.3571203e-06"/>
+        <origin rpy="0 0 0" xyz="1.6018749e-3 ${sign*1.9731832e-04} -1.8504085e-03"/>
+        <mass value="3.2037862e-03"/>
+        <inertia ixx="6.5745301e-08" ixy="${sign*-3.1362083e-10}" ixz="3.5152512e-08" iyy="2.2281085e-07" iyz="${sign*-5.2782785e-11}" izz="2.0956023e-07"/>
       </inertial>
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>

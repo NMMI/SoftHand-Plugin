@@ -37,7 +37,7 @@
  *
 -->
 
-<robot name="iso_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="iso_v3" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 	<xacro:macro name="iso" params="ns name parent *origin">
 		

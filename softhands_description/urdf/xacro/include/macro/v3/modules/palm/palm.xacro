@@ -37,7 +37,7 @@
  *
 -->
 
-<robot name="palm_v2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<robot name="palm_v3" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
 	<xacro:macro name="palm" params="ns name parent *origin">
 		
