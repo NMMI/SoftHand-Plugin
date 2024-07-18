@@ -39,7 +39,7 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="phalanx_knuckle" params="ns name parent *origin side mesh">
+  <xacro:macro name="phalanx_knuckle" params="ns name mass parent *origin **inertia_origin side mesh">
 
 
     <!-- Proximal JOINT -->
@@ -63,7 +63,7 @@
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/v3/${side}/${index.mesh.knuckle_mesh}" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://softhands_description/meshes/v3/${side}/${mesh}" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="qbhand/palm"/>
       </visual>
@@ -71,39 +71,13 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/v3/${side}/${index.mesh.knuckle_mesh}" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://softhands_description/meshes/v3/${side}/${mesh}" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
       
     </link>
 
-    <!-- LINK --> 
-    <link name="${ns}_${name}_link">
-      <inertial>
-
-        <origin rpy="0 0 0" xyz="8.2672528e-03  -2.7479334e-03 6.3742013e-05"/>
-        <mass value="2.9531895e-03"/>
-        <inertia ixx="4.9114511e-08" ixy="2.4336199e-08" ixz="1.1336750e-09" iyy="1.6520715e-07" iyz="0.0" izz="1.7172503e-07"/>
-      </inertial>
-      
-      <visual>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <geometry>
-          <mesh filename="package://softhands_description/meshes/v3/${side}/ph_knuckle.stl" scale="0.001 0.001 0.001"/>
-        </geometry>
-        <material name="qbhand/palm"/>
-      </visual>
-
-      <collision>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <geometry>
-          <mesh filename="package://softhands_description/meshes/v3/${side}/ph_knuckle.stl" scale="0.001 0.001 0.001"/>
-        </geometry>
-      </collision>
-      
-    </link>
-
-
+ 
 
         <!-- GAZEBO REF -->
     <gazebo reference="${ns}_${name}_link">

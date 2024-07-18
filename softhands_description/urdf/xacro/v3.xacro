@@ -55,8 +55,9 @@
     	<xacro:softhand_mimic_plugin ns="${side}_hand_v3" wide="false"/>
 		
 		<!-- Softhand v3 needs a config file because the finger are different from each other -->
-		<xacro:property name="params" from_yaml="$(find softhands_description)/urdf/config/params_v3.yaml"/>
+		<xacro:property name="yaml_file" value="${xacro.load_yaml('$(find softhands_description)/urdf/config/params_v3.yaml')}"/>
 		<!-- <xacro:println value="${params}"/> -->
+		
  
 		<!-- # palm  -->
 		<xacro:palm name="palm" parent="${parent}" ns="${side}_hand_v3">
@@ -64,51 +65,8 @@
 		</xacro:palm>
 
 		<!-- # thumb -->
-		<!-- <xacro:thumb name="thumb" parent="palm" ns="${side}_hand_v3" side="${side}">
-			<origin rpy="-1.57 3.14 0.0" xyz="-0.044 -0.0465 -0.002"/>
-		</xacro:thumb> -->
+		<xacro:thumb name="thumb" parent="palm" ns="${side}_hand_v3" side="${side}"/>
 
-		<!-- # Index -->
-		<!-- <xacro:finger name="index" parent="palm" ns="${side}_hand_v3" side="${side}" mesh="${index.mesh.knuckle_mesh}" >
-			<xacro:if value="${side == 'left'}">
-				<origin rpy="0 3.14 -1.57" xyz="-0.02 -0.007 -0.014"/>
-			</xacro:if>	
-			<xacro:if value="${side == 'right'}">
-				<origin rpy="0 0 1.7453293" xyz="-0.02 0 6.02670e-03"/>
-			</xacro:if>		
-		</xacro:finger> -->
-
-		<!-- # Middle -->
-		<!-- <xacro:finger name="middle" parent="palm" ns="${side}_hand_v3" side="${side}">
-			<xacro:if value="${side == 'left'}">
-				<origin rpy="0 3.14 -1.57" xyz="0 0 -0.014"/>
-			</xacro:if>	
-			<xacro:if value="${side == 'right'}">
-				<origin rpy="0 0 1.57" xyz="0 0 0.014"/>
-			</xacro:if>	
-		</xacro:finger> -->
-
-		<!-- # Ring -->
-		<!-- <xacro:finger name="ring" parent="palm" ns="${side}_hand_v3" side="${side}">
-			<xacro:if value="${side == 'left'}">
-				<origin rpy="0 3.14 -1.57" xyz="0.02 -0.007 -0.014"/>
-			</xacro:if>	
-			<xacro:if value="${side == 'right'}">
-				<origin rpy="0 0 1.57" xyz="0.02 -0.007 0.014"/>
-			</xacro:if>			
-		</xacro:finger> -->
-
-		<!-- # Little -->
-		<!-- <xacro:finger name="little" parent="palm" ns="${side}_hand_v3" side="${side}">
-			<xacro:if value="${side == 'left'}">
-				<origin rpy="0 3.14 -1.57" xyz="0.04 -0.012 -0.014"/>
-			</xacro:if>	
-			<xacro:if value="${side == 'right'}">
-				<origin rpy="0 0 1.57" xyz="0.04 -0.012 0.014"/>
-			</xacro:if>	
-		</xacro:finger> -->
-
-	    
 	</xacro:macro>
 
 </robot>

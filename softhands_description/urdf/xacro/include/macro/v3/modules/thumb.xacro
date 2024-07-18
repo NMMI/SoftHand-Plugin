@@ -39,33 +39,19 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="thumb" params="ns name parent *origin side">
+  <xacro:macro name="thumb" params="yaml_file:=^ ns name parent side">
 
     <!-- Knuckle -->
     <xacro:thumb_knuckle name="${name}_knuckle" parent="${parent}" ns="${ns}" side="${side}">
-      <origin rpy="1.5707963 0 2.5307278" xyz="-0.0315281 -0.0276566 ${sign*-0.0024}"/>
     </xacro:thumb_knuckle>
 
     <!-- Proximal  -->
-    <xacro:phalanx_generic name="${name}_proximal" parent="${name}_knuckle" ns="${ns}" mass="3.4433482e-03" mesh="ph_short">
-      <xacro:if value="${side == 'left'}">
-         <virtual_origin> <origin rpy="-2 0.0 0.0" xyz="0.0255 0.0038 -0.00012"/></virtual_origin>
-      </xacro:if>	
-      <xacro:if value="${side == 'right'}">
-         <virtual_origin> <origin rpy="-1.5707963 0.0 0.0" xyz="16.5e-03 -4.2e-03 0"/></virtual_origin>
-      </xacro:if>	
+    <xacro:phalanx_generic name="${name}" type="prossimal" parent="${name}_knuckle" ns="${ns}">
       <real_origin>     <origin rpy="0 0 0" xyz="9e-03 0 0"/>                         </real_origin>
       <inertia_origin>  <origin rpy="0 0 0" xyz="8.2958878e-03 1.4867666e-04 0"/>  </inertia_origin>
       <inertia ixx="5.9259154e-08" ixy="4.7090997e-09" ixz="0" iyy="2.0151714e-07" iyz="0.0" izz="2.1338410e-07"/>
     </xacro:phalanx_generic>
 
-    <!-- Distal  -->
-    <xacro:phalanx_generic name="${name}_distal" parent="${name}_proximal" ns="${ns}" mass="2.3548400e-03" mesh="ph_distal">
-      <virtual_origin>  <origin rpy="0 0 0" xyz="16e-03 0 0"/>                        </virtual_origin>
-      <real_origin>     <origin rpy="0 0 0" xyz="9e-03 0 0"/>                         </real_origin>
-      <inertia_origin>  <origin rpy="0 0 0" xyz="2.3098353e-03 4.4361817e-04 -4.4968362e-04"/>  </inertia_origin>
-      <inertia ixx="2.8240100e-08" ixy="8.9271493e-10" ixz="1.2771999e-10" iyy="6.1297195e-10" iyz="0.0" izz="5.7464142e-08"/>
-    </xacro:phalanx_generic>
 
   </xacro:macro>
 

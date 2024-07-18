@@ -39,12 +39,12 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="thumb_knuckle" params="ns name parent *origin side">
+  <xacro:macro name="thumb_knuckle" params="yaml_file:=^ ns name parent side">
 
 
     <!-- Proximal JOINT -->
     <joint name="${ns}_${name}_joint" type="revolute">
-      <xacro:insert_block name="origin"/>
+      <origin rpy="${yaml_file['finger']['thumb']['knuckle']['orientation']}" xyz="${yaml_file['finger']['thumb']['knuckle']['position']}"/>
       <parent link="${ns}_${parent}_link"/>
       <child link="${ns}_${name}_link"/>
       <axis xyz="0 0 ${sign*-1}"/>

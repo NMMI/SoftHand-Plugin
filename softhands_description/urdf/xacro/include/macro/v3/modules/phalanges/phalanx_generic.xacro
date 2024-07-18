@@ -39,22 +39,22 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   
-  <xacro:macro name="phalanx_generic" params="name parent ns mass mesh **virtual_origin **real_origin **inertia_origin *inertia">
+  <xacro:macro name="phalanx_generic" params="yaml_file:=^ name type parent ns">
 
 
 
     <!-- Inner VIRTUAL JOINT -->
-		<joint name="${ns}_${name}_virtual_joint" type="revolute">
+		<joint name="${ns}_${name}_${type}_virtual_joint" type="revolute">
       <axis xyz="0 0 -1"/>
-      <xacro:insert_block name="virtual_origin"/>
+      <origin rpy="${yaml_file['finger']['${name}']['${type}']['virtual_origin']['orientation']}" xyz="${yaml_file['finger']['${name}']['${type}']['virtual_origin']['position']}"/>
 			<parent link="${ns}_${parent}_link"/>
-			<child link="${ns}_${name}_virtual_link"/>
+			<child link="${ns}_${name}_${type}_virtual_link"/>
       <limit effort="30" velocity="10.0" lower="0.0" upper="0.785398" />
       <dynamics damping="$(arg virtual_damping)" friction="$(arg virtual_friction)" />    
 		</joint>
 
     <!-- VIRTUAL LINK -->
-    <link name="${ns}_${name}_virtual_link">
+    <link name="${ns}_${name}_${type}_virtual_link">
       <inertial>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <mass value="${mass}"/>
@@ -64,17 +64,17 @@
 
 
     <!-- Outer JOINT -->
-    <joint name="${ns}_${name}_joint" type="revolute">
+    <joint name="${ns}_${name}_${type}_joint" type="revolute">
       <axis xyz="0 0 -1"/>
-      <xacro:insert_block name="real_origin"/>
-      <parent link="${ns}_${name}_virtual_link"/>
-      <child link="${ns}_${name}_link"/>
+      <origin rpy="${yaml_file['finger']['${name}']['${type}']['real_origin']['orientation']}" xyz="${yaml_file['finger']['${name}']['${type}']['real_origin']['position']}"/>
+      <parent link="${ns}_${name}_${type}_virtual_link"/>
+      <child link="${ns}_${name}_${type}_link"/>
       <limit effort="30" velocity="10.0" lower="0.0" upper="0.785398" />
       <dynamics damping="$(arg damping)" friction="$(arg friction)"/>
     </joint>
 
     <!-- LINK -->
-    <link name="${ns}_${name}_link">
+    <link name="${ns}_${name}_${type}_link">
         <inertial>
           <mass value="${mass}"/>
           <xacro:insert_block name="inertia"/>
@@ -98,14 +98,14 @@
 
 
     <!-- GAZEBO REF -->
-    <gazebo reference="${ns}_${name}_link">
+    <gazebo reference="${ns}_${name}_${type}_link">
       <material>Gazebo/Grey</material>
       <selfCollide>$(arg selfCollide)</selfCollide>
 	  </gazebo>
     
 
         <!-- GAZEBO REF -->
-    <gazebo reference="${ns}_${name}_joint">
+    <gazebo reference="${ns}_${name}_${type}_joint">
       <implicitSpringDamper>true</implicitSpringDamper>
 			<springStiffness>0.4</springStiffness>
 			<springReference>0</springReference>
@@ -113,7 +113,7 @@
 
 
         <!-- GAZEBO REF -->
-    <gazebo reference="${ns}_${name}_virtual_joint">
+    <gazebo reference="${ns}_${name}_${type}_virtual_joint">
       <implicitSpringDamper>true</implicitSpringDamper>
 			<springStiffness>0.4</springStiffness>
 			<springReference>0</springReference>
