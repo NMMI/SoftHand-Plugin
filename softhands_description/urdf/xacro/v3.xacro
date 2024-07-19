@@ -46,6 +46,7 @@
 		<xacro:arg name="virtual_damping" 	default="3e-2"/>
 		<xacro:arg name="damping" 			default="3e-2"/>
 		<xacro:arg name="selfCollide" 		default="0"/>
+		
 
 		<xacro:property name="sign" default="1"/>
 		<xacro:if value="${side == 'left'}">
@@ -54,8 +55,9 @@
 
     	<xacro:softhand_mimic_plugin ns="${side}_hand_v3" wide="false"/>
 		
+		
 		<!-- Softhand v3 needs a config file because the finger are different from each other -->
-		<xacro:property name="yaml_file" value="${xacro.load_yaml('$(find softhands_description)/urdf/config/params_v3.yaml')}"/>
+		<xacro:property name="yaml_file" value="${xacro.load_yaml('$(find softhands_description)/urdf/config/params_v3.yaml')[side]}"/>
 		<!-- <xacro:println value="${params}"/> -->
 		
  
@@ -66,6 +68,12 @@
 
 		<!-- # thumb -->
 		<xacro:thumb name="thumb" parent="palm" ns="${side}_hand_v3" side="${side}"/>
+
+		<!-- # index -->
+		<xacro:finger name="index" parent="palm" ns="${side}_hand_v3" side="${side}"/>
+
+		<!-- # middle -->
+		<!-- <xacro:finger name="middle" parent="palm" ns="${side}_hand_v3" side="${side}"/> -->
 
 	</xacro:macro>
 

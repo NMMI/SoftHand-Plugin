@@ -39,12 +39,12 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="phalanx_knuckle" params="ns name mass parent *origin **inertia_origin side mesh">
+  <xacro:macro name="phalanx_knuckle" params="yaml_file:=^ ns name parent side">
 
 
     <!-- Proximal JOINT -->
     <joint name="${ns}_${name}_joint" type="revolute">
-      <xacro:insert_block name="origin"/>
+    <origin rpy="${yaml_file['finger']['index']['knuckle']['orientation']}" xyz="${yaml_file['finger']['index']['knuckle']['position']}"/>
       <parent link="${ns}_${parent}_link"/>
       <child link="${ns}_${name}_link"/>
       <axis xyz="0 0 -1"/>
@@ -55,15 +55,15 @@
     <!-- LINK --> 
     <link name="${ns}_${name}_link">
         <inertial>
-          <mass value="${mass}"/>
-          <xacro:insert_block name="inertia"/>
-          <xacro:insert_block name="inertia_origin"/>
+          <mass value="${yaml_file['finger']['index']['knuckle']['mass']}"/>
+          <inertia ixx="${yaml_file['finger']['index']['knuckle']['inertia']['ixx']}" ixy="${yaml_file['finger']['index']['knuckle']['inertia']['ixy']}" ixz="${yaml_file['finger']['index']['knuckle']['inertia']['ixz']}" iyy="${yaml_file['finger']['index']['knuckle']['inertia']['iyy']}" iyz="${yaml_file['finger']['index']['knuckle']['inertia']['iyz']}" izz="${yaml_file['finger']['index']['knuckle']['inertia']['izz']}"/>
+          <origin rpy="0 0 0" xyz="${yaml_file['finger']['index']['knuckle']['inertia_origin']['position']}"/>
         </inertial>
       
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/v3/${side}/${mesh}" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file['finger']['index']['knuckle']['mesh']}" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="qbhand/palm"/>
       </visual>
@@ -71,7 +71,7 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/v3/${side}/${mesh}" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file['finger']['index']['knuckle']['mesh']}" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
       
