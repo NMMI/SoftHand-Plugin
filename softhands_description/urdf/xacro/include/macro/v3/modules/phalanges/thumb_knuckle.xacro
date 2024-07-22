@@ -39,50 +39,50 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="thumb_knuckle" params="yaml_file:=^ ns name parent side">
+  <xacro:macro name="thumb_knuckle" params="yaml_file:=^ ns name type parent side">
 
 
     <!-- Proximal JOINT -->
-    <joint name="${ns}_${name}_joint" type="revolute">
-      <origin rpy="${yaml_file['finger']['thumb']['knuckle']['orientation']}" xyz="${yaml_file['finger']['thumb']['knuckle']['position']}"/>
+    <joint name="${ns}_${name}_${type}_joint" type="revolute">
+      <origin rpy="${yaml_file[side]['finger'][name][type]['orientation']}" xyz="${yaml_file[side]['finger'][name][type]['position']}"/>
       <parent link="${ns}_${parent}_link"/>
-      <child link="${ns}_${name}_link"/>
+      <child link="${ns}_${name}_${type}_link"/>
       <axis xyz="0 0 ${sign*-1}"/>
       <limit effort="30" velocity="10.0" lower="0.0" upper="1.57" />
       <dynamics damping="$(arg damping)" friction="$(arg friction)" />
     </joint>
 
     <!-- LINK -->
-    <link name="${ns}_${name}_link">
+    <link name="${ns}_${name}_${type}_link">
       <inertial>
-        <origin rpy="0 0 0" xyz="${yaml_file['finger']['thumb']['knuckle']['inertia_origin']['position']}"/>
-        <mass value="${yaml_file['finger']['thumb']['knuckle']['mass']}"/>
-        <inertia ixx="${yaml_file['finger']['thumb']['knuckle']['inertia']['ixx']}" ixy="${yaml_file['finger']['thumb']['knuckle']['inertia']['ixy']}" ixz="${yaml_file['finger']['thumb']['knuckle']['inertia']['ixz']}" iyy="${yaml_file['finger']['thumb']['knuckle']['inertia']['iyy']}" iyz="${yaml_file['finger']['thumb']['knuckle']['inertia']['iyz']}" izz="${yaml_file['finger']['thumb']['knuckle']['inertia']['izz']}"/>
+        <origin rpy="0 0 0" xyz="${yaml_file[side]['finger'][name][type]['inertia_origin']['position']}"/>
+        <mass value="${yaml_file[side]['finger'][name][type]['mass']}"/>
+        <inertia ixx="${yaml_file[side]['finger'][name][type]['inertia']['ixx']}" ixy="${yaml_file[side]['finger'][name][type]['inertia']['ixy']}" ixz="${yaml_file[side]['finger'][name][type]['inertia']['ixz']}" iyy="${yaml_file[side]['finger'][name][type]['inertia']['iyy']}" iyz="${yaml_file[side]['finger'][name][type]['inertia']['iyz']}" izz="${yaml_file[side]['finger'][name][type]['inertia']['izz']}"/>
       </inertial>
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file['finger']['thumb']['knuckle']['mesh']}" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file[side]['finger'][name][type]['mesh']}" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="qbhand/knuckle"/>
       </visual>
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file['finger']['thumb']['knuckle']['mesh']}" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file[side]['finger'][name][type]['mesh']}" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>
 
 
     <!-- GAZEBO REF -->
-    <gazebo reference="${ns}_${name}_link">
+    <gazebo reference="${ns}_${name}_${type}_link">
       <material>Gazebo/Grey</material>
       <selfCollide>$(arg selfCollide)</selfCollide>
     </gazebo>
 
         <!-- GAZEBO REF -->
-    <gazebo reference="${ns}_${name}_joint">
+    <gazebo reference="${ns}_${name}_${type}_joint">
       <implicitSpringDamper>true</implicitSpringDamper>
 			<springStiffness>0.4</springStiffness>
 			<springReference>0</springReference>

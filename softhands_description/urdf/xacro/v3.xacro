@@ -57,7 +57,7 @@
 		
 		
 		<!-- Softhand v3 needs a config file because the finger are different from each other -->
-		<xacro:property name="yaml_file" value="${xacro.load_yaml('$(find softhands_description)/urdf/config/params_v3.yaml')[side]}"/>
+		<xacro:property name="yaml_file" value="${xacro.load_yaml('$(find softhands_description)/urdf/config/params_v3.yaml')}"/>
 		<!-- <xacro:println value="${params}"/> -->
 		
  
@@ -73,7 +73,15 @@
 		<xacro:finger name="index" parent="palm" ns="${side}_hand_v3" side="${side}"/>
 
 		<!-- # middle -->
-		<!-- <xacro:finger name="middle" parent="palm" ns="${side}_hand_v3" side="${side}"/> -->
+		<xacro:finger name="middle" parent="palm" ns="${side}_hand_v3" side="${side}"/>
+
+		<!-- # ring -->
+		<xacro:finger name="ring" parent="palm" ns="${side}_hand_v3" side="${side}"/>
+
+		<!-- # little -->
+		<xacro:finger name="little" parent="palm" ns="${side}_hand_v3" side="${side}"/>
+
+		
 
 	</xacro:macro>
 

@@ -39,14 +39,14 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
   
-  <xacro:macro name="phalanx_generic" params="yaml_file:=^ name type parent ns">
+  <xacro:macro name="phalanx_generic" params="yaml_file:=^ name type side parent ns">
 
 
 
     <!-- Inner VIRTUAL JOINT -->
 		<joint name="${ns}_${name}_${type}_virtual_joint" type="revolute">
       <axis xyz="0 0 -1"/>
-      <origin rpy="${yaml_file['finger']['${name}']['${type}']['virtual_origin']['orientation']}" xyz="${yaml_file['finger']['${name}']['${type}']['virtual_origin']['position']}"/>
+      <origin rpy="${yaml_file[side]['finger'][name][type]['virtual_origin']['orientation']}" xyz="${yaml_file[side]['finger'][name][type]['virtual_origin']['position']}"/>
 			<parent link="${ns}_${parent}_link"/>
 			<child link="${ns}_${name}_${type}_virtual_link"/>
       <limit effort="30" velocity="10.0" lower="0.0" upper="0.785398" />
@@ -66,7 +66,7 @@
     <!-- Outer JOINT -->
     <joint name="${ns}_${name}_${type}_joint" type="revolute">
       <axis xyz="0 0 -1"/>
-      <origin rpy="${yaml_file['finger']['${name}']['${type}']['real_origin']['orientation']}" xyz="${yaml_file['finger']['${name}']['${type}']['real_origin']['position']}"/>
+      <origin rpy="${yaml_file[side]['finger'][name][type]['real_origin']['orientation']}" xyz="${yaml_file[side]['finger'][name][type]['real_origin']['position']}"/>
       <parent link="${ns}_${name}_${type}_virtual_link"/>
       <child link="${ns}_${name}_${type}_link"/>
       <limit effort="30" velocity="10.0" lower="0.0" upper="0.785398" />
@@ -76,21 +76,21 @@
     <!-- LINK -->
     <link name="${ns}_${name}_${type}_link">
         <inertial>
-          <mass value="${mass}"/>
-          <xacro:insert_block name="inertia"/>
-          <xacro:insert_block name="inertia_origin"/>
+          <mass value="${yaml_file[side]['finger'][name][type]['mass']}"/>
+          <inertia ixx="${yaml_file[side]['finger'][name][type]['inertia']['ixx']}" ixy="${yaml_file[side]['finger'][name][type]['inertia']['ixy']}" ixz="${yaml_file[side]['finger'][name][type]['inertia']['ixz']}" iyy="${yaml_file[side]['finger'][name][type]['inertia']['iyy']}" iyz="${yaml_file[side]['finger'][name][type]['inertia']['iyz']}" izz="${yaml_file[side]['finger'][name][type]['inertia']['izz']}"/>
+          <origin rpy="0 0 0" xyz="${yaml_file[side]['finger'][name][type]['inertia_origin']['position']}"/>
         </inertial>
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/v3/${side}/${mesh}.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file[side]['finger'][name][type]['mesh']}" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="qbhand/palm"/>
       </visual>
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/v3/${side}/${mesh}.stl" scale="0.001 0.001 0.001"/>
+           <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file['finger'][name][type]['mesh']}" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>

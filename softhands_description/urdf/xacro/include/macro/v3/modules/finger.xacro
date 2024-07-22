@@ -42,7 +42,7 @@
   <xacro:macro name="finger" params="yaml_file:=^ ns name parent side ">
     
     <!-- Knuckle -->
-    <xacro:phalanx_knuckle name="${name}_knuckle" parent="${parent}" ns="${ns}" side="${side}">
+    <xacro:phalanx_knuckle name="${name}" type="knuckle" parent="${parent}" ns="${ns}" side="${side}">
     </xacro:phalanx_knuckle>
 
   </xacro:macro>

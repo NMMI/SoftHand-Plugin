@@ -42,15 +42,12 @@
   <xacro:macro name="thumb" params="yaml_file:=^ ns name parent side">
 
     <!-- Knuckle -->
-    <xacro:thumb_knuckle name="${name}_knuckle" parent="${parent}" ns="${ns}" side="${side}">
+    <xacro:thumb_knuckle name="${name}" type="knuckle" parent="${parent}" ns="${ns}" side="${side}">
     </xacro:thumb_knuckle>
 
     <!-- Proximal  -->
-    <!-- <xacro:phalanx_generic name="${name}" type="prossimal" parent="${name}_knuckle" ns="${ns}">
-      <real_origin>     <origin rpy="0 0 0" xyz="9e-03 0 0"/>                         </real_origin>
-      <inertia_origin>  <origin rpy="0 0 0" xyz="8.2958878e-03 1.4867666e-04 0"/>  </inertia_origin>
-      <inertia ixx="5.9259154e-08" ixy="4.7090997e-09" ixz="0" iyy="2.0151714e-07" iyz="0.0" izz="2.1338410e-07"/>
-    </xacro:phalanx_generic> -->
+    <xacro:phalanx_generic name="${name}" type="prossimal" parent="${name}_knuckle" ns="${ns}" side="${side}">
+    </xacro:phalanx_generic> 
 
 
   </xacro:macro>
