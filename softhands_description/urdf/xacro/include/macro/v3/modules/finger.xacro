@@ -45,6 +45,10 @@
     <xacro:phalanx_knuckle name="${name}" type="knuckle" parent="${parent}" ns="${ns}" side="${side}">
     </xacro:phalanx_knuckle>
 
+    <!-- Proximal -->
+    <xacro:phalanx_generic name="${name}" type="proximal" parent="${name}_knuckle" ns="${ns}" side="${side}">
+    </xacro:phalanx_generic> 
+
   </xacro:macro>
 
 </robot>

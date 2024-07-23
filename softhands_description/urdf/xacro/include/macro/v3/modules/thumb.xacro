@@ -46,8 +46,12 @@
     </xacro:thumb_knuckle>
 
     <!-- Proximal  -->
-    <xacro:phalanx_generic name="${name}" type="prossimal" parent="${name}_knuckle" ns="${ns}" side="${side}">
+    <xacro:phalanx_generic name="${name}" type="proximal" parent="${name}_knuckle" ns="${ns}" side="${side}">
     </xacro:phalanx_generic> 
+
+    <!--> Distal -->
+    <xacro:phalanx_generic name="${name}" type="distal" parent="${name}_proximal" ns="${ns}" side="${side}">
+    </xacro:phalanx_generic>
 
 
   </xacro:macro>

@@ -57,8 +57,8 @@
     <link name="${ns}_${name}_${type}_virtual_link">
       <inertial>
         <origin rpy="0 0 0" xyz="0 0 0"/>
-        <mass value="${mass}"/>
-        <xacro:insert_block name="inertia"/>
+        <mass value="${yaml_file[side]['finger'][name][type]['mass']}"/>
+        <inertia ixx="${yaml_file[side]['finger'][name][type]['inertia']['ixx']}" ixy="${yaml_file[side]['finger'][name][type]['inertia']['ixy']}" ixz="${yaml_file[side]['finger'][name][type]['inertia']['ixz']}" iyy="${yaml_file[side]['finger'][name][type]['inertia']['iyy']}" iyz="${yaml_file[side]['finger'][name][type]['inertia']['iyz']}" izz="${yaml_file[side]['finger'][name][type]['inertia']['izz']}"/>
       </inertial>
     </link>
 
@@ -90,7 +90,7 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-           <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file['finger'][name][type]['mesh']}" scale="0.001 0.001 0.001"/>
+           <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file[side]['finger'][name][type]['mesh']}" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>

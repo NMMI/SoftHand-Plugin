@@ -18,10 +18,8 @@ right:
           position: 1.6018749e-3 1.9731832e-04 -1.8504085e-03
           orientation: 0 0 0
   
-
-
-      prossimal:
-        mass: 0.0000000
+      proximal: &thumb_proximal
+        mass: 3.2037862e-03
         virtual_origin:
           position: 16.5e-03 -4.2e-03 0
           orientation: -1.5707963 0 0
@@ -29,22 +27,37 @@ right:
           position: 9e-03 0 0
           orientation: 0 0 0
         inertia:
-          ixx: 0.0000000
-          ixy: 0.0000000
-          ixz: 0.0000000
-          iyy: 0.0000000
-          iyz: 0.0000000
-          izz: 0.0000000
-        inertia_origin:
-          position:
-            x: 0.0000000
-            y: 0.0000000
-            z: 0.0000000
-          orientation:
-            x: 0.0000000
-            y: 0.0000000
-            z: 0.0000000
-        mesh: "ph_prossimal.stl"
+          ixx: 6.5745301e-08
+          ixy: -3.1362083e-10
+          ixz: 3.5152512e-08
+          iyy: 2.2281085e-07
+          iyz: -5.2782785e-11
+          izz: 2.0956023e-07
+        inertia_origin: 
+          position: 1.6018749e-3 1.9731832e-04 -1.8504085e-03
+          orientation: 0 0 0
+        mesh: "ph_proximal.stl"
+      
+      distal:
+        mass: 3.2037862e-03
+        virtual_origin:
+          position: 16e-03 0 0
+          orientation: 0 0 0
+        real_origin:
+          position: 9e-03 0 0
+          orientation: 0 0 0
+        inertia:
+          ixx: 6.5745301e-08
+          ixy: -3.1362083e-10
+          ixz: 3.5152512e-08
+          iyy: 2.2281085e-07
+          iyz: -5.2782785e-11
+          izz: 2.0956023e-07
+        inertia_origin: 
+          position: 1.6018749e-3 1.9731832e-04 -1.8504085e-03
+          orientation: 0 0 0
+        mesh: "ph_distal.stl"
+ 
 
     index:
       knuckle:
@@ -63,33 +76,14 @@ right:
           position: 1.6018749e-3 1.9731832e-04 -1.8504085e-03
           orientation: 0 0 0
       
-      prossimal:
-        mass: 0.0000000
+      proximal:
+        <<: *thumb_proximal
         virtual_origin:
-          position: 0 0 9e-03
-          orientation: 0 0 0
+          position: 15e-03 -3.7e-03 0
+          orientation: 1.5707963 0 0
         real_origin:
-          position: 0.0000000 0.0000000 0.0000000
+          position: 9e-03 0 0
           orientation: 0 0 0
-        inertia:
-          ixx: 0.0000000
-          ixy: 0.0000000
-          ixz: 0.0000000
-          iyy: 0.0000000
-          iyz: 0.0000000
-          izz: 0.0000000
-        inertia_origin:
-          position:
-            x: 0.0000000
-            y: 0.0000000
-            z: 0.0000000
-          orientation:
-            x: 0.0000000
-            y: 0.0000000
-            z: 0.0000000
-        mesh: "ph_prossimal.stl"
-
-
 
 
     middle:
@@ -109,8 +103,29 @@ right:
           position: 1.6018749e-3 1.9731832e-04 -1.8504085e-03
           orientation: 0 0 0
 
-    ring:
-      knuckle:
+      proximal:
+        mass: 3.2037862e-03
+        virtual_origin:
+          position: 15e-03 0 -0.273297e-03
+          orientation: 1.5707963 0 0
+        real_origin:
+          position: 9e-03 0 0
+          orientation: 0 0 0
+        inertia:
+          ixx: 6.5745301e-08
+          ixy: -3.1362083e-10
+          ixz: 3.5152512e-08
+          iyy: 2.2281085e-07
+          iyz: -5.2782785e-11
+          izz: 2.0956023e-07
+        inertia_origin: 
+          position: 1.6018749e-3 1.9731832e-04 -1.8504085e-03
+          orientation: 0 0 0
+        mesh: "ph_proximal_middle.stl"
+
+
+    ring: 
+      knuckle: &ring_knuckle
         position: 20e-03 0 6.02670e-03
         orientation: 0 0 1.3962638
         mesh: "ph_ring_knuckle.stl"
@@ -125,13 +140,30 @@ right:
         inertia_origin: 
           position: 1.6018749e-3 1.9731832e-04 -1.8504085e-03
           orientation: 0 0 0
+
+      proximal:
+        <<: *thumb_proximal
+        virtual_origin:
+          position: 15e-03 3.7e-03 0
+          orientation: 1.5707963 0 0
+        real_origin:
+          position: 9e-03 0 0
+          orientation: 0 0 0
     
     little:
       knuckle:
+        <<: *ring_knuckle
         position: 37e-03 -5e-03 6.02670e-03
         orientation: 0 0 1.3089971
-        mesh: "ph_little_knuckle.stl"
+  
+      proximal:
         mass: 3.2037862e-03
+        virtual_origin:
+          position: 15e-03 3.7e-03 0
+          orientation: 1.5707963 0 0
+        real_origin:
+          position: 9e-03 0 0
+          orientation: 0 0 0
         inertia:
           ixx: 6.5745301e-08
           ixy: -3.1362083e-10
@@ -142,6 +174,8 @@ right:
         inertia_origin: 
           position: 1.6018749e-3 1.9731832e-04 -1.8504085e-03
           orientation: 0 0 0
+        mesh: "ph_prossimal_little.stl"
+
 
 
 
