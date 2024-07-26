@@ -51,9 +51,9 @@
 
 		<link name="${ns}_palm_link">
 			<inertial>
-				<origin rpy="0 0 0" xyz="0.0030 -0.0449 ${sign*0.0135}"/>
-				<mass value="0.45"/>
-				<inertia ixx="0.00045" ixy="0.0" ixz="0.0" iyy="0.00025" iyz="0.0" izz="0.0006"/>
+				<origin rpy="0 0 0" xyz="0.005 -4.037e-2 ${sign*1.214e-2}"/>
+				<mass value="2.27e-1"/>
+				<inertia ixx="1.14e-4" ixy="4.47e-6" ixz="-3.04e-6" iyy="7e-5" iyz="2.87e-6" izz="1.608e-4"/>
 			</inertial>
 			<visual>
 			<origin rpy="0 0 0" xyz="0 0 0"/>
@@ -63,10 +63,10 @@
 			<material name="qbhand/palm"/>
 			</visual>
 			<collision>
-			<origin rpy="0 0 0" xyz="0 0 0"/>
-			<geometry>
-				<mesh filename="package://softhands_description/meshes/v3/${side}/palm_pinch.stl" scale="0.001 0.001 0.001"/>
-			</geometry>
+				<origin rpy="0 0 0" xyz="0 0 0"/>
+				<geometry>
+					<mesh filename="package://softhands_description/meshes/v3/${side}/palm_pinch_collision.stl" scale="0.001 0.001 0.001"/>
+				</geometry>
 			</collision>
 		</link>
 

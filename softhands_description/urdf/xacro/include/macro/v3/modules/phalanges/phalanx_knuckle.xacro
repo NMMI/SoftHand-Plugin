@@ -44,7 +44,7 @@
 
     <!-- Proximal JOINT -->
     <joint name="${ns}_${name}_${type}_joint" type="revolute">
-    <origin rpy="${yaml_file[side]['finger'][name][type]['orientation']}" xyz="${yaml_file[side]['finger'][name][type]['position']}"/>
+      <origin rpy="${yaml_file[side]['finger'][name][type]['orientation']}" xyz="${yaml_file[side]['finger'][name][type]['position']}"/>
       <parent link="${ns}_${parent}_link"/>
       <child link="${ns}_${name}_${type}_link"/>
       <axis xyz="0 0 -1"/>
@@ -71,7 +71,7 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file[side]['finger'][name][type]['mesh']}" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file[side]['finger'][name][type]['mesh_collision']}" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
       

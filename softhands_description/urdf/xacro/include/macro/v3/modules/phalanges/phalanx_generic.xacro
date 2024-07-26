@@ -90,7 +90,7 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-           <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file[side]['finger'][name][type]['mesh']}" scale="0.001 0.001 0.001"/>
+           <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file[side]['finger'][name][type]['mesh_collision']}" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
     </link>
@@ -100,9 +100,14 @@
     <!-- GAZEBO REF -->
     <gazebo reference="${ns}_${name}_${type}_link">
       <material>Gazebo/Grey</material>
-      <selfCollide>$(arg selfCollide)</selfCollide>
+      <selfCollide>0</selfCollide>
 	  </gazebo>
     
+    <!-- GAZEBO REF -->
+    <gazebo reference="${ns}_${name}_${type}_virtual_link">
+      <material>Gazebo/Grey</material>
+      <selfCollide>0</selfCollide>
+	  </gazebo>
 
         <!-- GAZEBO REF -->
     <gazebo reference="${ns}_${name}_${type}_joint">

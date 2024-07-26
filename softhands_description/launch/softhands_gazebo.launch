@@ -52,6 +52,10 @@
 			<param name="rate" value="200"/>
 			<remap from="robot_description" to="$(arg model)_description"/>
 		</node>
+		<!-- <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" >
+			<remap from="robot_description" to="$(arg model)_description"/>
+		</node> -->
+
 		<node name="robot_state_publisher_$(arg sh_version)" pkg="robot_state_publisher" type="robot_state_publisher"	respawn="true" >
 			<param name="publish_frequency" value="200" />
 			<param name="rate" value="200"/>
