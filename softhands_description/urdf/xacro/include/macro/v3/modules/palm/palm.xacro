@@ -73,7 +73,7 @@
 
 		<gazebo reference="${ns}_palm_link">
 			<material>Gazebo/Grey</material>
-			<selfCollide>0</selfCollide>
+			<selfCollide>$(arg selfCollide)</selfCollide>
 		</gazebo>
 	</xacro:macro>
 

@@ -41,12 +41,10 @@
 	
 	<xacro:macro name="v3" params="side parent position orientation fixed_hands:=false">
 
-		<xacro:arg name="friction"			default="0.1"/>
-		<xacro:arg name="damping" 			default="0.05"/>
-
-		<xacro:arg name="virtual_friction" 	default="0.1"/>
-		<xacro:arg name="virtual_damping" 	default="0.05"/>
-		
+		<xacro:arg name="friction"			default="0.0"/>
+		<xacro:arg name="virtual_friction" 	default="0.0"/>
+		<xacro:arg name="virtual_damping" 	default="3e-2"/>
+		<xacro:arg name="damping" 			default="3e-2"/>
 		<xacro:arg name="selfCollide" 		default="0"/>
 		
 

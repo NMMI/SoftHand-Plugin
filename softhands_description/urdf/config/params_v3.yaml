@@ -25,7 +25,7 @@ right:
           position: 16.5e-03 -4.2e-03 0
           orientation: -1.5707963 0 0
         real_origin: &real_origin
-          position: 10e-03 0 0
+          position: 9e-03 0 0
           orientation: 0 0 0
         inertia:
           ixx: 5.9259154e-08
@@ -41,26 +41,25 @@ right:
         mesh_collision: "ph_proximal_collision.stl"
       
       distal: &thumb_distal
-        mass: 2.4034657e-03
+        mass: 0.009
         virtual_origin:
           position: 16e-03 0 0
           orientation: 0 0 0
         real_origin: 
           <<: *real_origin
         inertia:
-          ixx: 2.9487712e-08
-          ixy: 5.9094481e-10
-          ixz: 1.3105246e-10
-          iyy: 6.1647801e-08
-          iyz: 4.9617465e-11
-          izz: 5.8551334e-08
+          ixx: 2.6586142e-07
+          ixy: 1.2416847e-08
+          ixz: 0.0
+          iyy: 5.9935767e-07
+          iyz: 0.0
+          izz: 6.6781963e-07
         inertia_origin: 
           position:  2.3379604e-03 5.3580065e-04 -4.5070160e-04
           orientation: 0 0 0
         mesh: "ph_distal.stl"
         mesh_collision: "ph_distal_collision.stl"
  
-
     index:
       knuckle:
         position: -20e-03 0 6.0267000e-03
@@ -101,7 +100,7 @@ right:
           position: 16e-03 0 0
           orientation: 0 0 0
         real_origin: &real_origin_distal_finger
-          position: 10e-03 -0.000348650e-03 0.5e-03
+          position: 9e-03 -0.000348650e-03 0.5e-03
           orientation: 0 0 0
 
     middle:

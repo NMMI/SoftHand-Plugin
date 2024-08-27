@@ -100,13 +100,13 @@
     <!-- GAZEBO REF -->
     <gazebo reference="${ns}_${name}_${type}_link">
       <material>Gazebo/Grey</material>
-      <selfCollide>0</selfCollide>
+      <selfCollide>$(arg selfCollide)</selfCollide>
 	  </gazebo>
     
     <!-- GAZEBO REF -->
     <gazebo reference="${ns}_${name}_${type}_virtual_link">
       <material>Gazebo/Grey</material>
-      <selfCollide>0</selfCollide>
+      <selfCollide>$(arg selfCollide)</selfCollide>
 	  </gazebo>
 
         <!-- GAZEBO REF -->
