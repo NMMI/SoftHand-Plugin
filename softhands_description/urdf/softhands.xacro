@@ -101,6 +101,31 @@
 			</xacro:v1_wide>
 		</xacro:if>	
 
+		<!-- IF VERSION == v3 -->
+
+		<xacro:if value="${version == 'v3'}">
+			<xacro:include filename="$(find softhands_description)/urdf/xacro/include/macro/v3/header.xacro"/>
+			<xacro:include filename="$(find softhands_description)/urdf/xacro/v3.xacro"/>
+
+			
+			<!-- <xacro:v3
+				side="left"
+				parent="world" 
+				position="0 -0.2 0.02" 
+				orientation="${orientation}" 
+				fixed_hands="false">
+			</xacro:v1_wide> -->
+
+			<xacro:v3 
+				side="right" 
+				parent="world" 
+				position="0 0 0.2"  
+				orientation="${orientation}" 
+				fixed_hands="false">
+			</xacro:v3>
+		</xacro:if>	
+
+
 	</xacro:macro>
 
 </robot>

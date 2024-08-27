@@ -44,7 +44,7 @@
     <xacro:softhands 
         version="$(arg sh_version)"
         position="0 0 0" 
-        orientation="0 0 0" 
+        orientation="1.57 0 0" 
         fixed_hands="false">
     </xacro:softhands>
 

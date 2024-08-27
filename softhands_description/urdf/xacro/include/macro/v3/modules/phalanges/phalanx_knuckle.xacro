@@ -39,32 +39,31 @@
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="phalanx_knuckle" params="ns name parent *origin side">
+  <xacro:macro name="phalanx_knuckle" params="yaml_file:=^ ns name type parent side">
 
 
     <!-- Proximal JOINT -->
-    <joint name="${ns}_${name}_joint" type="revolute">
-      <xacro:insert_block name="origin"/>
+    <joint name="${ns}_${name}_${type}_joint" type="revolute">
+      <origin rpy="${yaml_file[side]['finger'][name][type]['orientation']}" xyz="${yaml_file[side]['finger'][name][type]['position']}"/>
       <parent link="${ns}_${parent}_link"/>
-      <child link="${ns}_${name}_link"/>
+      <child link="${ns}_${name}_${type}_link"/>
       <axis xyz="0 0 -1"/>
       <limit effort="30" velocity="10.0" lower="-0.524" upper="0.524" />
       <dynamics damping="$(arg damping)" friction="$(arg friction)" />
     </joint>
 
-    <!-- LINK -->
-    <link name="${ns}_${name}_link">
-      <inertial>
-
-        <origin rpy="0 0 0" xyz="4.2753603e-04  0.0 -1.4321738e-03"/>
-        <mass value="0.0095"/>
-        <inertia ixx="6.4337303e-07" ixy="0.0" ixz="-3.9373913e-08" iyy="1.1253771e-06" iyz="0.0" izz="7.2336948e-07"/>
-      </inertial>
+    <!-- LINK --> 
+    <link name="${ns}_${name}_${type}_link">
+        <inertial>
+          <mass value="${yaml_file[side]['finger'][name][type]['mass']}"/>
+          <inertia ixx="${yaml_file[side]['finger'][name][type]['inertia']['ixx']}" ixy="${yaml_file[side]['finger'][name][type]['inertia']['ixy']}" ixz="${yaml_file[side]['finger'][name][type]['inertia']['ixz']}" iyy="${yaml_file[side]['finger'][name][type]['inertia']['iyy']}" iyz="${yaml_file[side]['finger'][name][type]['inertia']['iyz']}" izz="${yaml_file[side]['finger'][name][type]['inertia']['izz']}"/>
+          <origin rpy="0 0 0" xyz="${yaml_file[side]['finger'][name][type]['inertia_origin']['position']}"/>
+        </inertial>
       
       <visual>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/v3/${side}/ph_knuckle.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file[side]['finger'][name][type]['mesh']}" scale="0.001 0.001 0.001"/>
         </geometry>
         <material name="qbhand/palm"/>
       </visual>
@@ -72,22 +71,22 @@
       <collision>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <geometry>
-          <mesh filename="package://softhands_description/meshes/v3/${side}/ph_knuckle.stl" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://softhands_description/meshes/v3/${side}/${yaml_file[side]['finger'][name][type]['mesh_collision']}" scale="0.001 0.001 0.001"/>
         </geometry>
       </collision>
       
     </link>
 
-
+ 
 
         <!-- GAZEBO REF -->
-    <gazebo reference="${ns}_${name}_link">
+    <gazebo reference="${ns}_${name}_${type}_link">
       <material>Gazebo/Grey</material>
       <selfCollide>$(arg selfCollide)</selfCollide>
     </gazebo>
     
             <!-- GAZEBO REF -->
-    <gazebo reference="${ns}_${name}_joint">
+    <gazebo reference="${ns}_${name}_${type}_joint">
       <implicitSpringDamper>true</implicitSpringDamper>
 			<springStiffness>0.8</springStiffness>
 			<springReference>0</springReference>

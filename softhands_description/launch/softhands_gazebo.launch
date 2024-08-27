@@ -3,7 +3,7 @@
 
 	<arg name="use_rviz" default="false"/>
 	<arg name="urdf_dir" default="$(find softhands_description)/urdf/softhands.urdf.xacro"/>
-	<arg name="sh_version" default="v1_wide" doc="The version of the hand [ v1_2_research , v1_wide]"/>
+	<arg name="sh_version" default="v3" doc="The version of the hand [ v1_2_research , v1_wide , v3]"/>
 	<arg name="model" default="sh_hand_$(arg sh_version)"/>
 
 
@@ -52,6 +52,10 @@
 			<param name="rate" value="200"/>
 			<remap from="robot_description" to="$(arg model)_description"/>
 		</node>
+		<!-- <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" >
+			<remap from="robot_description" to="$(arg model)_description"/>
+		</node> -->
+
 		<node name="robot_state_publisher_$(arg sh_version)" pkg="robot_state_publisher" type="robot_state_publisher"	respawn="true" >
 			<param name="publish_frequency" value="200" />
 			<param name="rate" value="200"/>

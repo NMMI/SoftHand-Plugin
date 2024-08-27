@@ -38,36 +38,23 @@
 -->
 
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-
-  <xacro:macro name="finger" params="ns name parent *origin side">
-
-    <!-- Proximal -->
-    <xacro:phalanx_knuckle name="${name}_knuckle" parent="${parent}" ns="${ns}" side="${side}">
-      <xacro:insert_block name="origin"/>
+  
+  <xacro:macro name="finger" params="yaml_file:=^ ns name parent side ">
+    
+    <!-- Knuckle -->
+    <xacro:phalanx_knuckle name="${name}" type="knuckle" parent="${parent}" ns="${ns}" side="${side}">
     </xacro:phalanx_knuckle>
-   
+
     <!-- Proximal -->
-    <xacro:phalanx_generic name="${name}_proximal" parent="${name}_knuckle" ns="${ns}" mass="0.009" mesh="ph_medium">
-      <virtual_origin>  <origin rpy="1.57 0 0" xyz="0.009 0 0"/>                      </virtual_origin>
-      <real_origin>     <origin rpy="0.0 0 0" xyz="0.013 0 0"/>                       </real_origin>
-      <inertia_origin>  <origin rpy="0 0 0" xyz="8.7707437e-03 -1.7863138e-03 0.0"/>  </inertia_origin>
-      <inertia ixx="2.2722068e-07" ixy="1.1586053e-08" ixz="0.0" iyy="5.5947233e-07" iyz="0.0" izz="5.9562195e-07"/>
-    </xacro:phalanx_generic>
+    <xacro:phalanx_generic name="${name}" type="proximal" parent="${name}_knuckle" ns="${ns}" side="${side}">
+    </xacro:phalanx_generic> 
 
     <!-- Middle -->
-    <xacro:phalanx_generic name="${name}_middle" parent="${name}_proximal" ns="${ns}" mass="0.0063" mesh="ph_short">
-      <virtual_origin>  <origin rpy="0.0 0.0 0.0" xyz="0.013 0 0 "/>                  </virtual_origin>
-      <real_origin>     <origin rpy="0 0 0" xyz="0.017 0 0"/>                         </real_origin>
-      <inertia_origin>  <origin rpy="0 0 0" xyz="4.7601567e-03 -1.3786947e-03 0.0"/>  </inertia_origin>
-      <inertia ixx="1.8024201e-07" ixy="5.756798e-09" ixz="0.0" iyy="2.3516266e-07" iyz="0.0" izz="2.691504e-07"/>
+    <xacro:phalanx_generic name="${name}" type="middle" parent="${name}_proximal" ns="${ns}" side="${side}">
     </xacro:phalanx_generic>
 
     <!-- Distal -->
-    <xacro:phalanx_generic name="${name}_distal" parent="${name}_middle" ns="${ns}" mass="0.009" mesh="ph_distal">
-      <virtual_origin>  <origin rpy="0 0 0" xyz="0.009 0 0"/>                        </virtual_origin>
-      <real_origin>     <origin rpy="0 0 0" xyz="0.013 0 0"/>                         </real_origin>
-      <inertia_origin>  <origin rpy="0 0 0" xyz="8.8025467e-03 -1.7219289e-03 0.0"/>  </inertia_origin>
-      <inertia ixx="2.6586142e-07" ixy="1.2416847e-08" ixz="0.0" iyy="5.9935767e-07" iyz="0.0" izz="6.6781963e-07"/>
+    <xacro:phalanx_generic name="${name}" type="distal" parent="${name}_middle" ns="${ns}" side="${side}">
     </xacro:phalanx_generic>
 
   </xacro:macro>
