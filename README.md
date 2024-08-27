@@ -1,4 +1,4 @@
-# Gazebo Simulation of the QBRobotics v1.2 and IIT SoftHandWide
+# Gazebo Simulation of the QBRobotics v1.2 and IIT SoftHandWide and IIT SoftHand_V3
 
 ## 1) Description 
 
