@@ -1,4 +1,20 @@
 right:
+  palm:
+    position: 0 0 0
+    orientation: 0 0 0
+    mesh: "palm_pinch.stl"
+    mesh_collision: "palm_pinch_collision.stl"
+    mass: 2.13e-1
+    inertia:
+      ixx: 1.34e-4
+      ixy: 9.11e-6
+      ixz: 2.8e-6
+      iyy: 7.83e-5
+      iyz: -4.69e-6
+      izz: 1.90e-4
+    inertia_origin: 
+      position: 5e-03 -4.51e-02 1.218e-02
+      orientation: 0 0 0
 
   finger:
     thumb:
@@ -19,12 +35,12 @@ right:
           position: 7.3027049e-03 -2.0974289e-03 -1.9252360e-04
           orientation: 0 0 0
   
-      proximal: &thumb_proximal
+      proximal: &thumb_proximal_r
         mass: 3.4433482e-03
         virtual_origin:
           position: 16.5e-03 -4.2e-03 0
           orientation: -1.5707963 0 0
-        real_origin: &real_origin
+        real_origin: &real_origin_r
           position: 9e-03 0 0
           orientation: 0 0 0
         inertia:
@@ -40,13 +56,13 @@ right:
         mesh: "ph_proximal.stl"
         mesh_collision: "ph_proximal_collision.stl"
       
-      distal: &thumb_distal
+      distal: &thumb_distal_r
         mass: 0.009
         virtual_origin:
           position: 16e-03 0 0
           orientation: 0 0 0
         real_origin: 
-          <<: *real_origin
+          <<: *real_origin_r
         inertia:
           ixx: 2.6586142e-07
           ixy: 1.2416847e-08
@@ -79,27 +95,27 @@ right:
           orientation: 0 0 0
       
       proximal:
-        <<: *thumb_proximal
+        <<: *thumb_proximal_r
         virtual_origin:
           position: 15e-03 -3.7e-03 0
           orientation: 1.5707963 0 0
         real_origin: 
-          <<: *real_origin
+          <<: *real_origin_r
 
       middle:
-        <<: *thumb_proximal
+        <<: *thumb_proximal_r
         virtual_origin:
           position: 16e-03 0 0
           orientation: 0 0 0
         real_origin: 
-          <<: *real_origin
+          <<: *real_origin_r
 
       distal:
-        <<: *thumb_distal
+        <<: *thumb_distal_r
         virtual_origin:
           position: 16e-03 0 0
           orientation: 0 0 0
-        real_origin: &real_origin_distal_finger
+        real_origin: &real_origin_distal_finger_r
           position: 9e-03 -0.000348650e-03 0.5e-03
           orientation: 0 0 0
 
@@ -121,13 +137,13 @@ right:
           position: 8.0072955e-03 -7.0168939e-04 -2.2093465e-04
           orientation: 0 0 0
 
-      proximal: &middle_proximal
+      proximal: &middle_proximal_r
         mass: 4.6375462e-03
         virtual_origin:
           position: 15e-03 0 -0.273297e-03
           orientation: 1.5707963 0 0
         real_origin: 
-          <<: *real_origin
+          <<: *real_origin_r
         inertia:
           ixx: 7.1982535e-08
           ixy: 3.4059376e-09
@@ -142,23 +158,23 @@ right:
         mesh_collision: "ph_proximal_middle_collision.stl"
 
       middle:
-        <<: *middle_proximal
+        <<: *middle_proximal_r
         virtual_origin:
           position: 21e-03 0 0
           orientation: 0 0 0
         real_origin: 
-          <<: *real_origin
+          <<: *real_origin_r
 
       distal:
-        <<: *thumb_distal
+        <<: *thumb_distal_r
         virtual_origin:
           position: 21e-03 0 0
           orientation: 0 0 0
         real_origin: 
-          <<: *real_origin_distal_finger
+          <<: *real_origin_distal_finger_r
 
     ring: 
-      knuckle: &ring_knuckle
+      knuckle: &ring_knuckle_r
         position: 20e-03 0 6.02670e-03
         orientation: 0 0 1.3962638
         mesh: "ph_ring_knuckle.stl"
@@ -176,42 +192,308 @@ right:
           orientation: 0 0 0
 
       proximal:
-        <<: *thumb_proximal
+        <<: *thumb_proximal_r
         virtual_origin:
           position: 15e-03 3.7e-03 0
           orientation: 1.5707963 0 0
         real_origin: 
-          <<: *real_origin
+          <<: *real_origin_r
 
       middle:
-        <<: *thumb_proximal
+        <<: *thumb_proximal_r
         virtual_origin:
           position: 16e-03 0 0
           orientation: 0 0 0
         real_origin: 
-          <<: *real_origin
+          <<: *real_origin_r
 
       distal:
-        <<: *thumb_distal
+        <<: *thumb_distal_r
         virtual_origin:
           position: 16e-03 0 0
           orientation: 0 0 0
         real_origin: 
-          <<: *real_origin_distal_finger
+          <<: *real_origin_distal_finger_r
 
     little:
       knuckle:
-        <<: *ring_knuckle
+        <<: *ring_knuckle_r
         position: 37e-03 -5e-03 6.02670e-03
         orientation: 0 0 1.3089971
   
-      proximal: &little_proximal
+      proximal: &little_proximal_r
         mass: 3.6325256e-03
         virtual_origin:
           position: 15e-03 3.7e-03 0
           orientation: 1.5707963 0 0
         real_origin: 
-          <<: *real_origin
+          <<: *real_origin_r
+        inertia:
+          ixx: 5.2310988e-08
+          ixy: 2.9585316e-09
+          ixz: 0
+          iyy: 1.5555268e-07
+          iyz: 0
+          izz: 1.5689550e-07
+        inertia_origin: 
+          position: 4.8712343e-03 1.5590106e-04 0
+          orientation: 0 0 0
+        mesh: "ph_proximal_little.stl"
+        mesh_collision: "ph_proximal_little_collision.stl"
+
+      middle:
+        <<: *little_proximal_r
+        virtual_origin:
+          position: 12e-03 0 0
+          orientation: 0 0 0
+        real_origin: 
+          <<: *real_origin_r
+
+      distal:
+        <<: *thumb_distal_r
+        virtual_origin:
+          position: 12e-03 0 0
+          orientation: 0 0 0
+        real_origin: 
+          <<: *real_origin_distal_finger_r
+
+
+left:
+  palm:
+    position: 0 0 0
+    orientation: 0 0 0
+    mesh: "palm_pinch.stl"
+    mesh_collision: "palm_pinch_collision.stl"
+    mass: 2.13e-01
+    inertia:
+      ixx: 1.34e-4
+      ixy: 9.11e-6
+      ixz: 2.8e-6
+      iyy: 7.83e-5
+      iyz: -4.69e-6
+      izz: 1.90e-4
+    inertia_origin: 
+      position: 5e-03 -4.51e-02 -1.218e-2
+      orientation: 0 0 0
+  finger:
+    thumb:
+      knuckle:
+        position: -0.0315281 -0.0276566 -0.0024
+        orientation: 1.5707963 0 2.5307278
+        mesh: "ph_thumb.stl"
+        mesh_collision: "ph_thumb_collision.stl"
+        mass: 4.0027562e-03
+        inertia:
+          ixx: 7.9539066e-08
+          ixy: 4.5163650e-08
+          ixz: -1.9083998e-10
+          iyy: 2.6188505e-07
+          iyz: -7.2188796e-11
+          izz: 2.7271392e-07
+        inertia_origin: 
+          position: 2.2469356e-04 5.9331385e-05 -1.9252360e-04
+          orientation: 0 0 0
+  
+      proximal: &thumb_proximal_l
+        mass: 3.4433482e-03
+        virtual_origin:
+          position: 16.5e-03 4.2e-03 0
+          orientation: -1.5707963 0 0
+        real_origin: &real_origin_l
+          position: 9e-03 0 -0.5e-03
+          orientation: 0 0 0
+        inertia:
+          ixx: 5.9259154e-08
+          ixy: 4.7090997e-09
+          ixz: 0
+          iyy: 4.3849440e-07
+          iyz: 0
+          izz:  4.5043748e-07
+        inertia_origin: 
+          position: 8.2958878e-03 1.4867666e-04 0
+          orientation: 0 0 0
+        mesh: "ph_proximal.stl"
+        mesh_collision: "ph_proximal_collision.stl"
+      
+      distal: &thumb_distal_l
+        mass: 0.009
+        virtual_origin:
+          position: 16e-03 0 0
+          orientation: 0 0 0
+        real_origin: 
+          <<: *real_origin_l
+        inertia:
+          ixx: 2.6586142e-07
+          ixy: 1.2416847e-08
+          ixz: 0.0
+          iyy: 5.9935767e-07
+          iyz: 0.0
+          izz: 6.6781963e-07
+        inertia_origin: 
+          position:  2.3379604e-03 5.3580065e-04 -4.5070160e-04
+          orientation: 0 0 0
+        mesh: "ph_distal.stl"
+        mesh_collision: "ph_distal_collision.stl"
+ 
+    index:
+      knuckle:
+        position: -20e-03 0 -6.0267000e-03
+        orientation: -3.1415927 0 1.7453293
+        mesh: "ph_index_knuckle.stl"
+        mesh_collision: "ph_index_knuckle_collision.stl"
+        mass: 2.3183050e-03
+        inertia:
+          ixx: 3.9660917e-08
+          ixy: -1.1020362e-08
+          ixz: 1.9317472e-09
+          iyy: 1.1869840e-07
+          iyz: 3.6101760e-10
+          izz: 1.1985870e-07
+        inertia_origin: 
+          position: 9.6979355e-03 3.2583889e-03 -3.0487279e-04
+          orientation: 0 0 0
+      
+      proximal:
+        <<: *thumb_proximal_l
+        virtual_origin:
+          position: 15e-03 3.7e-03 0
+          orientation: 1.5707963 0 0
+        real_origin: 
+          position: 9e-3 0 0
+          orientation: 0 0 0
+
+      middle:
+        <<: *thumb_proximal_l
+        virtual_origin:
+          position: 16e-03 0 0
+          orientation: 0 0 0
+        real_origin: 
+          position: 9e-03 0 0
+          orientation: 0 0 0
+
+      distal:
+        <<: *thumb_distal_l
+        virtual_origin:
+          position: 16e-03 0 0
+          orientation: 0 0 0
+        real_origin: &real_origin_distal_finger_l
+          position: 9e-03 0.0 -0.5e-03
+          orientation: 0 0 0
+
+    middle:
+      knuckle:
+        position: 0 0 -6.3e-03
+        orientation: -3.1415927 0 1.5707963
+        mesh: "ph_middle_knuckle.stl"
+        mesh_collision: "ph_middle_knuckle_collision.stl"
+        mass: 3.1680581e-03
+        inertia:
+          ixx: 5.0879185e-08
+          ixy: 0
+          ixz: 8.1813266e-09
+          iyy: 1.6958878e-07
+          iyz: -9.1776943e-11
+          izz: 1.7374086e-07
+        inertia_origin: 
+          position: 8.0072955e-03 -7.0168939e-04 -2.2093465e-04
+          orientation: 0 0 0
+
+      proximal: &middle_proximal_l
+        mass: 4.6375462e-03
+        virtual_origin:
+          position: 15e-03 0 -0.273297e-03
+          orientation: 1.5707963 0 0
+        real_origin:
+          position: 9e-03 0 0
+          orientation: 0 0 0
+        inertia:
+          ixx: 7.1982535e-08
+          ixy: 3.4059376e-09
+          ixz: 0
+          iyy: 4.1658521e-07
+          iyz: 0
+          izz: 4.2600955e-07
+        inertia_origin: 
+          position: 8.8492117e-03 2.8838342e-04 0
+          orientation: 0 0 0
+        mesh: "ph_proximal_middle.stl"
+        mesh_collision: "ph_proximal_middle_collision.stl"
+
+      middle:
+        <<: *middle_proximal_l
+        virtual_origin:
+          position: 21e-03 0 0
+          orientation: 0 0 0
+        real_origin:
+          position: 9e-03 0 0
+          orientation: 0 0 0
+
+      distal:
+        <<: *thumb_distal_l
+        virtual_origin:
+          position: 21e-03 0 0
+          orientation: 0 0 0
+        real_origin: 
+          <<: *real_origin_distal_finger_l
+
+    ring: 
+      knuckle: &ring_knuckle_l
+        position: 20e-03 0 -6.02670e-03
+        orientation: -3.1415927 0 1.3962638
+        mesh: "ph_ring_knuckle.stl"
+        mesh_collision: "ph_ring_knuckle_collision.stl"
+        mass: 3.0409977e-03
+        inertia:
+          ixx: 4.9866800e-08
+          ixy: 2.6272498e-08
+          ixz: 9.6948368e-10
+          iyy: 1.7114350e-07
+          iyz: -4.3286430e-10
+          izz: 1.7869107e-07
+        inertia_origin: 
+          position: 8.0285364e-03 -2.6686235e-03 -8.6427548e-04
+          orientation: 0 0 0
+
+      proximal:
+        <<: *thumb_proximal_l
+        virtual_origin:
+          position: 15e-03 -3.7e-03 0
+          orientation: 1.5707963 0 0
+        real_origin: 
+          position: 9e-3 0 0
+          orientation: 0 0 0
+
+      middle:
+        <<: *thumb_proximal_l
+        virtual_origin:
+          position: 16e-03 0 0
+          orientation: 0 0 0
+        real_origin: 
+          position: 9e-3 0 0
+          orientation: 0 0 0
+
+      distal:
+        <<: *thumb_distal_l
+        virtual_origin:
+          position: 16e-03 0 0
+          orientation: 0 0 0
+        real_origin: 
+          <<: *real_origin_distal_finger_l
+
+    little:
+      knuckle:
+        <<: *ring_knuckle_l
+        position: 37e-03 -5e-03 -6.02670e-03
+        orientation: -3.1415927 0 1.3089971
+  
+      proximal: &little_proximal
+        mass: 3.6325256e-03
+        virtual_origin:
+          position: 15e-03 -3.7e-03 0
+          orientation: 1.5707963 0 0
+        real_origin: 
+          position: 9e-3 0 0
+          orientation: 0 0 0
         inertia:
           ixx: 5.2310988e-08
           ixy: 2.9585316e-09
@@ -231,15 +513,15 @@ right:
           position: 12e-03 0 0
           orientation: 0 0 0
         real_origin: 
-          <<: *real_origin
+          position: 9e-3 0 0
+          orientation: 0 0 0
 
       distal:
-        <<: *thumb_distal
+        <<: *thumb_distal_l
         virtual_origin:
           position: 12e-03 0 0
           orientation: 0 0 0
         real_origin: 
-          <<: *real_origin_distal_finger
+          <<: *real_origin_distal_finger_l
 
 
-left:

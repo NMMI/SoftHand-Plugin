@@ -42,20 +42,16 @@
   <xacro:macro name="finger" params="yaml_file:=^ ns name parent side ">
     
     <!-- Knuckle -->
-    <xacro:phalanx_knuckle name="${name}" type="knuckle" parent="${parent}" ns="${ns}" side="${side}">
-    </xacro:phalanx_knuckle>
+    <xacro:phalanx_knuckle name="${name}" type="knuckle" parent="${parent}" ns="${ns}" side="${side}"/>
 
     <!-- Proximal -->
-    <xacro:phalanx_generic name="${name}" type="proximal" parent="${name}_knuckle" ns="${ns}" side="${side}">
-    </xacro:phalanx_generic> 
+    <xacro:phalanx_generic name="${name}" type="proximal" parent="${name}_knuckle" ns="${ns}" side="${side}"/>
 
     <!-- Middle -->
-    <xacro:phalanx_generic name="${name}" type="middle" parent="${name}_proximal" ns="${ns}" side="${side}">
-    </xacro:phalanx_generic>
+    <xacro:phalanx_generic name="${name}" type="middle" parent="${name}_proximal" ns="${ns}" side="${side}"/>
 
     <!-- Distal -->
-    <xacro:phalanx_generic name="${name}" type="distal" parent="${name}_middle" ns="${ns}" side="${side}">
-    </xacro:phalanx_generic>
+    <xacro:phalanx_generic name="${name}" type="distal" parent="${name}_middle" ns="${ns}" side="${side}"/>
 
   </xacro:macro>
 
